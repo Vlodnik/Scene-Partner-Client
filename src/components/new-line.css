@@ -1,0 +1,38 @@
+#new-line {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#new-line * {
+  font-size: 1.4em;
+}
+
+#character, #line {
+  margin-bottom: 1em;
+}
+
+#character {
+  text-align: center;
+  height: 2em;
+  width: 50%;
+}
+
+#line {
+  height: 6em;
+}
+
+#add-line {
+  background-color: #00bddb;
+  border: none;
+  height: 2em;
+  width: 50%;
+  transition: background-color .3s;
+}
+
+#add-line:hover {
+  cursor: pointer;
+  background-color: #00869b;
+}

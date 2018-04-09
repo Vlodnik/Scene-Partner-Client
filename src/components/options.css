@@ -1,0 +1,8 @@
+#options {
+  background-color: white;
+}
+
+#options input {
+  font-size: 1em;
+  margin-left: 25px;
+}
