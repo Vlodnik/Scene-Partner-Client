@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import HomeNav from './home-nav';
 
@@ -14,10 +15,10 @@ export default class Home extends React.Component {
           <h1>Choose a scene</h1>
         </header>
         <ul id="scenes">
-          <li>Funky Chicken Scene</li>
-          <li>R&J Act 2 Scene 1</li>
-          <li>Wicked: Popular</li>
-          <li>Who's Afraid of Virginia Woolf</li>
+          <li><Link to="/scene/sceneId">Funky Chicken Scene</Link></li>
+          <li><Link to="/scene/sceneId">R&J Act 2 Scene 1</Link></li>
+          <li><Link to="/scene/sceneId">Wicked: Popular</Link></li>
+          <li><Link to="/scene/sceneId">Who's Afraid of Virginia Woolf</Link></li>
         </ul>
         </main>
       </div>
