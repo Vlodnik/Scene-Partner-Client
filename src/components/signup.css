@@ -1,0 +1,40 @@
+#account-creation, #login-form {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  margin: 8em auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+#account-creation input, #account-creation button, #login-form input, #login-form button {
+  margin-bottom: 1.2em;
+  width: 65%;
+  max-width: 200px;
+}
+
+#account-creation input, #login-form input {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+#create, #login {
+  max-width: 400px;
+  height: 1.5em;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: white;
+  background-color: #00bddb;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: auto;
+  transition: background-color .3s;
+}
+
+#create:hover, #login:hover {
+  background-color: #00869b;
+  cursor: pointer;
+}

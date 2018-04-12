@@ -1,0 +1,46 @@
+* {
+  /* border: 1px solid red; */
+}
+
+#hamburger {
+  background: none;
+  border: none;
+}
+
+#hamburger:hover {
+  cursor: pointer;
+}
+
+.burger-button {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 1em;
+}
+
+.hamburger-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: lightgray;
+  list-style: none;
+  padding: 0 0 1em;
+  width: 100%;
+}
+
+.hamburger-menu li {
+  /* width: 100%; */
+}
+
+.hamburger-menu a {
+  background-color: #00bddb;
+  color: white;
+  text-decoration: none;
+  margin: 10em 3em;
+  padding: 0.5em 1em;
+}
+
+.is-active {
+  display: flex;
+  justify-content: center;
+}

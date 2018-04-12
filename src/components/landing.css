@@ -1,0 +1,59 @@
+/* Header */
+header {
+  background-color: white;
+  padding: 2em;
+  width: 100%;
+}
+
+#sign-up {
+  display: block;
+  border: none;
+  border-radius: 3px;
+  background-color: lightgray;
+  font-size: 1.6em;
+  margin: 1em auto 0;
+}
+
+#sign-up:hover {
+  cursor: pointer;
+}
+
+/* Sections */
+main {
+  padding-bottom: 2em;
+}
+
+section {
+  text-align: center;
+  padding-bottom: 5em;
+}
+
+section h2 {
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+section h3 {
+  margin: auto;
+}
+
+section button {
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  margin-top: 1em;
+  font-size: 1.2em;
+  width: 80%;
+}
+
+section button:hover {
+  cursor: pointer;
+}
+
+section:nth-of-type(odd) {
+  background-color: lightgray;
+}
+
+section:nth-of-type(even) {
+  background-color: white;
+}

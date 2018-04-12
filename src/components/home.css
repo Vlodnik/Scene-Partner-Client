@@ -1,0 +1,40 @@
+/* Header */
+header {
+  background-color: white;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Home Page */
+#scenes {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+#scenes li {
+  background-color: pink;
+  border-radius: 3px;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 3em;
+  margin: 1em auto;
+  width: 80%;
+}
+
+#scenes li:nth-of-type(odd) {
+  background-color: lightgray;
+}
+
+#scenes li:nth-of-type(even) {
+  background-color: white;
+}
+
+#scenes li:hover {
+  cursor: pointer;
+  background-color: pink;
+}
