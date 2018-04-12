@@ -18,6 +18,10 @@ header {
   cursor: pointer;
 }
 
+header a {
+  text-decoration: none;
+}
+
 /* Sections */
 main {
   padding-bottom: 2em;

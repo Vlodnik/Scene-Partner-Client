@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import LandingNav from './landing-nav';
 
@@ -12,7 +13,7 @@ export default class Landing extends React.Component {
         <main>
           <header role="banner">
             <h1>Hear your cues aloud so you can memorize your lines.</h1>
-            <button id="sign-up" type="submit">Get started</button>
+            <Link to="/signup"><button id="sign-up">Get started</button></Link>
           </header>
           <section>
             <h2>Run lines with your device</h2>
