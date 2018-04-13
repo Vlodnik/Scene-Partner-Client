@@ -10,13 +10,13 @@ import './scene.css';
 
 export class Scene extends React.Component {
   render() {
-    const lines = this.props.lines.map((line, index) => {
+    const lines = this.props.lines.map((line, index) =>
       <li key={index}>
         <Line
           {...line}
         />
       </li>
-    });
+    );
 
     return (
       <div>
