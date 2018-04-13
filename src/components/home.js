@@ -1,12 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import HomeNav from './home-nav';
 
 import './home.css';
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
   render() {
+    const scenes = this.props.scenes.map((scene, index) =>
+      <li key={index}><Link to={`/scene/${scene.id}`}>{scene.title}</Link></li>
+  );
+
     return (
       <div>
         <HomeNav />
@@ -15,13 +20,23 @@ export default class Home extends React.Component {
           <h1>Choose a scene</h1>
         </header>
         <ul id="scenes">
-          <li><Link to="/scene/sceneId">Funky Chicken Scene</Link></li>
-          <li><Link to="/scene/sceneId">R&J Act 2 Scene 1</Link></li>
-          <li><Link to="/scene/sceneId">Wicked: Popular</Link></li>
-          <li><Link to="/scene/sceneId">Who's Afraid of Virginia Woolf</Link></li>
+          {scenes}
         </ul>
         </main>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    scenes: state.scenes
+  }
+}
+
+export default connect(mapStateToProps)(Home);
+
+// <li><Link to="/scene/sceneId">Funky Chicken Scene</Link></li>
+// <li><Link to="/scene/sceneId">R&J Act 2 Scene 1</Link></li>
+// <li><Link to="/scene/sceneId">Wicked: Popular</Link></li>
+// <li><Link to="/scene/sceneId">Who's Afraid of Virginia Woolf</Link></li>

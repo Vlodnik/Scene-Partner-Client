@@ -19,7 +19,7 @@ export default class App extends React.Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route path="/home" component={Home} />
-            <Route path="/scene" component={Scene} />
+            <Route path="/scene/:id" component={Scene} />
           <Footer />
         </div>
       </Router>

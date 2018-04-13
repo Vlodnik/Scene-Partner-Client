@@ -12,9 +12,7 @@ export class Scene extends React.Component {
   render() {
     const lines = this.props.lines.map((line, index) =>
       <li key={index}>
-        <Line
-          {...line}
-        />
+        <Line {...line} />
       </li>
     );
 
@@ -23,7 +21,9 @@ export class Scene extends React.Component {
         <HomeNav />
         <main>
           <Options />
-          {lines}
+          <ul id="lines">
+            {lines}
+          </ul>
           <NewLine />
         </main>
       </div>
@@ -31,11 +31,16 @@ export class Scene extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-
-
+function mapStateToProps(state, props) {
+  console.log(state);
+  console.log(props);
+  const sceneId = Number(props.match.params.id);
+  const scene = state.scenes.find(obj => {
+    return obj.id === sceneId;
+  });
+  console.log(scene);
   return {
-    lines: state.lines
+    lines: scene.lines
   }
 }
 

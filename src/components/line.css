@@ -1,0 +1,17 @@
+.char-name, .line-text {
+  display: inline-block;
+}
+
+.char-name {
+  /* border: 1px solid red; */
+  font-size: 1em;
+  min-width: 100px;
+  margin-top: 0;
+}
+
+.line-text {
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  margin-left: 30px;
+}
