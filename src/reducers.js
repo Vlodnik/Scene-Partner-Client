@@ -1,4 +1,5 @@
 const initialState = {
+  userCharacter: null,
   scenes: [{
     id: 0,
     title: 'Funky Chicken Scene',

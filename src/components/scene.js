@@ -20,7 +20,7 @@ export class Scene extends React.Component {
       <div>
         <HomeNav />
         <main>
-          <Options />
+          <Options lines={this.props.lines} />
           <ul id="lines">
             {lines}
           </ul>
@@ -32,13 +32,10 @@ export class Scene extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-  console.log(state);
-  console.log(props);
   const sceneId = Number(props.match.params.id);
   const scene = state.scenes.find(obj => {
     return obj.id === sceneId;
   });
-  console.log(scene);
   return {
     lines: scene.lines
   }
