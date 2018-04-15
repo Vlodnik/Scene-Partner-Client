@@ -5,6 +5,7 @@ import Landing from './landing';
 import Signup from './signup';
 import Login from './login';
 import Home from './home';
+// import NewScene from './new-scene';
 import Scene from './scene';
 import Footer from './footer';
 
@@ -19,6 +20,7 @@ export default class App extends React.Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route path="/home" component={Home} />
+            {/*<Route exact path="/scene/new" component={NewScene} />*/}
             <Route path="/scene/:id" component={Scene} />
           <Footer />
         </div>

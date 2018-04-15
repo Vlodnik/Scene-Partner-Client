@@ -3,10 +3,11 @@ import './options.css'
 
 export default class Options extends React.Component {
   render() {
-    const characters = this.props.lines.map(function(line, index) {
+    const { lines, onSelectCharacter } = this.props;
+
+    const characters = lines.map(function(line, index) {
       return line.character;
     });
-    console.log(characters);
 
     let charactersSoFar = [];
     const uniqueCharacters = characters.filter(function(char, index) {
@@ -22,21 +23,31 @@ export default class Options extends React.Component {
       const possessive = char + `'s`;
       return (
         <div key={index}>
-          <input id={`${index}`} type="radio" name="option" value={char}></input>
-          <label>Hear {possessive} cues</label>
+          <input
+            id={char}
+            type="radio"
+            name="option"
+            value={char}
+            onChange={() => onSelectCharacter(char)}
+          />
+        <label htmlFor={char}>Hear {possessive} cues</label>
         </div>
       );
     });
 
     return (
       <form id="options">
-        <input id="all" type="radio" name="option" value="all" defaultChecked />
+        <input
+          id="all"
+          type="radio"
+          name="option"
+          value="all"
+          onChange={() => onSelectCharacter('all')}
+          defaultChecked
+        />
         <label htmlFor="all">Hear all lines</label>
         {characterOptions}
       </form>
     );
   }
 }
-
-// <input id="default" type="radio" name="option" value="default" defaultChecked />
-// <label htmlFor="default">Hear cues only</label>
