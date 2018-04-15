@@ -5,6 +5,6 @@ import Options from './options';
 
 describe('<Options />', function() {
   it('Renders without crashing', function() {
-    shallow(<Options />);
+    shallow(<Options lines={[]} />);
   });
 });

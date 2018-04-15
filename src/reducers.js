@@ -1,6 +1,7 @@
 import * as actions from './actions';
 
 const initialState = {
+  currentSceneId: null,
   scenes: [{
     id: 0,
     title: 'Funky Chicken Scene',
@@ -50,23 +51,31 @@ const initialState = {
 
 export const scenePartnerReducer = (state=initialState, action) => {
   console.log(state);
-  if(action.type === actions.SELECT_CHARACTER) {
+  if(action.type === actions.ADD_SCENE) {
+    const nextId = state.scenes.reduce(function(prev, current) {
+      return (prev.id > current.id) ? prev.id : current.id;
+    }) + 1;
     return Object.assign({}, state, {
-      scenes: state.scenes.map(function(scene) {
-        if(scene.id === action.payload.sceneId) {
-          return {
-            ...scene,
-            userCharacter: action.payload.character
-          }
+      currentSceneId: nextId,
+      scenes: [
+        ...state.scenes,
+        {
+          id: nextId,
+          title: action.payload.title,
+          userCharacter: 'all',
+          lines: []
         }
-        return scene;
-      })
+      ]
+    });
+  } else if(action.type === actions.CHANGE_SCENE) {
+    console.log('updating currentSceneId');
+    return Object.assign({}, state, {
+      currentSceneId: action.payload.sceneId
     });
   } else if(action.type === actions.ADD_LINE) {
     return Object.assign({}, state, {
       scenes: state.scenes.map(function(scene) {
         if(scene.id === action.payload.sceneId) {
-          console.log(scene.lines);
           return {
             ...scene,
             lines: [...scene.lines,
@@ -75,6 +84,18 @@ export const scenePartnerReducer = (state=initialState, action) => {
                 text: action.payload.line
               }
             ]
+          }
+        }
+        return scene;
+      })
+    });
+  } else if(action.type === actions.SELECT_CHARACTER) {
+    return Object.assign({}, state, {
+      scenes: state.scenes.map(function(scene) {
+        if(scene.id === action.payload.sceneId) {
+          return {
+            ...scene,
+            userCharacter: action.payload.character
           }
         }
         return scene;

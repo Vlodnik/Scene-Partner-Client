@@ -1,9 +1,19 @@
-export const SELECT_CHARACTER = 'SELECT_CHARACTER';
-export function selectCharacter(character, sceneId) {
+export const ADD_SCENE = 'ADD_SCENE';
+export function addScene(title) {
   return {
-    type: SELECT_CHARACTER,
+    type: ADD_SCENE,
     payload: {
-      character,
+      title
+    }
+  }
+}
+
+export const CHANGE_SCENE = 'CHANGE_SCENE';
+export function changeScene(sceneId) {
+  console.log('switching to scene ' + sceneId);
+  return {
+    type: CHANGE_SCENE,
+    payload: {
       sceneId
     }
   }
@@ -11,12 +21,22 @@ export function selectCharacter(character, sceneId) {
 
 export const ADD_LINE = 'ADD_LINE';
 export function addLine(character, line, sceneId) {
-  console.log('creating new line of:' + character + '\'s: ' + line);
   return {
     type: ADD_LINE,
     payload: {
       character,
       line,
+      sceneId
+    }
+  }
+}
+
+export const SELECT_CHARACTER = 'SELECT_CHARACTER';
+export function selectCharacter(character, sceneId) {
+  return {
+    type: SELECT_CHARACTER,
+    payload: {
+      character,
       sceneId
     }
   }
