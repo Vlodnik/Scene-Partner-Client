@@ -1,0 +1,22 @@
+#new-scene-name {
+  display: block;
+  border: none;
+  font-size: 1.5em;
+  margin: 1em auto;
+  text-align: center;
+  width: 60%;
+}
+
+#create-scene {
+  display: block;
+  border: none;
+  font-size: 1.3em;
+  border-radius: 3px;
+  background-color: #00bddb;
+  margin: auto;
+}
+
+#create-scene:hover {
+  cursor: pointer;
+  background-color: #00869b;
+}

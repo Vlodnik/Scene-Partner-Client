@@ -9,12 +9,7 @@ export default class HomeBurger extends React.Component {
     document.getElementById('dropdown').classList.toggle('is-active');
   }
 
-
-
   render() {
-    console.log(this.props);
-    // const nextSceneId =
-
     return (
       <div>
         <button id="hamburger" onClick={(e) => this.toggleMenu(e)}>
@@ -23,7 +18,7 @@ export default class HomeBurger extends React.Component {
           <div className="burger-button"></div>
         </button>
         <ul id="dropdown" className="hamburger-menu">
-          <li><Link to="/scene">New scene</Link></li>
+          <li><Link to="/new-scene">New scene</Link></li>
           <li><Link to="/">Log out</Link></li>
         </ul>
       </div>

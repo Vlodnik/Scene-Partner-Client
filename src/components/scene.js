@@ -1,6 +1,6 @@
 import React from 'react';
 // import {bindActionCreators} from 'redux'; THIS IS ANOTHER WAY TO DISPATCH ACTIONS
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { selectCharacter, addLine } from '../actions';
 
@@ -21,7 +21,7 @@ export class Scene extends React.Component {
   }
 
   render() {
-    const {sceneId} = this.props;
+    const { sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
       <li key={index}>
