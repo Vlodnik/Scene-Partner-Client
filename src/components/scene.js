@@ -6,7 +6,6 @@ import { selectCharacter, addLine } from '../actions';
 
 import HomeNav from './home-nav';
 import Options from './options';
-import NewLine from './new-line';
 import Line from './line';
 
 import './scene.css';

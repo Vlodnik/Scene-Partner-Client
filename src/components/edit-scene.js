@@ -19,7 +19,7 @@ export class EditScene extends React.Component {
 
     const lines = this.props.lines.map((line, index) =>
       <li key={index}>
-        <EditingLine {...line} />
+        <EditingLine index={index} {...line} />
       </li>
     );
 

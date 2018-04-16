@@ -4,6 +4,7 @@ const initialState = {
   currentSceneId: null,
   scenes: [{
     id: 0,
+    editing: false,
     title: 'Funky Chicken Scene',
     userCharacter: 'all',
     lines: [{
@@ -18,6 +19,7 @@ const initialState = {
     }]
   }, {
     id: 1,
+    editing: false,
     title: 'Hamlet',
     userCharacter: 'all',
     lines: [{
@@ -29,6 +31,7 @@ const initialState = {
     }]
   }, {
     id: 2,
+    editing: false,
     title: 'Wicked: Popular',
     userCharacter: 'all',
     lines: [{
@@ -37,6 +40,7 @@ const initialState = {
     }]
   }, {
     id: 3,
+    editing: false,
     title: 'Who\'s Afraid of Virginia Woolf',
     userCharacter: 'all',
     lines: [{
@@ -68,9 +72,66 @@ export const scenePartnerReducer = (state=initialState, action) => {
       ]
     });
   } else if(action.type === actions.CHANGE_SCENE) {
-    console.log('updating currentSceneId');
+    console.log('updating currentSceneId to ' + action.payload.sceneId);
     return Object.assign({}, state, {
       currentSceneId: action.payload.sceneId
+    });
+  } else if(action.type === actions.TOGGLE_EDITING) {
+    console.log('reducer is toggling editing');
+    const targetScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+    const toggled = targetScene.editing ? false : true;
+    console.log(toggled);
+    return Object.assign({}, state, {
+      scenes: state.scenes.map(function(scene) {
+        console.log(scene);
+        if(scene.id === state.currentSceneId) {
+          return {
+            ...scene,
+            editing: toggled
+          }
+        }
+        return scene;
+      })
+    });
+  }
+  // else if(action.type === actions.CHANGE_CHARACTER) {
+  //   console.log('received CHANGE_CHARACTER action', 'the currentSceneId is: ' + state.currentSceneId);
+  //   return Object.assign({}, state, {
+  //     scenes: state.scenes.map(function(scene) {
+  //       if(scene.id === state.currentSceneId) {
+  //         console.log('found the current scene');
+  //         const { lineIndex, character } = action.payload;
+  //         let newScene = Object.assign({}, scene);
+  //         newScene.lines[lineIndex].character = character;
+  //         console.log(newScene);
+  //         return newScene;
+  //       }
+  //       return scene;
+  //     })
+  //   });
+  // }
+  else if(action.type === actions.CHANGE_LINE) {
+    const { sceneId, lineIndex, character, text } = action.payload
+    console.log(action.payload);
+
+    const targetScene = state.scenes.find(scene => scene.id === sceneId);
+    let newLines = [...targetScene.lines];
+    newLines[lineIndex] = {
+      character,
+      text
+    };
+
+    console.log('received CHANGE_LINE action');
+    return Object.assign({}, state, {
+      scenes: state.scenes.map(function(scene) {
+        if(scene.id === sceneId) {
+          const newScene = Object.assign({}, scene, {
+            lines: newLines
+          });
+          return newScene;
+        }
+        return scene;
+      })
     });
   } else if(action.type === actions.ADD_LINE) {
     return Object.assign({}, state, {
@@ -81,7 +142,7 @@ export const scenePartnerReducer = (state=initialState, action) => {
             lines: [...scene.lines,
               {
                 character: action.payload.character,
-                text: action.payload.line
+                text: action.payload.text
               }
             ]
           }

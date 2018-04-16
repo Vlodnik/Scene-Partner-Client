@@ -14,11 +14,21 @@ export class Home extends React.Component {
   }
 
   render() {
-    const scenes = this.props.scenes.map((scene, index) =>
-      <li onClick={() => this.changeScene(scene.id)} key={index}>
-        <Link to={`/scene/${scene.id}`}>{scene.title}</Link>
-      </li>
-  );
+    const scenes = this.props.scenes.map((scene, index) => {
+      if(scene.editing === false) {
+        return (
+          <li onClick={() => this.changeScene(scene.id)} key={index}>
+            <Link to={`/scene/${scene.id}`}>{scene.title}</Link>
+          </li>
+        );
+      } else {
+        return (
+          <li onClick={() => this.changeScene(scene.id)} key={index}>
+            <Link to={`/scene-editing/${scene.id}`}>{scene.title}</Link>
+          </li>
+        );
+      }
+    });
 
     return (
       <div>

@@ -10,7 +10,6 @@ export function addScene(title) {
 
 export const CHANGE_SCENE = 'CHANGE_SCENE';
 export function changeScene(sceneId) {
-  console.log('switching to scene ' + sceneId);
   return {
     type: CHANGE_SCENE,
     payload: {
@@ -19,13 +18,47 @@ export function changeScene(sceneId) {
   }
 }
 
+export const TOGGLE_EDITING = 'TOGGLE_EDITING';
+export function toggleEditing() {
+  console.log('toggling editing mode');
+  return {
+    type: TOGGLE_EDITING,
+  }
+}
+
 export const ADD_LINE = 'ADD_LINE';
-export function addLine(character, line, sceneId) {
+export function addLine(character, text, sceneId) {
   return {
     type: ADD_LINE,
     payload: {
       character,
-      line,
+      text,
+      sceneId
+    }
+  }
+}
+
+// export const CHANGE_CHARACTER = 'CHANGE_CHARACTER';
+// export function changeCharacter(character, lineIndex, sceneId) {
+//   return {
+//     type: CHANGE_CHARACTER,
+//     payload: {
+//       character,
+//       lineIndex,
+//       sceneId
+//     }
+//   }
+// }
+
+export const CHANGE_LINE = 'CHANGE_LINE';
+export function changeLine(character, text, lineIndex, sceneId) {
+  console.log('creating CHANGE_LINE action');
+  return {
+    type: CHANGE_LINE,
+    payload: {
+      character,
+      text,
+      lineIndex,
       sceneId
     }
   }
