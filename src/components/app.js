@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import { Router, Route } from 'react-router';
-// import createBrowserHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 
 import Landing from './landing';
@@ -10,11 +8,10 @@ import Login from './login';
 import Home from './home';
 import NewScene from './new-scene';
 import Scene from './scene';
+import EditScene from './edit-scene';
 import Footer from './footer';
 
 import './app.css';
-
-// export const history = createBrowserHistory();
 
 export class App extends React.Component {
   render() {
@@ -27,6 +24,7 @@ export class App extends React.Component {
           <Route path="/home" component={Home} />
           <Route exact path="/new-scene" component={NewScene} />
           <Route path="/scene/:id" component={Scene} />
+          <Route path="/scene-editing/:id" component={EditScene} />
           <Footer />
         </div>
       </Router>

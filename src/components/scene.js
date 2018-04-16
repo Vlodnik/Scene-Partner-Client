@@ -40,9 +40,9 @@ export class Scene extends React.Component {
           <ul id="lines">
             {lines}
           </ul>
-          <NewLine
+          {/*<NewLine
             onAddLine={(character, line) => this.addLine(character, line, sceneId)}
-          />
+          />*/}
         </main>
       </div>
     );

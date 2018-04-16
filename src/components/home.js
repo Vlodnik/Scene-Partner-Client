@@ -1,15 +1,23 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { changeScene } from '../actions';
 
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
+  changeScene(sceneId) {
+    this.props.dispatch(changeScene(sceneId));
+  }
+
   render() {
     const scenes = this.props.scenes.map((scene, index) =>
-      <li key={index}><Link to={`/scene/${scene.id}`}>{scene.title}</Link></li>
+      <li onClick={() => this.changeScene(scene.id)} key={index}>
+        <Link to={`/scene/${scene.id}`}>{scene.title}</Link>
+      </li>
   );
 
     return (
