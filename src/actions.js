@@ -20,7 +20,6 @@ export function changeScene(sceneId) {
 
 export const TOGGLE_EDITING = 'TOGGLE_EDITING';
 export function toggleEditing() {
-  console.log('toggling editing mode');
   return {
     type: TOGGLE_EDITING,
   }
@@ -38,26 +37,24 @@ export function addLine(character, text, sceneId) {
   }
 }
 
-// export const CHANGE_CHARACTER = 'CHANGE_CHARACTER';
-// export function changeCharacter(character, lineIndex, sceneId) {
-//   return {
-//     type: CHANGE_CHARACTER,
-//     payload: {
-//       character,
-//       lineIndex,
-//       sceneId
-//     }
-//   }
-// }
-
 export const CHANGE_LINE = 'CHANGE_LINE';
 export function changeLine(character, text, lineIndex, sceneId) {
-  console.log('creating CHANGE_LINE action');
   return {
     type: CHANGE_LINE,
     payload: {
       character,
       text,
+      lineIndex,
+      sceneId
+    }
+  }
+}
+
+export const DELETE_LINE = 'DELETE_LINE';
+export function deleteLine(lineIndex, sceneId) {
+  return {
+    type: DELETE_LINE,
+    payload: {
       lineIndex,
       sceneId
     }

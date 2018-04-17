@@ -1,4 +1,5 @@
 import * as actions from './actions';
+import shortid from 'shortid';
 
 const initialState = {
   currentSceneId: null,
@@ -8,12 +9,15 @@ const initialState = {
     title: 'Funky Chicken Scene',
     userCharacter: 'all',
     lines: [{
+      id: 0,
       character: 'MR. CHICKEN',
       text: 'Hello, I am a chicken!'
     }, {
+      id: 1,
       character: 'MR. CHICKEN',
       text: 'I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken! I am still a chicken!'
     }, {
+      id: 2,
       character: 'A DUCK',
       text: 'Behold, my chicken-ly splendor!'
     }]
@@ -23,9 +27,11 @@ const initialState = {
     title: 'Hamlet',
     userCharacter: 'all',
     lines: [{
+      id: 0,
       character: 'HAMLET',
       text: 'Romeo, Romeo, hello there Romeo.'
     }, {
+      id: 1,
       character: 'ROMEO',
       text: 'Oh Juliet! I am Hamlet.'
     }]
@@ -35,6 +41,7 @@ const initialState = {
     title: 'Wicked: Popular',
     userCharacter: 'all',
     lines: [{
+      id: 0,
       character: 'ELFABA',
       text: 'Wow! I\'m flying! But I don\'t know what I\'m reading.'
     }]
@@ -44,9 +51,11 @@ const initialState = {
     title: 'Who\'s Afraid of Virginia Woolf',
     userCharacter: 'all',
     lines: [{
+      id: 0,
       character: 'JOANNE',
       text: 'Is that my name? That feels wrong.'
     }, {
+      id: 1,
       character: 'VIRGINIA WOOLF',
       text: 'Geez, I don\'t know. I\'m dead!'
     }]
@@ -54,7 +63,6 @@ const initialState = {
 };
 
 export const scenePartnerReducer = (state=initialState, action) => {
-  console.log(state);
   if(action.type === actions.ADD_SCENE) {
     const nextId = state.scenes.reduce(function(prev, current) {
       return (prev.id > current.id) ? prev.id : current.id;
@@ -72,18 +80,14 @@ export const scenePartnerReducer = (state=initialState, action) => {
       ]
     });
   } else if(action.type === actions.CHANGE_SCENE) {
-    console.log('updating currentSceneId to ' + action.payload.sceneId);
     return Object.assign({}, state, {
       currentSceneId: action.payload.sceneId
     });
   } else if(action.type === actions.TOGGLE_EDITING) {
-    console.log('reducer is toggling editing');
     const targetScene = state.scenes.find(scene => scene.id === state.currentSceneId);
     const toggled = targetScene.editing ? false : true;
-    console.log(toggled);
     return Object.assign({}, state, {
       scenes: state.scenes.map(function(scene) {
-        console.log(scene);
         if(scene.id === state.currentSceneId) {
           return {
             ...scene,
@@ -93,42 +97,37 @@ export const scenePartnerReducer = (state=initialState, action) => {
         return scene;
       })
     });
-  }
-  // else if(action.type === actions.CHANGE_CHARACTER) {
-  //   console.log('received CHANGE_CHARACTER action', 'the currentSceneId is: ' + state.currentSceneId);
-  //   return Object.assign({}, state, {
-  //     scenes: state.scenes.map(function(scene) {
-  //       if(scene.id === state.currentSceneId) {
-  //         console.log('found the current scene');
-  //         const { lineIndex, character } = action.payload;
-  //         let newScene = Object.assign({}, scene);
-  //         newScene.lines[lineIndex].character = character;
-  //         console.log(newScene);
-  //         return newScene;
-  //       }
-  //       return scene;
-  //     })
-  //   });
-  // }
-  else if(action.type === actions.CHANGE_LINE) {
+  } else if(action.type === actions.CHANGE_LINE) {
     const { sceneId, lineIndex, character, text } = action.payload
-    console.log(action.payload);
 
     const targetScene = state.scenes.find(scene => scene.id === sceneId);
-    let newLines = [...targetScene.lines];
-    newLines[lineIndex] = {
-      character,
-      text
-    };
+    let updatedLines = [...targetScene.lines];
+    updatedLines[lineIndex].character = character;
+    updatedLines[lineIndex].text = text;
 
-    console.log('received CHANGE_LINE action');
     return Object.assign({}, state, {
       scenes: state.scenes.map(function(scene) {
         if(scene.id === sceneId) {
-          const newScene = Object.assign({}, scene, {
-            lines: newLines
+          return Object.assign({}, scene, {
+            lines: updatedLines
           });
-          return newScene;
+        }
+        return scene;
+      })
+    });
+  } else if(action.type === actions.DELETE_LINE) {
+    const { lineIndex, sceneId } = action.payload;
+
+    const targetScene = state.scenes.find(scene => scene.id === sceneId);
+    const updatedLines = [...targetScene.lines];
+    updatedLines.splice(lineIndex, 1);
+
+    return Object.assign({}, state, {
+      scenes: state.scenes.map(function(scene) {
+        if(scene.id === sceneId) {
+          return Object.assign({}, scene, {
+            lines: updatedLines
+          });
         }
         return scene;
       })
@@ -141,6 +140,7 @@ export const scenePartnerReducer = (state=initialState, action) => {
             ...scene,
             lines: [...scene.lines,
               {
+                id: shortid.generate(),
                 character: action.payload.character,
                 text: action.payload.text
               }

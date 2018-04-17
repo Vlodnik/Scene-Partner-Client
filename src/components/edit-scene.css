@@ -1,0 +1,15 @@
+#editing-lines * {
+  /* border: 1px solid red; */
+}
+
+#editing-lines {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#editing-lines form {
+  display: flex;
+  margin-bottom: 1em;
+}

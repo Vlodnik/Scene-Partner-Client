@@ -15,16 +15,16 @@ export class EditScene extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { sceneId } = this.props;
 
-    const lines = this.props.lines.map((line, index) =>
-      <li key={index}>
-        <EditingLine index={index} {...line} />
-      </li>
-    );
-
-    console.log('hello from EditScene');
-    console.log(lines);
+    const lines = this.props.lines.map(function(line, index) {
+      return (
+        <li key={line.id}>
+          <EditingLine index={index} {...line} />
+        </li>
+      );
+    });
 
     return (
       <div>

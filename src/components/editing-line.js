@@ -1,22 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeLine } from '../actions';
+import { changeLine, deleteLine } from '../actions';
 
 import './editing-line.css';
 
 export class EditingLine extends React.Component {
-  // changeCharacter(text) {
-  //   this.props.dispatch(
-  //     changeCharacter(text, this.props.index, this.props.currentSceneId)
-  //   );
-  // }
-  //
-  // changeLine(text) {
-  //   this.props.dispatch(
-  //     changeLine(text, this.props.index, this.props.currentSceneId)
-  //   );
-  // }
   changeLine(e) {
     e.preventDefault();
     const characterValue = this.characterField.value;
@@ -27,22 +16,40 @@ export class EditingLine extends React.Component {
     );
   }
 
+  deleteLine(e) {
+    e.preventDefault(e);
+    this.props.dispatch(
+      deleteLine(this.props.index, this.props.currentSceneId)
+    );
+  }
+
   render() {
     return (
-      <form onSubmit={(e) => this.changeLine(e)}>
+      <form className="editing-line" onSubmit={(e) => this.changeLine(e)}>
         <input
-          id="editing-character"
+          required
+          className="editing-character"
           type="text"
           ref={input => this.characterField = input}
           defaultValue={this.props.character}
         />
-        <input
-          id="editing-text"
+        <textarea
+          required
+          className="editing-text"
           type="text"
           ref={input => this.textField = input}
-          defaultValue={this.props.text}
-        />
-      <button className="save" type="submit">Save</button>
+          defaultValue={this.props.text}>
+        </textarea>
+        <button
+          className="save"
+          type="submit">
+          Save
+        </button>
+        <button
+          className="delete"
+          onClick={(e) => this.deleteLine(e)}>
+          Delete
+        </button>
       </form>
     );
   }
