@@ -14,8 +14,8 @@ export default function insureSceneId(Component) {
 
   return class extends React.Component {
     componentDidMount() {
-      if(typeof this.props.sceneId !== 'number') {
-        const sceneId = Number(this.props.match.params.id);
+      if(this.props.sceneId === null || this.props.sceneId === undefined) {
+        const sceneId = this.props.match.params.id;
         this.props.dispatch(changeScene(sceneId));
       }
     }

@@ -2,28 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { changeScene } from '../actions';
-
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
-  changeScene(sceneId) {
-    this.props.dispatch(changeScene(sceneId));
-  }
-
   render() {
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {
         return (
-          <li onClick={() => this.changeScene(scene.id)} key={index}>
+          <li key={scene.id}>
             <Link to={`/scene/${scene.id}`}>{scene.title}</Link>
           </li>
         );
       } else {
         return (
-          <li onClick={() => this.changeScene(scene.id)} key={index}>
+          <li key={scene.id}>
             <Link to={`/scene-editing/${scene.id}`}>{scene.title}</Link>
           </li>
         );

@@ -23,7 +23,7 @@ export class Scene extends React.Component {
     const { sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
-      <li key={index}>
+      <li key={line.id}>
         <Line {...line} />
       </li>
     );
@@ -46,7 +46,7 @@ export class Scene extends React.Component {
 }
 
 function mapStateToProps(state, props) {
-  const sceneId = Number(props.match.params.id);
+  const sceneId = props.match.params.id;
   const scene = state.scenes.find(obj => {
     return obj.id === sceneId;
   });

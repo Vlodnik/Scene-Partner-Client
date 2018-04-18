@@ -17,8 +17,8 @@ export class NewScene extends React.Component {
   }
 
   render() {
-    if(this.props.currentSceneId) {
-      return <Redirect to={`/scene/${this.props.currentSceneId}`} />;
+    if(this.props.sceneId) {
+      return <Redirect to={`/scene-editing/${this.props.sceneId}`} />;
     }
     return (
       <div>
@@ -42,7 +42,7 @@ export class NewScene extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    currentSceneId: state.currentSceneId,
+    sceneId: state.currentSceneId,
     scenes: state.scenes,
   };
 }
