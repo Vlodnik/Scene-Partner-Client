@@ -1,6 +1,6 @@
 import React from 'react';
-// import {bindActionCreators} from 'redux'; THIS IS ANOTHER WAY TO DISPATCH ACTIONS
 import { connect } from 'react-redux';
+import insureSceneId from './insure-scene-id';
 
 import { selectCharacter, addLine } from '../actions';
 
@@ -39,9 +39,6 @@ export class Scene extends React.Component {
           <ul id="lines">
             {lines}
           </ul>
-          {/*<NewLine
-            onAddLine={(character, line) => this.addLine(character, line, sceneId)}
-          />*/}
         </main>
       </div>
     );
@@ -55,14 +52,8 @@ function mapStateToProps(state, props) {
   });
   return {
     lines: scene.lines,
-    sceneId
+    sceneId: state.currentSceneId
   }
 }
 
-// THIS IS ANOTHER WAY TO DISPATCH ACTIONS
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(
-//     { selectCharacter, addLine }, dispatch);
-// }
-
-export default connect(mapStateToProps)(Scene);
+export default connect(mapStateToProps)(insureSceneId(Scene));

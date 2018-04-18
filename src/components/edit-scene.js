@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import insureSceneId from './insure-scene-id';
 
 import { addLine } from '../actions';
 
@@ -15,7 +16,6 @@ export class EditScene extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     const { sceneId } = this.props;
 
     const lines = this.props.lines.map(function(line, index) {
@@ -49,8 +49,8 @@ function mapStateToProps(state, props) {
   });
   return {
     lines: scene.lines,
-    sceneId
+    sceneId: state.currentSceneId
   }
 }
 
-export default connect(mapStateToProps)(EditScene);
+export default connect(mapStateToProps)(insureSceneId(EditScene));
