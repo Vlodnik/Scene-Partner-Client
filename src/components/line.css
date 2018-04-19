@@ -13,4 +13,10 @@
   border: none;
   border-radius: 3px;
   margin-left: 30px;
+  transition: background-color .3s;
+}
+
+.line-text:hover {
+  cursor: pointer;
+  background-color: #00bddb;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import insureSceneId from './insure-scene-id';
 
-import { selectCharacter, addLine } from '../actions';
+import { selectCharacter } from '../actions';
 
 import HomeNav from './home-nav';
 import Options from './options';
@@ -15,11 +15,8 @@ export class Scene extends React.Component {
     this.props.dispatch(selectCharacter(character, sceneId));
   }
 
-  addLine(character, line, sceneId) {
-    this.props.dispatch(addLine(character, line, sceneId));
-  }
-
   render() {
+    console.log(this.props)
     const { sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
@@ -33,8 +30,8 @@ export class Scene extends React.Component {
         <HomeNav />
         <main>
           <Options
+            sceneId={sceneId}
             lines={this.props.lines}
-            onSelectCharacter={(character) => this.selectCharacter(character, sceneId)}
           />
           <ul id="lines">
             {lines}
@@ -52,6 +49,7 @@ function mapStateToProps(state, props) {
   });
   return {
     lines: scene.lines,
+    userCharacter: scene.userCharacter,
     sceneId: state.currentSceneId
   }
 }

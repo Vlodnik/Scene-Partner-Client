@@ -3,7 +3,29 @@ import shortid from 'shortid';
 
 const initialState = {
   currentSceneId: null,
-  scenes: []
+  scenes: [{
+    id: '2;3lh2',
+    editing: false,
+    title: 'Hamlet',
+    userCharacter: 'all',
+    lines: [{
+      id: '2;l3k32',
+      character: 'HAMLET',
+      text: 'I am Hamlet, and I am sad!'
+    }, {
+      id: '23jkl32',
+      character: 'OPHELIA',
+      text: 'But why are you so sad, Hamlet?'
+    }, {
+      id: 'j3j3j',
+      character: 'HAMLET',
+      text: 'Because my stockings are so dirty.'
+    }, {
+      id: 'j32h2g',
+      character: 'OPHELIA',
+      text: 'Well then put on clean socks, you goof.'
+    }]
+  }]
   // scenes: [{
   //   id: '0',
   //   editing: false,

@@ -1,5 +1,5 @@
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 
-import {scenePartnerReducer} from './reducers';
+import { scenePartnerReducer } from './reducers';
 
 export default createStore(scenePartnerReducer);

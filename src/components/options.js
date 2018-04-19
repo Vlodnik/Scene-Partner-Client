@@ -1,9 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { selectCharacter } from '../actions';
+
 import './options.css'
 
-export default class Options extends React.Component {
+export class Options extends React.Component {
+  selectCharacter(character, sceneId) {
+    this.props.dispatch(selectCharacter(character, sceneId));
+  }
+
   render() {
-    const { lines, onSelectCharacter } = this.props;
+    const { lines, sceneId } = this.props;
 
     const characters = lines.map(function(line, index) {
       return line.character;
@@ -19,7 +27,7 @@ export default class Options extends React.Component {
       }
     });
 
-    const characterOptions = uniqueCharacters.map(function(char, index) {
+    const characterOptions = uniqueCharacters.map((char, index) => {
       const possessive = char + `'s`;
       return (
         <div key={index}>
@@ -28,7 +36,7 @@ export default class Options extends React.Component {
             type="radio"
             name="option"
             value={char}
-            onChange={() => onSelectCharacter(char)}
+            onChange={() => this.selectCharacter(char, sceneId)}
           />
         <label htmlFor={char}>Hear {possessive} cues</label>
         </div>
@@ -42,7 +50,7 @@ export default class Options extends React.Component {
           type="radio"
           name="option"
           value="all"
-          onChange={() => onSelectCharacter('all')}
+          onChange={() => this.selectCharacter('all', sceneId)}
           defaultChecked
         />
         <label htmlFor="all">Hear all lines</label>
@@ -51,3 +59,5 @@ export default class Options extends React.Component {
     );
   }
 }
+
+export default connect()(Options);
