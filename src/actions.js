@@ -1,3 +1,5 @@
+const $ = require('jquery');
+
 export const ADD_SCENE = 'ADD_SCENE';
 export function addScene(title) {
   return {
@@ -68,6 +70,27 @@ export function selectCharacter(character, sceneId) {
     payload: {
       character,
       sceneId
+    }
+  }
+}
+
+export const READ_LINE = 'READ_LINE';
+export function readLine(text) {
+  // function logResponse(data) {
+  //   console.log(`Success! Data is: ${ data }`);
+  // };
+  //
+  // $.ajax({
+  //   url: 'hostingUrl',
+  //   dataType: 'string',
+  //   data: text,
+  //   success: logResponse
+  // })
+
+  return {
+    type: READ_LINE,
+    payload: {
+      text
     }
   }
 }

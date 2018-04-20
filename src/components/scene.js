@@ -16,8 +16,8 @@ export class Scene extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-    const { sceneId } = this.props;
+    // console.log(this.props)
+    const { userCharacter, sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
       <li key={line.id}>
@@ -30,7 +30,6 @@ export class Scene extends React.Component {
         <HomeNav />
         <main>
           <Options
-            sceneId={sceneId}
             lines={this.props.lines}
           />
           <ul id="lines">

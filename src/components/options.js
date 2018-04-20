@@ -60,4 +60,10 @@ export class Options extends React.Component {
   }
 }
 
-export default connect()(Options);
+function mapStateToProps(state) {
+  return {
+    sceneId: state.currentSceneId
+  }
+}
+
+export default connect(mapStateToProps)(Options);

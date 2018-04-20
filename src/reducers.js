@@ -186,6 +186,8 @@ export const scenePartnerReducer = (state=initialState, action) => {
         return scene;
       })
     });
+  } else if(action.type === actions.READ_LINE) {
+    // get from text-to-speech api
   }
   return state;
 };
