@@ -17,7 +17,7 @@ export class Scene extends React.Component {
 
   render() {
     // console.log(this.props)
-    const { userCharacter, sceneId } = this.props;
+    // const { userCharacter, sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
       <li key={line.id}>

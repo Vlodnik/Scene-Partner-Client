@@ -1,4 +1,4 @@
-const $ = require('jquery');
+// const $ = require('jquery');
 
 export const ADD_SCENE = 'ADD_SCENE';
 export function addScene(title) {
