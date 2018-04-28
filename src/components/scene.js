@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import insureSceneId from './insure-scene-id';
 
-import { createFiles, selectCharacter } from '../actions';
+import { selectCharacter } from '../actions';
 
 import HomeNav from './home-nav';
 import Options from './options';
@@ -11,10 +11,6 @@ import Line from './line';
 import './scene.css';
 
 export class Scene extends React.Component {
-  // componentDidMount() {
-  //     this.props.dispatch(createFiles(this.props.lines, this.props.sceneId));
-  // }
-
   selectCharacter(character, sceneId) {
     this.props.dispatch(selectCharacter(character, sceneId));
   }

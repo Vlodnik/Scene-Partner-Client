@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const shortid = require('shortid');
+const API_BASE_URL = require('./config');
 
 export const ADD_SCENE = 'ADD_SCENE';
 export function addScene(title) {
@@ -126,20 +126,6 @@ export function createFiles(lines, sceneId) {
       dispatch(createFilesError(err));
     });
   }
-
-
-  // dispatch()
-  //
-  // $.ajax({
-  //   url: 'http://localhost:8080/audio',
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   dataType: 'text',
-  //   processData: false,
-  //   data: JSON.stringify(postObj),
-  //   success: setUrlAndMakeAction,
-  //   error: logError
-  // });
 }
 
 export const READ_LINE = 'READ_LINE';
@@ -148,7 +134,7 @@ export function readLine(text, lineId) {
   const postObj = { text, lineId };
 
   $.ajax({
-    url: 'http://localhost:8080/audio',
+    url: `${ API_BASE_URL }/audio`,
     method: 'POST',
     contentType: 'application/json',
     dataType: 'text',
