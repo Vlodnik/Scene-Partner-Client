@@ -49,7 +49,8 @@ function mapStateToProps(state, props) {
   });
   return {
     lines: scene.lines,
-    sceneId: state.currentSceneId
+    sceneId: state.currentSceneId,
+    editing: scene.editing
   }
 }
 

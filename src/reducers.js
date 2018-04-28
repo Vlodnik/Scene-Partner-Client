@@ -11,19 +11,23 @@ const initialState = {
     lines: [{
       id: '2;l3k32',
       character: 'HAMLET',
-      text: 'I am Hamlet, and I am sad!'
+      text: 'Hi there.',
+      lineUrl: null
     }, {
       id: '23jkl32',
       character: 'OPHELIA',
-      text: 'But why are you so sad, Hamlet?'
+      text: 'Howdy?',
+      lineUrl: null
     }, {
       id: 'j3j3j',
       character: 'HAMLET',
-      text: 'Because my stockings are so dirty.'
+      text: 'I am sad.',
+      lineUrl: null
     }, {
       id: 'j32h2g',
       character: 'OPHELIA',
-      text: 'Well then put on clean socks, you goof.'
+      text: 'Yikes.',
+      lineUrl: null
     }]
   }]
   // scenes: [{
@@ -188,6 +192,15 @@ export const scenePartnerReducer = (state=initialState, action) => {
     });
   } else if(action.type === actions.READ_LINE) {
     // get from text-to-speech api
+  } else if(action.type === actions.CREATE_FILES_REQUEST) {
+    console.log('Requesting creation of files');
+  } else if(action.type === actions.CREATE_FILES_SUCCESS) {
+    console.log('We successfully created the files');
+    return Object.assign({}, state, {
+      
+    });
+  } else if (action.type === actions.CREATE_FILES_ERROR) {
+    console.log('Error in creating the files');
   }
   return state;
 };

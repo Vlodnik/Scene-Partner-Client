@@ -18,6 +18,10 @@ export default function insureSceneId(Component) {
         const sceneId = this.props.match.params.id;
         this.props.dispatch(changeScene(sceneId));
       }
+      // if(!(this.props.editing)) {
+      //   // dispatch action to send POST request to API for audio files
+      //   this.props.dispatch(createFiles(this.props.lines));
+      // }
     }
 
     render() {
