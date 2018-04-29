@@ -57,7 +57,7 @@ export class EditingLine extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    currentSceneId: state.currentSceneId
+    currentSceneId: state.sp.currentSceneId
   }
 }
 

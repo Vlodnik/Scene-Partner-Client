@@ -43,7 +43,7 @@ export class Scene extends React.Component {
 
 function mapStateToProps(state, props) {
   const sceneId = props.match.params.id;
-  const scene = state.scenes.find(obj => {
+  const scene = state.sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
   return {

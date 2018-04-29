@@ -85,16 +85,18 @@ export class HomeBurger extends React.Component {
 }
 
 function mapStateToProps(state) {
-  if(state.currentSceneId !== null) {
-    const currentScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+  const sp = state.sp;
+
+  if(sp.currentSceneId !== null) {
+    const currentScene = sp.scenes.find(scene => scene.id === sp.currentSceneId);
     const editing = currentScene.editing;
     return {
-      currentSceneId: state.currentSceneId,
+      currentSceneId: sp.currentSceneId,
       editing
     }
   }
   return {
-    currentSceneId: state.currentSceneId
+    currentSceneId: sp.currentSceneId
   }
 }
 

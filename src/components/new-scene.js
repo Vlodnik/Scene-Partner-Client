@@ -42,8 +42,8 @@ export class NewScene extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    sceneId: state.currentSceneId,
-    scenes: state.scenes,
+    sceneId: state.sp.currentSceneId,
+    scenes: state.sp.scenes,
   };
 }
 

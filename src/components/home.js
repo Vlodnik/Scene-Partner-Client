@@ -42,7 +42,7 @@ export class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    scenes: state.scenes
+    scenes: state.sp.scenes
   }
 }
 

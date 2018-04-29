@@ -43,14 +43,15 @@ export class EditScene extends React.Component {
 }
 
 function mapStateToProps(state, props) {
+  const sp = state.sp;
   const sceneId = props.match.params.id;
-  const scene = state.scenes.find(obj => {
+  const scene = sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
   return {
     lines: scene.lines,
-    sceneId: state.currentSceneId,
-    editing: scene.editing
+    sceneId: sp.currentSceneId,
+    editing: sp.editing
   }
 }
 

@@ -197,7 +197,7 @@ export const scenePartnerReducer = (state=initialState, action) => {
   } else if(action.type === actions.CREATE_FILES_SUCCESS) {
     console.log('We successfully created the files');
     return Object.assign({}, state, {
-      
+
     });
   } else if (action.type === actions.CREATE_FILES_ERROR) {
     console.log('Error in creating the files');
