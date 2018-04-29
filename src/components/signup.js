@@ -1,10 +1,15 @@
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 
 import LandingNav from './landing-nav';
 
 import './signup.css';
 
-export default class Signup extends React.Component {
+export class Signup extends React.Component {
+  onSubmit() {
+
+  }
+
   render() {
     return (
       <div>
@@ -12,9 +17,30 @@ export default class Signup extends React.Component {
         <main>
           <form id="account-creation">
             <h2>Create your account</h2>
-            <input id="new-user" type="text" placeholder="Username" required />
-            <input id="new-pass" type="password" placeholder="Password" required />
-            <input id="pass-confirm" type="password" placeholder="Confirm password" required />
+            <Field
+              name="new-user"
+              id="new-user"
+              type="text"
+              component="input"
+              placeholder="Username"
+              required
+            />
+            <Field
+              name="new-pass"
+              id="new-pass"
+              type="password"
+              component="input"
+              placeholder="Password"
+              required
+            />
+            <Field
+              name="pass-confirm"
+              id="pass-confirm"
+              type="password"
+              component="input"
+              placeholder="Confirm password"
+              required
+            />
             <button id="create" type="submit">Continue</button>
           </form>
         </main>
@@ -22,3 +48,7 @@ export default class Signup extends React.Component {
     );
   }
 }
+
+export default reduxForm({
+  form: 'registration'
+})(Signup);
