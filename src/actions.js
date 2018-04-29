@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const API_BASE_URL = require('./config');
+const { REACT_APP_BASE_URL } = require('./config');
 
 export const ADD_SCENE = 'ADD_SCENE';
 export function addScene(title) {
@@ -133,8 +133,10 @@ export function readLine(text, lineId) {
   // const uriText = encodeURIComponent(text);
   const postObj = { text, lineId };
 
+  console.log(REACT_APP_BASE_URL);
+
   $.ajax({
-    url: `${ API_BASE_URL }/audio`,
+    url: `${ REACT_APP_BASE_URL }/audio`,
     method: 'POST',
     contentType: 'application/json',
     dataType: 'text',
