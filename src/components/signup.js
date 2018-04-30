@@ -6,8 +6,8 @@ import LandingNav from './landing-nav';
 import './signup.css';
 
 export class Signup extends React.Component {
-  onSubmit() {
-
+  onSubmit(values) {
+    console.log(values);
   }
 
   render() {
@@ -15,7 +15,9 @@ export class Signup extends React.Component {
       <div>
         <LandingNav />
         <main>
-          <form id="account-creation">
+          <form id="account-creation" onSubmit={this.props.handleSubmit(values =>
+              this.onSubmit(values)
+            )}>
             <h2>Create your account</h2>
             <Field
               name="new-user"
@@ -41,7 +43,15 @@ export class Signup extends React.Component {
               placeholder="Confirm password"
               required
             />
-            <button id="create" type="submit">Continue</button>
+            <button
+              id="create"
+              type="submit"
+              disabled={
+                this.props.pristine || this.props.submitting
+              }
+            >
+              Continue
+            </button>
           </form>
         </main>
       </div>
@@ -50,5 +60,5 @@ export class Signup extends React.Component {
 }
 
 export default reduxForm({
-  form: 'registration'
+  form: 'signup'
 })(Signup);
