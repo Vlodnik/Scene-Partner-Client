@@ -1,7 +1,9 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { required } from '../validators';
 
 import LandingNav from './landing-nav';
+import Input from './input';
 
 import './signup.css';
 
@@ -23,25 +25,25 @@ export class Signup extends React.Component {
               name="new-user"
               id="new-user"
               type="text"
-              component="input"
+              component={Input}
               placeholder="Username"
-              required
+              validate={[required]}
             />
             <Field
               name="new-pass"
               id="new-pass"
               type="password"
-              component="input"
+              component={Input}
               placeholder="Password"
-              required
+              validate={[required]}
             />
             <Field
               name="pass-confirm"
               id="pass-confirm"
               type="password"
-              component="input"
+              component={Input}
               placeholder="Confirm password"
-              required
+              validate={[required]}
             />
             <button
               id="create"
