@@ -106,6 +106,7 @@ export function createFilesError(error) {
 }
 
 export function createFiles(lines, sceneId) {
+  console.log('create files is firing');
   return function(dispatch) {
     dispatch(createFilesRequest());
     fetch('http://localhost:8080/audio', {
@@ -129,6 +130,7 @@ export function createFiles(lines, sceneId) {
 }
 
 export const READ_LINE = 'READ_LINE';
+console.log('Base API url is: ' + REACT_APP_BASE_URL);
 export function readLine(text, lineId) {
   // const uriText = encodeURIComponent(text);
   const postObj = { text, lineId };
@@ -143,8 +145,6 @@ export function readLine(text, lineId) {
     success: createAndPlayAudio,
     error: logError
   });
-  // https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
-  // 'http://localhost:8080/HyJL7EA3M.mp3'
 
   function createAndPlayAudio(url) {
     console.log(url);
