@@ -133,8 +133,6 @@ export function readLine(text, lineId) {
   // const uriText = encodeURIComponent(text);
   const postObj = { text, lineId };
 
-  console.log(REACT_APP_BASE_URL);
-
   $.ajax({
     url: `${ REACT_APP_BASE_URL }/audio`,
     method: 'POST',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, focus } from 'redux-form';
 import { required } from '../validators';
 
 import LandingNav from './landing-nav';
@@ -62,5 +62,7 @@ export class Signup extends React.Component {
 }
 
 export default reduxForm({
-  form: 'signup'
+  form: 'signup',
+  onSubmitFail: (errors, dispatch) =>
+    dispatch(focus('signup', Object.keys(errors)[0]))
 })(Signup);
