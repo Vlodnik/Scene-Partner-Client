@@ -10,6 +10,10 @@
   max-width: 600px;
 }
 
+.form-inputs {
+  width: 100%;
+}
+
 #account-creation input, #account-creation button, #login-form input, #login-form button {
   margin-bottom: 1.2em;
   width: 65%;
@@ -17,8 +21,11 @@
 }
 
 #account-creation input, #login-form input {
+  display: block;
   border: none;
   border-bottom: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #create, #login {

@@ -16,15 +16,21 @@ export default class Input extends React.Component {
     }
 
     return (
-      <Element
-        {...this.props.input}
-        id={this.props.input.name}
-        type={this.props.input.type}
-        placeholder={this.props.placeholder}
-        ref={input => (this.input = input)}
-      >
-        {this.props.children}
-      </Element>
+      <div className="form-inputs">
+        <label htmlFor={this.props.input.name}>
+          {error}
+          {warning}
+        </label>
+        <Element
+          {...this.props.input}
+          id={this.props.input.name}
+          type={this.props.input.type}
+          placeholder={this.props.placeholder}
+          ref={input => (this.input = input)}
+        >
+          {this.props.children}
+        </Element>
+      </div>
     );
   }
 }
