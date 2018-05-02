@@ -106,7 +106,6 @@ export function createFilesError(error) {
 }
 
 export function createFiles(lines, sceneId) {
-  console.log('create files is firing');
   return function(dispatch) {
     dispatch(createFilesRequest());
     fetch('http://localhost:8080/audio', {
@@ -130,42 +129,82 @@ export function createFiles(lines, sceneId) {
 }
 
 export const READ_LINE = 'READ_LINE';
-console.log(`Base API url is: ${REACT_APP_BASE_URL}`);
-export function readLine(text, lineId) { 
-  // const uriText = encodeURIComponent(text);
-  const postObj = { text, lineId };
-
-  $.ajax({
-    url: `${ REACT_APP_BASE_URL }/audio`,
-    method: 'POST',
-    contentType: 'application/json',
-    dataType: 'text',
-    processData: false,
-    data: JSON.stringify(postObj),
-    success: createAndPlayAudio,
-    error: logError
-  });
-
-  function createAndPlayAudio(url) {
-    console.log(url);
-    const audio = new Audio(url);
-    audio.play();
+export function readLine(text, lineId) {
+  return function(dispatch) {
+    dispatch(readLineRequest());
+    fetch(`${REACT_APP_BASE_URL}/audio`, {
+      method: 'POST',
+      body: JSON.stringify({ text, lineId }),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res => {
+      if(!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json()
+    }).then(res => {
+      dispatch(readLineSuccess(res));
+    }).catch(err => {
+      dispatch(readLineError(err));
+    })
   }
 
-  function logError(error) {
-    console.log(error);
-  }
 
+  // const postObj = { text, lineId };
+  //
+  // $.ajax({
+  //   url: `${ REACT_APP_BASE_URL }/audio`,
+  //   method: 'POST',
+  //   contentType: 'application/json',
+  //   dataType: 'text',
+  //   processData: false,
+  //   data: JSON.stringify(postObj),
+  //   success: createAndPlayAudio,
+  //   error: logError
+  // });
+  //
+  // function createAndPlayAudio(url) {
+  //   console.log(url);
+  //   const audio = new Audio(url);
+  //   audio.play();
+  // }
+  //
+  // function logError(error) {
+  //   console.log(error);
+  // }
+  //
+  // return {
+  //   type: READ_LINE,
+  //   payload: {
+  //     text
+  //   }
+  // }
+}
+
+export const READ_LINE_REQUEST = 'READ_LINE_REQUEST';
+export function readLineRequest() {
   return {
-    type: READ_LINE,
+    type: READ_LINE_REQUEST
+  }
+}
+
+export const READ_LINE_SUCCESS = 'READ_LINE_SUCCESS';
+export function readLineSuccess() {
+  return {
+    type: READ_LINE_SUCCESS,
     payload: {
-      text
+
     }
   }
 }
 
-// export const CREATE_FILES = 'CREATE_FILES';
-// export function createFiles(lines) {
-//   console.log('We got the action for createFiles');
-//
-// }
+export const READ_LINE_ERROR = 'READ_LINE_ERROR';
+export function readLineError(err) {
+  return {
+    type: READ_LINE_ERROR,
+    payload: {
+      err
+    }
+  }
+}
