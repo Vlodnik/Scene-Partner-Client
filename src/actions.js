@@ -1,12 +1,54 @@
 const $ = require('jquery');
 const { REACT_APP_BASE_URL } = require('./config');
 
-export const ADD_SCENE = 'ADD_SCENE';
 export function addScene(title) {
+  return function(dispatch) {
+    dispatch(addSceneRequest());
+
+    $.ajax({
+      url: `${ REACT_APP_BASE_URL }/scenes`,
+      method: 'POST',
+      contentType: 'application/json',
+      dataType: 'text',
+      processData: false,
+      data: JSON.stringify({ title }),
+      success: dispatchSuccess,
+      error: dispatchError
+    });
+
+    function dispatchSuccess() {
+      dispatch(addSceneSuccess());
+    }
+
+    function dispatchError(err) {
+      dispatch(addSceneError(err))
+    }
+  }
+}
+
+export const ADD_SCENE_REQUEST = 'ADD_SCENE_REQUEST';
+export function addSceneRequest() {
   return {
-    type: ADD_SCENE,
+    type: ADD_SCENE_REQUEST
+  }
+}
+
+export const ADD_SCENE_SUCCESS = 'ADD_SCENE_SUCCESS';
+export function addSceneSuccess() {
+  return {
+    type: ADD_SCENE_SUCCESS,
     payload: {
-      title
+
+    }
+  }
+}
+
+export const ADD_SCENE_ERROR = 'ADD_SCENE_ERROR';
+export function addSceneError(err) {
+  return {
+    type: ADD_SCENE_ERROR,
+    payload: {
+      err
     }
   }
 }

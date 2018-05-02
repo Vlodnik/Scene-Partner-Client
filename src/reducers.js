@@ -92,7 +92,9 @@ const initialState = {
 };
 
 export const scenePartnerReducer = (state=initialState, action) => {
-  if(action.type === actions.ADD_SCENE) {
+  if(action.type === actions.ADD_SCENE_REQUEST) {
+    return Object.assign({}, state, { loading: true, error: null });
+  } else if(action.type === actions.ADD_SCENE_SUCCESS) {
     const newId = shortid.generate();
 
     return Object.assign({}, state, {
@@ -108,6 +110,8 @@ export const scenePartnerReducer = (state=initialState, action) => {
         }
       ]
     });
+  } else if(action.type === actions.ADD_SCENE_ERROR) {
+    return Object.assign({}, state, { loading: false, error: action.payload.err });
   } else if(action.type === actions.CHANGE_SCENE) {
     return Object.assign({}, state, {
       currentSceneId: action.payload.sceneId
