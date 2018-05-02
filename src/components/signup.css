@@ -20,6 +20,13 @@
   max-width: 200px;
 }
 
+#account-creation label, #login-form label {
+  display: block;
+  margin: auto;
+  width: 65%;
+  max-width: 200px;
+}
+
 #account-creation input, #login-form input {
   display: block;
   border: none;

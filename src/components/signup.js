@@ -1,11 +1,20 @@
 import React from 'react';
 import { reduxForm, Field, focus } from 'redux-form';
-import { required } from '../validators';
+import {
+  required,
+  nonEmpty,
+  isTrimmed,
+  correctLength,
+  matches
+} from '../validators';
 
 import LandingNav from './landing-nav';
 import Input from './input';
 
 import './signup.css';
+
+const passLength = correctLength({ min: 8, max: 72 });
+const matchesPass = matches('new-pass');
 
 export class Signup extends React.Component {
   onSubmit(values) {
@@ -27,7 +36,7 @@ export class Signup extends React.Component {
               type="text"
               component={Input}
               placeholder="Username"
-              validate={[required]}
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               name="new-pass"
@@ -35,7 +44,7 @@ export class Signup extends React.Component {
               type="password"
               component={Input}
               placeholder="Password"
-              validate={[required]}
+              validate={[required, nonEmpty, isTrimmed, passLength]}
             />
             <Field
               name="pass-confirm"
@@ -43,7 +52,7 @@ export class Signup extends React.Component {
               type="password"
               component={Input}
               placeholder="Confirm password"
-              validate={[required]}
+              validate={[required, nonEmpty, isTrimmed, passLength, matchesPass]}
             />
             <button
               id="create"
