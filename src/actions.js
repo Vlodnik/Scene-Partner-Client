@@ -131,7 +131,7 @@ export function createFiles(lines, sceneId) {
 
 export const READ_LINE = 'READ_LINE';
 console.log(`Base API url is: ${REACT_APP_BASE_URL}`);
-export function readLine(text, lineId) { 
+export function readLine(text, lineId) {
   // const uriText = encodeURIComponent(text);
   const postObj = { text, lineId };
 
