@@ -3,6 +3,8 @@ import shortid from 'shortid';
 
 const initialState = {
   currentSceneId: null,
+  loading: false,
+  error: null,
   scenes: [{
     id: '2;3lh2',
     editing: false,
@@ -190,17 +192,12 @@ export const scenePartnerReducer = (state=initialState, action) => {
         return scene;
       })
     });
-  } else if(action.type === actions.READ_LINE) {
-    // get from text-to-speech api
-  } else if(action.type === actions.CREATE_FILES_REQUEST) {
-    console.log('Requesting creation of files');
-  } else if(action.type === actions.CREATE_FILES_SUCCESS) {
-    console.log('We successfully created the files');
-    return Object.assign({}, state, {
-
-    });
-  } else if (action.type === actions.CREATE_FILES_ERROR) {
-    console.log('Error in creating the files');
+  } else if(action.type === actions.READ_LINE_REQUEST) {
+    return Object.assign({}, state, { loading: true, error: null });
+  } else if(action.type === actions.READ_LINE_SUCCESS) {
+    return Object.assign({}, state, { loading: false });
+  } else if(action.type === actions.READ_LINE_ERROR) {
+    return Object.assign({}, state, { loading: false, error: action.payload.err });
   }
   return state;
 };

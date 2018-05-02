@@ -75,111 +75,31 @@ export function selectCharacter(character, sceneId) {
   }
 }
 
-export const CREATE_FILES_REQUEST = 'CREATE_FILES_REQUEST';
-export function createFilesRequest() {
-  return {
-    type: CREATE_FILES_REQUEST
-  }
-}
-
-export const CREATE_FILES_SUCCESS = 'CREATE_FILES_SUCCESS';
-export function createFilesSuccess(lineUrls, sceneId) {
-  console.log(lineUrls);
-  return {
-    type: CREATE_FILES_SUCCESS,
-    payload: {
-      lineUrls,
-      sceneId
-    }
-  }
-}
-
-export const CREATE_FILES_ERROR = 'CREATE_FILES_ERROR';
-export function createFilesError(error) {
-  console.log(error);
-  return {
-    type: CREATE_FILES_ERROR,
-    payload: {
-      error
-    }
-  }
-}
-
-export function createFiles(lines, sceneId) {
-  return function(dispatch) {
-    dispatch(createFilesRequest());
-    fetch('http://localhost:8080/audio', {
-      method: 'POST',
-      body: JSON.stringify({ lines }),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(res => {
-      if(!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return res.json();
-    }).then(res => {
-      dispatch(createFilesSuccess(res, sceneId));
-    }).catch(err => {
-      dispatch(createFilesError(err));
-    });
-  }
-}
-
-export const READ_LINE = 'READ_LINE';
 export function readLine(text, lineId) {
   return function(dispatch) {
     dispatch(readLineRequest());
-    fetch(`${REACT_APP_BASE_URL}/audio`, {
+
+    const postObj = { text, lineId };
+
+    $.ajax({
+      url: `${ REACT_APP_BASE_URL }/audio`,
       method: 'POST',
-      body: JSON.stringify({ text, lineId }),
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(res => {
-      if(!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return res.json()
-    }).then(res => {
-      dispatch(readLineSuccess(res));
-    }).catch(err => {
+      contentType: 'application/json',
+      dataType: 'text',
+      processData: false,
+      data: JSON.stringify(postObj),
+      success: dispatchSuccess,
+      error: dispatchError
+    });
+
+    function dispatchSuccess(url) {
+      dispatch(readLineSuccess(url));
+    }
+
+    function dispatchError(err) {
       dispatch(readLineError(err));
-    })
+    }
   }
-
-
-  // const postObj = { text, lineId };
-  //
-  // $.ajax({
-  //   url: `${ REACT_APP_BASE_URL }/audio`,
-  //   method: 'POST',
-  //   contentType: 'application/json',
-  //   dataType: 'text',
-  //   processData: false,
-  //   data: JSON.stringify(postObj),
-  //   success: createAndPlayAudio,
-  //   error: logError
-  // });
-  //
-  // function createAndPlayAudio(url) {
-  //   console.log(url);
-  //   const audio = new Audio(url);
-  //   audio.play();
-  // }
-  //
-  // function logError(error) {
-  //   console.log(error);
-  // }
-  //
-  // return {
-  //   type: READ_LINE,
-  //   payload: {
-  //     text
-  //   }
-  // }
 }
 
 export const READ_LINE_REQUEST = 'READ_LINE_REQUEST';
@@ -190,12 +110,12 @@ export function readLineRequest() {
 }
 
 export const READ_LINE_SUCCESS = 'READ_LINE_SUCCESS';
-export function readLineSuccess() {
+export function readLineSuccess(url) {
+  const audio = new Audio(url);
+  audio.play();
+
   return {
     type: READ_LINE_SUCCESS,
-    payload: {
-
-    }
   }
 }
 
