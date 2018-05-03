@@ -1,65 +1,6 @@
-import { SubmissionError } from 'redux-form';
 const $ = require('jquery');
-const { REACT_APP_BASE_URL } = require('./config');
-
-function normalizeResponseErrors(res) {
-  if(!res.ok) {
-    if(
-      res.headers.has('content-type') &&
-      res.headers.get('content-type').startsWith('application/json')
-    ) {
-      return res.json().then(err => Promise.reject(err));
-    }
-    return Promise.reject({
-      code: res.status,
-      message: res.statusText
-    });
-  }
-  return res;
-}
-
-export function createAccount(user) {
-  return function(dispatch) {
-    return fetch(`${ REACT_APP_BASE_URL }/users`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(user)
-    })
-      .then(res => {
-        console.log(`We made it to the then block! Response is ${ res }`);
-        return normalizeResponseErrors(res);
-      })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => {
-        console.log(err);
-        const { reason, message, location } = err;
-        if(reason === 'ValidationError') {
-          return Promise.reject(
-            new SubmissionError({
-              [location]: message
-            })
-          );
-        }
-      });
-  }
-}
-
-export function login(username, password) {
-  return function(dispatch) {
-    return fetch(`${ REACT_APP_BASE_URL }/users/login`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    })
-    
-  }
-}
+const { REACT_APP_BASE_URL } = require('../config');
+const { normalizeResponseErrors } = require('./utils');
 
 export function addScene(title) {
   return function(dispatch) {

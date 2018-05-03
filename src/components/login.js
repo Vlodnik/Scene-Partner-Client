@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, Field, focus } from 'redux-form';
 import { required, nonEmpty } from '../validators';
 
-import { login } from '../actions';
+import { login } from '../actions/auth';
 
 import LandingNav from './landing-nav';
 import Input from './input';

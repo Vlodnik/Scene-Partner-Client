@@ -8,7 +8,8 @@ import {
   matches
 } from '../validators';
 
-import { createAccount, login } from '../actions';
+import { createAccount } from '../actions/users';
+import { login } from '../actions/auth';
 
 import LandingNav from './landing-nav';
 import Input from './input';

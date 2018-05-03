@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { changeScene } from '../actions';
+import { changeScene } from '../actions/scenes';
 
 export default function insureSceneId(Component) {
   // return a component that, when it mounts, checks the state

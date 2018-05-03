@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { readLine } from '../actions';
+import { readLine } from '../actions/scenes';
 
 import './line.css';
 

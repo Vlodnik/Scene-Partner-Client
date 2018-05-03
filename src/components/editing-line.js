@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeLine, deleteLine } from '../actions';
+import { changeLine, deleteLine } from '../actions/scenes';
 
 import './editing-line.css';
 

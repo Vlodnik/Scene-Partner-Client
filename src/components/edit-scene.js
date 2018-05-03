@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import insureSceneId from './insure-scene-id';
 
-import { addLine } from '../actions';
+import { addLine } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 import NewLine from './new-line';

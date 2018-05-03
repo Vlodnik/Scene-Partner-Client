@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { changeScene } from '../actions';
+import { changeScene } from '../actions/scenes';
 
 import HomeBurger from './home-hamburger';
 

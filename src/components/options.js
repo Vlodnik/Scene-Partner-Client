@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectCharacter } from '../actions';
+import { selectCharacter } from '../actions/scenes';
 
 import './options.css'
 
