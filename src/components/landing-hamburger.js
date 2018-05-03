@@ -18,7 +18,7 @@ export default class LandingBurger extends React.Component {
           <div className="burger-button"></div>
         </button>
         <ul id="dropdown" className="hamburger-menu">
-          <li><Link to="/signup-page">Sign up</Link></li>
+          <li><Link to="/signup">Sign up</Link></li>
           <li><Link to="/login">Log in</Link></li>
         </ul>
       </div>

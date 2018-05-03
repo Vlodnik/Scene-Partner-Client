@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import SignupForm from './signup-form';
+import LoginForm = from './login-form';
 
-export function SignupPage(props) {
+export function LoginPage(props) {
   if(props.loggedIn) {
     return <Redirect to="/home" />
   }
   return (
-    <SignupForm />
+    <LoginForm />
   );
 }
 
@@ -19,4 +19,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(SignupPage);
+export default connect(mapStateToProps)(LoginPage);

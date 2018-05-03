@@ -13,7 +13,7 @@ export default class Landing extends React.Component {
         <main>
           <header role="banner">
             <h1>Hear your cues aloud so you can memorize your lines.</h1>
-            <Link to="/signup-page"><button id="sign-up">Get started</button></Link>
+            <Link to="/signup"><button id="sign-up">Get started</button></Link>
           </header>
           <section>
             <h2>Run lines with your device</h2>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Landing from './landing';
 import SignupPage from './signup-page';
-import Login from './login';
+import LoginPage from './login-page';
 import Home from './home';
 import NewScene from './new-scene';
 import Scene from './scene';
@@ -19,8 +19,8 @@ export class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/signup-page" component={SignupPage} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignupPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route path="/home" component={Home} />
           <Route exact path="/new-scene" component={NewScene} />
           <Route path="/scene/:id" component={Scene} />

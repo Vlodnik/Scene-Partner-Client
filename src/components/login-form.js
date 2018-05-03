@@ -9,7 +9,7 @@ import Input from './input';
 
 import './signup-form.css';
 
-export class Login extends React.Component {
+export class LoginForm extends React.Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.user, values.pass));
   }
@@ -71,4 +71,4 @@ export default reduxForm({
   form: 'login',
   onSubmitFail: (errors, dispatch) =>
     dispatch(focus('login', 'username'))
-})(Login);
+})(LoginForm);
