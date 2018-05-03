@@ -8,17 +8,24 @@ import {
   matches
 } from '../validators';
 
+import { createAccount, login } from '../actions';
+
 import LandingNav from './landing-nav';
 import Input from './input';
 
-import './signup.css';
+import './signup-form.css';
 
 const passLength = correctLength({ min: 8, max: 72 });
-const matchesPass = matches('new-pass');
+const matchesPass = matches('password');
 
-export class Signup extends React.Component {
+export class SignupForm extends React.Component {
   onSubmit(values) {
     console.log(values);
+    const { username, password } = values;
+    const user = { username, password };
+    return this.props
+      .dispatch(createAccount(user))
+      .then(() => this.props.dispatch(login(username, password)));
   }
 
   render() {
@@ -31,16 +38,16 @@ export class Signup extends React.Component {
             )}>
             <h2>Create your account</h2>
             <Field
-              name="new-user"
-              id="new-user"
+              name="username"
+              id="username"
               type="text"
               component={Input}
               placeholder="Username"
               validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
-              name="new-pass"
-              id="new-pass"
+              name="password"
+              id="password"
               type="password"
               component={Input}
               placeholder="Password"
@@ -74,4 +81,4 @@ export default reduxForm({
   form: 'signup',
   onSubmitFail: (errors, dispatch) =>
     dispatch(focus('signup', Object.keys(errors)[0]))
-})(Signup);
+})(SignupForm);

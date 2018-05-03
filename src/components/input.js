@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class Input extends React.Component {
   render() {
-    console.log(this.props);
     const Element = this.props.element || 'input';
 
     let error;

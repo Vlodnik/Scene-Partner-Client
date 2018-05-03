@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Landing from './landing';
-import Signup from './signup';
+import SignupPage from './signup-page';
 import Login from './login';
 import Home from './home';
 import NewScene from './new-scene';
@@ -19,7 +19,7 @@ export class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/signup-page" component={SignupPage} />
           <Route exact path="/login" component={Login} />
           <Route path="/home" component={Home} />
           <Route exact path="/new-scene" component={NewScene} />

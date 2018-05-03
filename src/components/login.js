@@ -2,7 +2,7 @@ import React from 'react';
 
 import LandingNav from './landing-nav';
 
-import './signup.css';
+import './signup-form.css';
 
 export default class Login extends React.Component {
   render() {
