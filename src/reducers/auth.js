@@ -13,8 +13,11 @@ export default function authReducer(state=initialState, action) {
   } else if(action.type === actions.LOGIN_SUCCESS) {
     return Object.assign({}, state, {
       authToken: action.payload.authToken,
-      currentUser: action.payload.currentUser
+      currentUser: action.payload.currentUser,
+      loading: false
     });
+  } else if(action.type === actions.LOGIN_ERROR) {
+    return Object.assign({}, state, {loading: false, error: action.payload.err});
   } else if(action.type === actions.LOGOUT) {
     return Object.assign({}, state, { authToken: null, currentUser: null });
   }

@@ -1,3 +1,4 @@
+import { SubmissionError } from 'redux-form';
 import { REACT_APP_BASE_URL } from '../config';
 const { normalizeResponseErrors } = require('./utils');
 
@@ -22,10 +23,20 @@ export function login(username, password) {
     })
     .catch(err => {
       console.log(err);
-      // const { reason, message, location } = err;
-      // if(reason === 'ValidationError') {
-      //   dispatch(loginError(err))
-      // }
+      dispatch(loginError(err));
+
+      let message;
+      if(err.code === 401) {
+        message = 'Incorrect username or password';
+      } else {
+        message = 'Unable to login'
+      }
+
+      return Promise.reject(
+        new SubmissionError({
+          _error: message
+        })
+      );
     });
   }
 }
