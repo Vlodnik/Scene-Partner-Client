@@ -22,6 +22,7 @@ export class HomeBurger extends React.Component {
   }
 
   logout() {
+    console.log('firing logout action');
     this.props.dispatch(logout());
   }
 
@@ -64,7 +65,7 @@ export class HomeBurger extends React.Component {
             <li onClick={() => this.changeScene()}>
               <Link to="/new-scene">New scene</Link>
             </li>
-            <li>
+            <li onClick={() => this.logout()}>
               <Link to="/">Log out</Link>
             </li>
           </ul>
@@ -82,7 +83,9 @@ export class HomeBurger extends React.Component {
           <li onClick={() => this.changeScene()}>
             <Link to="/new-scene">New scene</Link>
           </li>
-          <li><Link to="/">Log out</Link></li>
+          <li onClick={() => this.logout()}>
+            <Link to="/">Log out</Link>
+          </li>
         </ul>
       </div>
     );
