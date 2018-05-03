@@ -22,10 +22,10 @@ export function login(username, password) {
     })
     .catch(err => {
       console.log(err);
-      const { reason, message, location } = err;
-      if(reason === 'ValidationError') {
-        dispatch(loginError(err))
-      }
+      // const { reason, message, location } = err;
+      // if(reason === 'ValidationError') {
+      //   dispatch(loginError(err))
+      // }
     });
   }
 }
@@ -55,5 +55,12 @@ export function loginError(err) {
     payload: {
       err
     }
+  }
+}
+
+export const LOGOUT = 'LOGOUT';
+export function logout() {
+  return {
+    type: LOGOUT
   }
 }

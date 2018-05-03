@@ -1,6 +1,6 @@
 const $ = require('jquery');
 const { REACT_APP_BASE_URL } = require('../config');
-const { normalizeResponseErrors } = require('./utils');
+// const { normalizeResponseErrors } = require('./utils');
 
 export function addScene(title) {
   return function(dispatch) {

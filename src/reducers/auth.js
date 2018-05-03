@@ -15,6 +15,8 @@ export default function authReducer(state=initialState, action) {
       authToken: action.payload.authToken,
       currentUser: action.payload.currentUser
     });
+  } else if(action.type === actions.LOGOUT) {
+    return Object.assign({}, state, { authToken: null, currentUser: null });
   }
   return state;
 }

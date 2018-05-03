@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { toggleEditing, changeScene } from '../actions/scenes';
+import { logout } from '../actions/auth';
 
 import './hamburger.css';
 
@@ -18,6 +19,10 @@ export class HomeBurger extends React.Component {
 
   changeScene() {
     this.props.dispatch(changeScene(null));
+  }
+
+  logout() {
+    this.props.dispatch(logout());
   }
 
   render() {
@@ -38,7 +43,7 @@ export class HomeBurger extends React.Component {
             <li onClick={() => this.changeScene()}>
               <Link to="/new-scene">New scene</Link>
             </li>
-            <li>
+            <li onClick={() => this.logout()}>
               <Link to="/">Log out</Link>
             </li>
           </ul>
