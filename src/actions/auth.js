@@ -19,7 +19,7 @@ export function login(username, password) {
       return res.json();
     })
     .then(res => {
-      dispatch(loginSuccess(res, username))
+      dispatch(loginSuccess(res.authToken, username))
     })
     .catch(err => {
       console.log(err);

@@ -95,19 +95,15 @@ export default function scenePartnerReducer(state=initialState, action) {
   if(action.type === actions.ADD_SCENE_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.ADD_SCENE_SUCCESS) {
-    const newId = shortid.generate();
+    // const newId = shortid.generate();
+    const newScene = action.payload.newScene;
 
     return Object.assign({}, state, {
-      currentSceneId: newId,
+      currentSceneId: newScene.id,
+      loading: false,
       scenes: [
         ...state.scenes,
-        {
-          id: newId,
-          title: action.payload.title,
-          editing: true,
-          userCharacter: 'all',
-          lines: []
-        }
+        { newScene }
       ]
     });
   } else if(action.type === actions.ADD_SCENE_ERROR) {

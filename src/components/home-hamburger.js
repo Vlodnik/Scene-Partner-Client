@@ -22,7 +22,6 @@ export class HomeBurger extends React.Component {
   }
 
   logout() {
-    console.log('firing logout action');
     this.props.dispatch(logout());
   }
 

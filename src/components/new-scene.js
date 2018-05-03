@@ -12,7 +12,7 @@ export class NewScene extends React.Component {
   addScene(e) {
     e.preventDefault();
     const title = this.title.value.trim();
-    this.props.dispatch(addScene(title));
+    this.props.dispatch(addScene(title, this.props.authToken));
     this.title.value = '';
   }
 
@@ -43,7 +43,7 @@ export class NewScene extends React.Component {
 function mapStateToProps(state) {
   return {
     sceneId: state.sp.currentSceneId,
-    scenes: state.sp.scenes,
+    authToken: state.auth.authToken
   };
 }
 

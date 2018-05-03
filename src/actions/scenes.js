@@ -1,29 +1,50 @@
 const $ = require('jquery');
 const { REACT_APP_BASE_URL } = require('../config');
-// const { normalizeResponseErrors } = require('./utils');
+const { normalizeResponseErrors } = require('./utils');
 
-export function addScene(title) {
+export function addScene(title, jwt) {
   return function(dispatch) {
     dispatch(addSceneRequest());
-
-    $.ajax({
-      url: `${ REACT_APP_BASE_URL }/scenes`,
+    return fetch(`${ REACT_APP_BASE_URL }/scenes`, {
       method: 'POST',
-      contentType: 'application/json',
-      dataType: 'text',
-      processData: false,
-      data: JSON.stringify({ title }),
-      success: dispatchSuccess,
-      error: dispatchError
-    });
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      },
+      body: JSON.stringify({ title })
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        dispatch(addSceneSuccess(res));
+      })
+      .catch(err => {
+        dispatch(addSceneError(err));
+      });
 
-    function dispatchSuccess() {
-      dispatch(addSceneSuccess());
-    }
 
-    function dispatchError(err) {
-      dispatch(addSceneError(err))
-    }
+  //   $.ajax({
+  //     url: `${ REACT_APP_BASE_URL }/scenes`,
+  //     method: 'POST',
+  //     contentType: 'application/json',
+  //     dataType: 'text',
+  //     processData: false,
+  //     data: JSON.stringify({ title }),
+  //     success: dispatchSuccess,
+  //     error: dispatchError
+  //   });
+  //
+  //   function dispatchSuccess() {
+  //     dispatch(addSceneSuccess());
+  //   }
+  //
+  //   function dispatchError(err) {
+  //     dispatch(addSceneError(err))
+  //   }
   }
 }
 
@@ -35,11 +56,11 @@ export function addSceneRequest() {
 }
 
 export const ADD_SCENE_SUCCESS = 'ADD_SCENE_SUCCESS';
-export function addSceneSuccess() {
+export function addSceneSuccess(newScene) {
   return {
     type: ADD_SCENE_SUCCESS,
     payload: {
-
+      newScene
     }
   }
 }
