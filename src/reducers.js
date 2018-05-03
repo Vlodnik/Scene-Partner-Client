@@ -2,6 +2,7 @@ import * as actions from './actions';
 import shortid from 'shortid';
 
 const initialState = {
+  currentUser: null,
   currentSceneId: null,
   loading: false,
   error: null,
