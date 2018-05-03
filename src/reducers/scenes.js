@@ -1,8 +1,7 @@
-import * as actions from './actions';
+import * as actions from '../actions';
 import shortid from 'shortid';
 
 const initialState = {
-  currentUser: null,
   currentSceneId: null,
   loading: false,
   error: null,
@@ -92,7 +91,7 @@ const initialState = {
   // }]
 };
 
-export const scenePartnerReducer = (state=initialState, action) => {
+export default function scenePartnerReducer(state=initialState, action) {
   if(action.type === actions.ADD_SCENE_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.ADD_SCENE_SUCCESS) {

@@ -15,7 +15,7 @@ export function SignupPage(props) {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.sp.currentUser !== null
+    loggedIn: state.auth.currentUser !== null
   }
 }
 

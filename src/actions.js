@@ -50,15 +50,14 @@ export function createAccount(user) {
 
 export function login(username, password) {
   return function(dispatch) {
+    return fetch(`${ REACT_APP_BASE_URL }/users/login`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    })
     
-  }
-
-  return {
-    type: 'login',
-    payload: {
-      username,
-      password
-    }
   }
 }
 
