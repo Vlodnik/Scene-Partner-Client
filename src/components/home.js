@@ -2,11 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { getScenes } from '../actions/scenes';
+
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getScenes(this.props.authToken));
+  }
+
   render() {
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {
@@ -42,13 +48,9 @@ export class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    scenes: state.sp.scenes
+    scenes: state.sp.scenes,
+    authToken: state.auth.authToken
   }
 }
 
 export default connect(mapStateToProps)(Home);
-
-// <li><Link to="/scene/sceneId">Funky Chicken Scene</Link></li>
-// <li><Link to="/scene/sceneId">R&J Act 2 Scene 1</Link></li>
-// <li><Link to="/scene/sceneId">Wicked: Popular</Link></li>
-// <li><Link to="/scene/sceneId">Who's Afraid of Virginia Woolf</Link></li>

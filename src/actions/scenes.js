@@ -2,6 +2,58 @@ const $ = require('jquery');
 const { REACT_APP_BASE_URL } = require('../config');
 const { normalizeResponseErrors } = require('./utils');
 
+export function getScenes(jwt) {
+  return function(dispatch) {
+    dispatch(getScenesRequest());
+    return fetch(`${ REACT_APP_BASE_URL }/scenes`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      }
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        dispatch(getScenesSuccess(res));
+      })
+      .catch(err => {
+        dispatch(getScenesError(err));
+      });
+  }
+}
+
+export const GET_SCENES_REQUEST = 'GET_SCENES_REQUEST';
+export function getScenesRequest() {
+  return {
+    type: GET_SCENES_REQUEST
+  }
+}
+
+export const GET_SCENES_SUCCESS = 'GET_SCENES_SUCCESS';
+export function getScenesSuccess(scenes) {
+  return {
+    type: GET_SCENES_SUCCESS,
+    payload: {
+      scenes
+    }
+  }
+}
+
+export const GET_SCENES_ERROR = 'GET_SCENES_ERROR';
+export function getScenesError(err) {
+  return {
+    type: GET_SCENES_ERROR,
+    payload: {
+      err
+    }
+  }
+}
+
 export function addScene(title, jwt) {
   return function(dispatch) {
     dispatch(addSceneRequest());
@@ -25,26 +77,6 @@ export function addScene(title, jwt) {
       .catch(err => {
         dispatch(addSceneError(err));
       });
-
-
-  //   $.ajax({
-  //     url: `${ REACT_APP_BASE_URL }/scenes`,
-  //     method: 'POST',
-  //     contentType: 'application/json',
-  //     dataType: 'text',
-  //     processData: false,
-  //     data: JSON.stringify({ title }),
-  //     success: dispatchSuccess,
-  //     error: dispatchError
-  //   });
-  //
-  //   function dispatchSuccess() {
-  //     dispatch(addSceneSuccess());
-  //   }
-  //
-  //   function dispatchError(err) {
-  //     dispatch(addSceneError(err))
-  //   }
   }
 }
 

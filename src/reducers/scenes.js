@@ -92,11 +92,21 @@ const initialState = {
 };
 
 export default function scenePartnerReducer(state=initialState, action) {
-  if(action.type === actions.ADD_SCENE_REQUEST) {
+  if(action.type === actions.GET_SCENES_REQUEST) {
+    return Object.assign({}, state, { loading: true, error: null });
+  } else if(action.type === actions.GET_SCENES_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      scenes: action.payload.scenes
+    });
+  } else if(action.type === actions.GET_SCENES_ERROR) {
+    return Object.assign({}, state, { loading: false, error: action.payload.err });
+  } else if(action.type === actions.ADD_SCENE_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.ADD_SCENE_SUCCESS) {
     // const newId = shortid.generate();
     const newScene = action.payload.newScene;
+    console.log(newScene);
 
     return Object.assign({}, state, {
       currentSceneId: newScene.id,
