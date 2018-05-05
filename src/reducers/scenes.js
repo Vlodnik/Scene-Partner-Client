@@ -57,6 +57,7 @@ export default function scenePartnerReducer(state=initialState, action) {
     const targetScene = state.scenes.find(scene => scene.id === sceneId);
     let updatedLines = [...targetScene.lines];
 
+    updatedLines[lineIndex].key = shortid.generate();
     updatedLines[lineIndex].character = character;
     updatedLines[lineIndex].text = text;
 
