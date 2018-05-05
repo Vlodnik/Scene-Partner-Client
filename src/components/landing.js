@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import LandingNav from './landing-nav';
+import Line from './line';
 
 import './landing.css';
 
@@ -38,9 +39,31 @@ export default class Landing extends React.Component {
               Try running lines right now! Just click the first cue line to hear
               it, then hit space to check your line.
             </h3>
-            <button type="submit" name="button">
-              INIGO: You're using Bonnetti's Defense against me, ah?
-            </button>
+            <Line
+              id="X1"
+              character="INIGO"
+              text="You're using Bonnetti's Defense against me, ah?"
+            />
+            <Line
+              id="X2"
+              character="MAN-IN-BLACK"
+              text="I thought it fitting considering the rocky terrain."
+            />
+            <Line
+              id="X3"
+              character="INIGO"
+              text="Naturally, you must suspect me to attack with Capa Ferro?"
+            />
+            <Line
+              id="X2"
+              character="MAN-IN-BLACK"
+              text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
+            />
+            <Line
+              id="X5"
+              character="INIGO"
+              text="Unless the enemy has studied his Agrippa...which I have."
+            />
           </section>
         </main>
       </div>
