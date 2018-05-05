@@ -40,27 +40,27 @@ export default class Landing extends React.Component {
               it, then hit space to check your line.
             </h3>
             <Line
-              id="X1"
+              lineId="X1"
               character="INIGO"
               text="You're using Bonnetti's Defense against me, ah?"
             />
             <Line
-              id="X2"
+              lineId="X2"
               character="MAN-IN-BLACK"
               text="I thought it fitting considering the rocky terrain."
             />
             <Line
-              id="X3"
+              lineId="X3"
               character="INIGO"
               text="Naturally, you must suspect me to attack with Capa Ferro?"
             />
             <Line
-              id="X4"
+              lineId="X4"
               character="MAN-IN-BLACK"
               text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
             />
             <Line
-              id="X5"
+              lineId="X5"
               character="INIGO"
               text="Unless the enemy has studied his Agrippa...which I have."
             />
