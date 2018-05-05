@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import insureSceneId from './insure-scene-id';
 
-import { selectCharacter } from '../actions/scenes';
+import { updateScene, selectCharacter } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 // import Options from './options';
@@ -11,15 +11,20 @@ import Line from './line';
 import './scene.css';
 
 export class Scene extends React.Component {
+  componentDidMount() {
+    console.log(this.props);
+    const updateObj = {
+      id: this.props.match.params.id,
+      editing: false
+    };
+    this.props.dispatch(updateScene(updateObj, this.props.authToken));
+  }
+
   selectCharacter(character, sceneId) {
     this.props.dispatch(selectCharacter(character, sceneId));
   }
 
   render() {
-    // console.log(this.props)
-    // const { userCharacter, sceneId } = this.props;
-    console.log(this.props.lines);
-
     const lines = this.props.lines.map((line, index) =>
       <li key={line.key}>
         <Line {...line} lineId={line.key} />
@@ -50,8 +55,9 @@ function mapStateToProps(state, props) {
   return {
     lines: scene.lines,
     userCharacter: scene.userCharacter,
-    sceneId: state.currentSceneId,
-    editing: scene.editing
+    sceneId: state.sp.currentSceneId,
+    editing: scene.editing,
+    authToken: state.auth.authToken
   }
 }
 

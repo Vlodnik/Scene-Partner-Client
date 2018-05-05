@@ -26,12 +26,19 @@ export class Home extends React.Component {
       }
     });
 
+    let bannerText;
+    if(scenes.length > 0) {
+      bannerText = 'Choose a scene';
+    } else {
+      bannerText = 'Welcome'
+    }
+
     return (
       <div>
         <HomeNav />
         <main>
         <header role="banner">
-          <h1>Choose a scene</h1>
+          <h1>{bannerText}</h1>
         </header>
         <ul id="scenes">
           {scenes}
