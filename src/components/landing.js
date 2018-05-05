@@ -26,9 +26,10 @@ export default class Landing extends React.Component {
           <section>
             <h2>Easily enter new scenes</h2>
             <h3>
-              Navigate through our intuitive interface. Just choose "new line"
-              or "new cue," and then enter the line! Once you're done, hit the
-              "Scene complete" button at the bottom of the page.
+              Navigate through our intuitive interface. To make a new scene, hit
+              the New Scene button and enter your lines. Your changes are saved
+              automatically, so all you have to do when you're done is hit Run
+              Scene to start running lines with Scene Partner.
             </h3>
           </section>
           <section>
