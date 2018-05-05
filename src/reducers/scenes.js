@@ -23,14 +23,12 @@ export default function scenePartnerReducer(state=initialState, action) {
   } else if(action.type === actions.ADD_SCENE_SUCCESS) {
     // const newId = shortid.generate();
     const newScene = action.payload.newScene;
-    console.log(newScene);
-
     return Object.assign({}, state, {
       currentSceneId: newScene.id,
       loading: false,
       scenes: [
         ...state.scenes,
-        { newScene }
+        newScene
       ]
     });
   } else if(action.type === actions.ADD_SCENE_ERROR) {

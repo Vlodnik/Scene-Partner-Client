@@ -20,7 +20,7 @@ export class Scene extends React.Component {
     // const { userCharacter, sceneId } = this.props;
 
     const lines = this.props.lines.map((line, index) =>
-      <li key={line.id}>
+      <li key={line.key}>
         <Line {...line} />
       </li>
     );

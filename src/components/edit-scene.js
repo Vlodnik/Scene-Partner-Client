@@ -12,7 +12,6 @@ import './edit-scene.css';
 
 export class EditScene extends React.Component {
   componentDidUpdate() {
-    console.log(this.props.lines);
     const updateObj = {
       id: this.props.sceneId,
       title: this.props.title,
@@ -22,6 +21,8 @@ export class EditScene extends React.Component {
     this.props.dispatch(
       updateScene(updateObj, this.props.authToken)
     );
+  }
+
     // console.log(prevProps.lines === this.props.lines);
     // console.log(prevState, prevProps, this.props);
     //
@@ -42,7 +43,6 @@ export class EditScene extends React.Component {
     // }
     //
     // console.log(arraysOfObjectsEqual(prevProps.lines, this.props.lines));
-  }
 
   addLine(character, line, sceneId) {
     this.props.dispatch(addLine(this.props.authToken, character, line, sceneId));
