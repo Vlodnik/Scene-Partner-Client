@@ -55,7 +55,7 @@ export default class Landing extends React.Component {
               text="Naturally, you must suspect me to attack with Capa Ferro?"
             />
             <Line
-              id="X2"
+              id="X4"
               character="MAN-IN-BLACK"
               text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
             />
