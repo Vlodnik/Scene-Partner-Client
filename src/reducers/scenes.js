@@ -97,7 +97,7 @@ export default function scenePartnerReducer(state=initialState, action) {
             ...scene,
             lines: [...scene.lines,
               {
-                id: shortid.generate(),
+                key: shortid.generate(),
                 character: action.payload.character,
                 text: action.payload.text
               }

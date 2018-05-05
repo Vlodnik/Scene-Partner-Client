@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import insureSceneId from './insure-scene-id';
 
-import { addLine } from '../actions/scenes';
+import { addLine, updateScene } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 import NewLine from './new-line';
@@ -12,6 +12,16 @@ import './edit-scene.css';
 
 export class EditScene extends React.Component {
   componentDidUpdate() {
+    console.log(this.props.lines);
+    const updateObj = {
+      id: this.props.sceneId,
+      title: this.props.title,
+      lines: this.props.lines,
+      editing: true
+    };
+    this.props.dispatch(
+      updateScene(updateObj, this.props.authToken)
+    );
     // console.log(prevProps.lines === this.props.lines);
     // console.log(prevState, prevProps, this.props);
     //
@@ -32,7 +42,6 @@ export class EditScene extends React.Component {
     // }
     //
     // console.log(arraysOfObjectsEqual(prevProps.lines, this.props.lines));
-    
   }
 
   addLine(character, line, sceneId) {
@@ -44,7 +53,7 @@ export class EditScene extends React.Component {
 
     const lines = this.props.lines.map(function(line, index) {
       return (
-        <li key={line.id}>
+        <li key={line.key}>
           <EditingLine index={index} {...line} />
         </li>
       );

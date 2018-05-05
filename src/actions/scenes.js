@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const shortid = require('shortid');
+// const shortid = require('shortid');
 const { REACT_APP_BASE_URL } = require('../config');
 const { normalizeResponseErrors } = require('./utils');
 
@@ -9,7 +9,7 @@ export function getScenes(jwt) {
     return fetch(`${ REACT_APP_BASE_URL }/scenes`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'content-type': 'application/json',
         'Authorization': `Bearer ${ jwt }`
       }
     })
@@ -102,6 +102,60 @@ export const ADD_SCENE_ERROR = 'ADD_SCENE_ERROR';
 export function addSceneError(err) {
   return {
     type: ADD_SCENE_ERROR,
+    payload: {
+      err
+    }
+  }
+}
+
+export function updateScene(updateObj, jwt) {
+  return function(dispatch) {
+    dispatch(updateSceneRequest());
+    return fetch(`${ REACT_APP_BASE_URL }/scenes/${ updateObj.id }`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      },
+      body: JSON.stringify(updateObj)
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        dispatch(updateSceneSuccess(res));
+      })
+      .catch(err => {
+        dispatch(updateSceneError(err))
+      });
+  }
+}
+
+export const UPDATE_SCENE_REQUEST = 'UPDATE_SCENE_REQUEST';
+export function updateSceneRequest() {
+  return {
+    type: UPDATE_SCENE_REQUEST
+  }
+}
+
+export const UPDATE_SCENE_SUCCESS = 'UPDATE_SCENE_SUCCESS';
+export function updateSceneSuccess(res) {
+  return {
+    type: UPDATE_SCENE_SUCCESS,
+    payload: {
+      message: res.message
+    }
+  }
+}
+
+export const UPDATE_SCENE_ERROR = 'UPDATE_SCENE_ERROR';
+export function updateSceneError(err) {
+  console.log(`Problem! Error is: ${ err }`);
+  return {
+    type: UPDATE_SCENE_ERROR,
     payload: {
       err
     }
