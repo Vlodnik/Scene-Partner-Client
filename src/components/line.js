@@ -12,7 +12,6 @@ export class Line extends React.Component {
 
   render() {
     const { character, text, lineId } = this.props;
-    console.log(this.props);
 
     return (
       <div>

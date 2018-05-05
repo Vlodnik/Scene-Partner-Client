@@ -50,9 +50,9 @@ export default class Landing extends React.Component {
               text="I thought it fitting considering the rocky terrain."
             />
             <Line
-              lineId="X3"
+              lineId="X32"
               character="INIGO"
-              text="Naturally, you must suspect me to attack with Capa Ferro?"
+              text="Naturally, you must expect me to attack with Capa Ferro?"
             />
             <Line
               lineId="X4"

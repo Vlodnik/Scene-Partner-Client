@@ -5,7 +5,7 @@ import insureSceneId from './insure-scene-id';
 import { selectCharacter } from '../actions/scenes';
 
 import HomeNav from './home-nav';
-import Options from './options';
+// import Options from './options';
 import Line from './line';
 
 import './scene.css';
