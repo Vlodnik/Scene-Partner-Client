@@ -2,13 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-// import { getScenes } from '../actions/scenes';
+import { changeScene } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
+  changeScene() {
+    this.props.dispatch(changeScene(null));
+  }
+
   render() {
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {
@@ -42,6 +46,9 @@ export class Home extends React.Component {
         </header>
         <ul id="scenes">
           {scenes}
+          <li id="new-scene-button" onClick={() => this.changeScene()}>
+            <Link to="/new-scene">New scene</Link>
+          </li>
         </ul>
         </main>
       </div>
