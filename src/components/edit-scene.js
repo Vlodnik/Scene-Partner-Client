@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { addLine, updateScene } from '../actions/scenes';
+import { addLine, updateScene, toggleEditing } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 import NewLine from './new-line';
@@ -44,6 +45,10 @@ export class EditScene extends React.Component {
     //
     // console.log(arraysOfObjectsEqual(prevProps.lines, this.props.lines));
 
+  toggleEditing() {
+    this.props.dispatch(toggleEditing());
+  }
+
   addLine(character, line, sceneId) {
     this.props.dispatch(addLine(this.props.authToken, character, line, sceneId));
   }
@@ -69,6 +74,11 @@ export class EditScene extends React.Component {
           <NewLine
             onAddLine={(character, line) => this.addLine(character, line, sceneId)}
           />
+          <button onClick={() => this.toggleEditing()}>
+            <Link to={`/scene/${this.props.sceneId}`}>
+              Run scene
+            </Link>
+          </button>
         </main>
       </div>
     );

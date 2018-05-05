@@ -1,7 +1,6 @@
 #new-line {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: flex-end; */
   margin: 3em 25px 2em;
 }
 
