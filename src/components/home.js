@@ -2,17 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getScenes } from '../actions/scenes';
+// import { getScenes } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(getScenes(this.props.authToken));
-  }
-
   render() {
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {

@@ -11,8 +11,32 @@ import EditingLine from './editing-line';
 import './edit-scene.css';
 
 export class EditScene extends React.Component {
+  componentDidUpdate() {
+    // console.log(prevProps.lines === this.props.lines);
+    // console.log(prevState, prevProps, this.props);
+    //
+    // function arraysOfObjectsEqual(val1, val2) {
+    //   if(val1.length !== val2.length) {
+    //     return false;
+    //   }
+    //   let areEqual = true;
+    //   val1.forEach((obj, index) => {
+    //     for(let prop in obj) {
+    //       console.log(obj[prop], val2[index][prop]);
+    //       if(obj[prop] !== val2[index][prop]) {
+    //         areEqual = false;
+    //       }
+    //     }
+    //   })
+    //   return areEqual;
+    // }
+    //
+    // console.log(arraysOfObjectsEqual(prevProps.lines, this.props.lines));
+    
+  }
+
   addLine(character, line, sceneId) {
-    this.props.dispatch(addLine(character, line, sceneId));
+    this.props.dispatch(addLine(this.props.authToken, character, line, sceneId));
   }
 
   render() {
@@ -49,9 +73,11 @@ function mapStateToProps(state, props) {
     return obj.id === sceneId;
   });
   return {
+    title: scene.title,
     lines: scene.lines,
     sceneId: sp.currentSceneId,
-    editing: sp.editing
+    editing: true,
+    authToken: state.auth.authToken
   }
 }
 

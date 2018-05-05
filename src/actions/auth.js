@@ -1,6 +1,7 @@
 import { SubmissionError } from 'redux-form';
 import { REACT_APP_BASE_URL } from '../config';
-const { normalizeResponseErrors } = require('./utils');
+import { getScenes } from './scenes';
+import { normalizeResponseErrors } from './utils';
 
 export function login(username, password) {
   return function(dispatch) {
@@ -19,6 +20,7 @@ export function login(username, password) {
       return res.json();
     })
     .then(res => {
+      dispatch(getScenes(res.authToken))
       dispatch(loginSuccess(res.authToken, username))
     })
     .catch(err => {
