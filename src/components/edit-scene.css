@@ -9,3 +9,31 @@
   display: flex;
   margin-bottom: 1em;
 }
+
+#run-scene {
+  display: block;
+  background-color: #00bddb;
+  color: black;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 155px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 40%;
+  transition: background-color .3s;
+}
+
+#run-scene:hover {
+  cursor: pointer;
+  background-color: #00869b;
+}
+
+/* #run-scene a {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+} */

@@ -74,11 +74,13 @@ export class EditScene extends React.Component {
           <NewLine
             onAddLine={(character, line) => this.addLine(character, line, sceneId)}
           />
-          <button onClick={() => this.toggleEditing()}>
-            <Link to={`/scene/${this.props.sceneId}`}>
-              Run scene
-            </Link>
-          </button>
+          <Link
+            id="run-scene"
+            onClick={() => this.toggleEditing()}
+            to={`/scene/${this.props.sceneId}`}
+          >
+            Run scene
+          </Link>
         </main>
       </div>
     );

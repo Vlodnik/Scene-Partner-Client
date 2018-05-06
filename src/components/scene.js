@@ -12,7 +12,6 @@ import './scene.css';
 
 export class Scene extends React.Component {
   componentDidMount() {
-    console.log(this.props);
     const updateObj = {
       id: this.props.match.params.id,
       editing: false
