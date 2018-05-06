@@ -96,7 +96,10 @@ function mapStateToProps(state) {
 
   if(sp.currentSceneId !== null) {
     const currentScene = sp.scenes.find(scene => scene.id === sp.currentSceneId);
-    const editing = currentScene.editing;
+    let editing;
+    if(currentScene) {
+      editing = currentScene.editing;
+    }
     return {
       currentSceneId: sp.currentSceneId,
       editing
