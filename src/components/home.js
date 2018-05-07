@@ -41,7 +41,7 @@ export class Home extends React.Component {
       <div>
         <HomeNav />
         <main>
-        <header role="banner">
+        <header id="home-header" role="banner">
           <h1>{bannerText}</h1>
         </header>
         <ul id="scenes">

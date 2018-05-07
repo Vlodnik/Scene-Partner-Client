@@ -1,9 +1,9 @@
 /* Header */
-header {
+#home-header {
   background-color: white;
 }
 
-h1 {
+#home-header h1 {
   margin: 0 auto;
   text-align: center;
 }

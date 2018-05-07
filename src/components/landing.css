@@ -1,21 +1,54 @@
 /* Header */
-header {
-  background-color: white;
-  padding: 2em;
+#landing-header {
+  background-image: url(https://s3.amazonaws.com/scene-partner-images/glasses.jpg);
+  background-size: cover;
+  background-position: 40% 30%;
+  background-repeat: no-repeat;
   width: 100%;
+  height: 90vh;
+}
+
+#hero-layer {
+  background-color: rgba(60, 50, 70, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+* {
+  /* border: 1px solid red; */
+}
+
+#hero-layer > * {
+  margin-left: 5%;
+}
+
+#hero-layer h1, #hero-layer h2 {
+  color: white;
+}
+
+#hero-layer h1 span {
+  display: block;
 }
 
 #sign-up {
   display: block;
+  color: white;
   border: none;
   border-radius: 3px;
-  background-color: lightgray;
+  background-color: #00bddb;
   font-size: 1.6em;
   margin: 1em auto 0;
+  padding: 0.5em 1em;
+  transition: background-color .3s;
 }
 
 #sign-up:hover {
   cursor: pointer;
+  background-color: #00869b;
 }
 
 header a {
@@ -27,18 +60,38 @@ main {
   padding-bottom: 2em;
 }
 
-section {
-  text-align: center;
-  padding-bottom: 5em;
+.feature {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 5% 5em;
 }
 
-section h2 {
+.feature-text {
+  margin: 0;
+  width: 50%;
+}
+
+.feature h2 {
   margin-top: 0;
   padding-top: 1em;
 }
 
-section h3 {
+.feature h3 {
   margin: auto;
+  font-weight: 400;
+}
+
+.feature img {
+  width: 40%;
+  max-width: 180px;
+  height: 100%;
+  max-height: 300px;
+}
+
+#example {
+  flex-direction: column;
+  text-align: center;
 }
 
 section button {
@@ -54,9 +107,9 @@ section button:hover {
   cursor: pointer;
 }
 
-section:nth-of-type(odd) {
+/* section:nth-of-type(odd) {
   background-color: lightgray;
-}
+} */
 
 section:nth-of-type(even) {
   background-color: white;

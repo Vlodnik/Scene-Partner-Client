@@ -12,30 +12,37 @@ export default class Landing extends React.Component {
       <div>
         <LandingNav />
         <main>
-          <header role="banner">
-            <h1>Hear your cues aloud so you can memorize your lines.</h1>
-            <Link to="/signup"><button id="sign-up">Get started</button></Link>
+          <header id="landing-header" role="banner">
+            <div id="hero-layer">
+              <h1>Hear your cues <span>read aloud</span></h1>
+              <h2>Run lines without a partner</h2>
+              <Link to="/signup"><button id="sign-up">Get started</button></Link>
+            </div>
           </header>
-          <section>
-            <h2>Run lines with your device</h2>
-            <h3>
-              Need to run lines when nobody's around? Scene Partner lets your
-              hear your cues spoken by your device, so you can keep learning
-              outside of rehearsal.
-            </h3>
+          <section className="feature">
+            <div className="feature-text">
+              <h2>Run lines with your device</h2>
+              <h3>
+                Need to run lines when nobody's around? Scene Partner lets your
+                hear your cues spoken by your device.
+              </h3>
+            </div>
+            <img alt="Different devices." src="https://s3.amazonaws.com/scene-partner-images/devices.png"></img>
           </section>
-          <section>
-            <h2>Easily enter new scenes</h2>
-            <h3>
-              Navigate through our intuitive interface. Create and modify scenes,
-              and move between them from the home screen.
-            </h3>
+          <section className="feature">
+            <div className="feature-text">
+              <h2>Intuitive interface</h2>
+              <h3>
+                Create new scenes easily, or modify existing ones.
+              </h3>
+            </div>
+            <img></img>
           </section>
-          <section>
+          <section id="example" className="feature">
             <h2>Wanna give it a try?</h2>
             <h3>
-              Try running lines right now! Just click the first cue line to hear
-              it, then hit space to check your line.
+              Try running lines right now! Just click the line to hear
+              it spoken aloud.
             </h3>
             <Line
               lineId="X1"
