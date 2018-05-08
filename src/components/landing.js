@@ -76,12 +76,12 @@ export default class Landing extends React.Component {
                 <Line
                   lineId="X5"
                   character="INIGO"
-                  text="Unless the enemy has studied his Agrippa...which I have."
+                  text="Unless the enemy has studied his Agrippa... which I have."
                 />
               </li>
             </ul>
+            <Link to="/signup"><button className="sign-up">Get started</button></Link>
           </section>
-          <Link to="/signup"><button className="sign-up">Get started</button></Link>
         </main>
       </div>
     );
