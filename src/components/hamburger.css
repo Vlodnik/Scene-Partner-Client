@@ -22,9 +22,10 @@
   display: none;
   position: absolute;
   right: 0;
-  background-color: lightgray;
+  background-color: white;
   list-style: none;
-  padding: 0 0 1em;
+  margin-top: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -33,14 +34,18 @@
 }
 
 .hamburger-menu a {
+  display: block;
   background-color: #00bddb;
+  border-bottom: 1px solid white;
   color: white;
+  text-align: center;
   text-decoration: none;
-  margin-right: 1em;
+  /* margin-right: 1em; */
   padding: 0.5em 1em;
 }
 
 .is-active {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }

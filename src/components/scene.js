@@ -37,7 +37,7 @@ export class Scene extends React.Component {
           {/*<Options
             lines={this.props.lines}
           />*/}
-          <ul id="lines">
+          <ul className="lines">
             {lines}
           </ul>
         </main>

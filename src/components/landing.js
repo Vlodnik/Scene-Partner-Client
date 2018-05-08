@@ -16,7 +16,7 @@ export default class Landing extends React.Component {
             <div id="hero-layer">
               <h1>Hear your cues <span>read aloud</span></h1>
               <h2>Run lines without a partner</h2>
-              <Link to="/signup"><button id="sign-up">Get started</button></Link>
+              <Link to="/signup"><button className="sign-up">Get started</button></Link>
             </div>
           </header>
           <section className="feature">
@@ -29,14 +29,13 @@ export default class Landing extends React.Component {
             </div>
             <img alt="Different devices." src="https://s3.amazonaws.com/scene-partner-images/devices.png"></img>
           </section>
-          <section className="feature">
+          <section id="writing-bg" className="feature">
             <div className="feature-text">
               <h2>Intuitive interface</h2>
               <h3>
                 Create new scenes easily, or modify existing ones.
               </h3>
             </div>
-            <img></img>
           </section>
           <section id="example" className="feature">
             <h2>Wanna give it a try?</h2>
@@ -44,32 +43,45 @@ export default class Landing extends React.Component {
               Try running lines right now! Just click the line to hear
               it spoken aloud.
             </h3>
-            <Line
-              lineId="X1"
-              character="INIGO"
-              text="You're using Bonnetti's Defense against me, ah?"
-            />
-            <Line
-              lineId="X2"
-              character="MAN-IN-BLACK"
-              text="I thought it fitting considering the rocky terrain."
-            />
-            <Line
-              lineId="X32"
-              character="INIGO"
-              text="Naturally, you must expect me to attack with Capa Ferro?"
-            />
-            <Line
-              lineId="X4"
-              character="MAN-IN-BLACK"
-              text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
-            />
-            <Line
-              lineId="X5"
-              character="INIGO"
-              text="Unless the enemy has studied his Agrippa...which I have."
-            />
+            <ul className="lines">
+              <li>
+                <Line
+                  lineId="X1"
+                  character="INIGO"
+                  text="You're using Bonnetti's Defense against me, ah?"
+                />
+              </li>
+              <li>
+                <Line
+                  lineId="X2"
+                  character="MAN-IN-BLACK"
+                  text="I thought it fitting considering the rocky terrain."
+                />
+              </li>
+              <li>
+                <Line
+                  lineId="X32"
+                  character="INIGO"
+                  text="Naturally, you must expect me to attack with Capa Ferro?"
+                />
+              </li>
+              <li>
+                <Line
+                  lineId="X4"
+                  character="MAN-IN-BLACK"
+                  text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
+                />
+              </li>
+              <li>
+                <Line
+                  lineId="X5"
+                  character="INIGO"
+                  text="Unless the enemy has studied his Agrippa...which I have."
+                />
+              </li>
+            </ul>
           </section>
+          <Link to="/signup"><button className="sign-up">Get started</button></Link>
         </main>
       </div>
     );

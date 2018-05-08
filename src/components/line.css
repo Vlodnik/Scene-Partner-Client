@@ -9,14 +9,16 @@
 }
 
 .line-text {
-  background-color: white;
+  background-color: #00bddb;
   border: none;
   border-radius: 3px;
-  margin-left: 30px;
+  color: white;
+  font-size: 1.2em;
+  /* margin-left: 30px; */
   transition: background-color .3s;
 }
 
 .line-text:hover {
   cursor: pointer;
-  background-color: #00bddb;
+  background-color: #00869b;
 }
