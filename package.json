@@ -27,6 +27,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "webpack": "^4.8.1"
+    "webpack": "^2.2.0"
   }
 }
