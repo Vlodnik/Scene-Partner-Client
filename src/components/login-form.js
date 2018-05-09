@@ -27,7 +27,7 @@ export class LoginForm extends React.Component {
     return (
       <div>
         <LandingNav />
-        <main>
+        <main className="login-parent">
           <form
             id="login-form"
             onSubmit={this.props.handleSubmit(values =>

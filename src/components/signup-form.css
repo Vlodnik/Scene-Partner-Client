@@ -1,5 +1,27 @@
+.login-parent {
+  background-color: rgba(0, 189, 219, 0.6);
+  /* opacity: 0.5; */
+  height: 100vh;
+  padding-top: 1px;
+}
+
+.login-parent::after {
+  content: '';
+  background: url(https://s3.amazonaws.com/scene-partner-images/script.jpg);
+  background-position: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* opacity: 0.5; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
 #account-creation, #login-form {
-  background: white;
+  background: url(https://s3.amazonaws.com/scene-partner-images/paper_fibers.png);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +34,10 @@
 
 .form-inputs {
   width: 100%;
+}
+
+#account-creation input, #login-form input {
+  background: url(https://s3.amazonaws.com/scene-partner-images/paper_fibers.png);
 }
 
 #account-creation input, #account-creation button, #login-form input, #login-form button {
@@ -43,7 +69,7 @@
   color: white;
   background-color: #00bddb;
   border: 1px solid white;
-  border-radius: 10px;
+  border-radius: 3px;
   margin: auto;
   transition: background-color .3s;
 }
