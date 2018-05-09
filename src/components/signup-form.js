@@ -33,7 +33,7 @@ export class SignupForm extends React.Component {
     return (
       <div>
         <LandingNav />
-        <main>
+        <main className="login-parent">
           <form id="account-creation" onSubmit={this.props.handleSubmit(values =>
               this.onSubmit(values)
             )}>
