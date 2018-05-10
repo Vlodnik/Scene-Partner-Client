@@ -3,6 +3,9 @@
   /* opacity: 0.5; */
   height: 90vh;
   padding-top: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .login-parent::after {
@@ -21,6 +24,8 @@
 }
 
 #account-creation, #login-form {
+  position: relative;
+  bottom: 10vh;
   background: url(https://s3.amazonaws.com/scene-partner-images/paper_fibers.png);
   display: flex;
   flex-direction: column;
