@@ -52,10 +52,6 @@ a {
 }
 
 /* Sections */
-main {
-  padding-bottom: 2em;
-}
-
 .feature {
   display: flex;
   justify-content: space-between;

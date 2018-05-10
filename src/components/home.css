@@ -1,10 +1,11 @@
-/* Header */
-#home-header {
-  background-color: white;
+body {
+  background: url(https://s3.amazonaws.com/scene-partner-images/funky-lines.png);
 }
 
+/* Header */
 #home-header h1 {
   margin: 0 auto;
+  padding-top: 1em;
   text-align: center;
 }
 
@@ -17,37 +18,56 @@
 }
 
 #scenes li {
+  background-color: #00bddb;
   border-radius: 3px;
   font-size: 1.5em;
   text-align: center;
   margin: 1em auto;
   width: 80%;
+  transition: background-color .3s;
 }
 
-#scenes li:nth-of-type(odd) {
+/* #scenes li:nth-of-type(odd) {
   background-color: lightgray;
 }
 
 #scenes li:nth-of-type(even) {
   background-color: white;
-}
+} */
 
 #scenes li:hover {
   cursor: pointer;
-  background-color: #00bddb;
+  background-color: #00869b;
 }
 
 #scenes li a {
   display: block;
+  color: white;
   text-decoration: none;
-  color: black;
   padding: 3em;
 }
 
-#scenes li:last-of-type {
-  width: 40%;
+#new-scene-button {
+  /* background-color: #ff9c91; */
+  /* background-color: #ffb891; */
+  background-color: #f9ad60;
+  border: none;
+  border-radius: 3px;
+  display: block;
+  margin: 4em auto 8em;
+  padding: 2em 3em;
+  width: 50%;
+  max-width: 400px;
+  transition: background-color .3s;
 }
 
-#scenes li:last-of-type a {
-  padding: 0;
+#new-scene-button a {
+  color: white;
+  font-size: 2em;
+}
+
+#new-scene-button:hover {
+  cursor: pointer;
+  /* background-color: #ff8e1c; */
+  background-color: #e17b15;
 }

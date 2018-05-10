@@ -31,25 +31,28 @@ export class Home extends React.Component {
     });
 
     let bannerText;
+    let buttonText;
     if(scenes.length > 0) {
       bannerText = 'Choose a scene';
+      buttonText = 'New scene';
     } else {
-      bannerText = 'Welcome'
+      bannerText = 'Welcome!'
+      buttonText = 'Make a scene';
     }
 
     return (
       <div>
         <HomeNav />
-        <main>
+        <main id="home-main">
         <header id="home-header" role="banner">
           <h1>{bannerText}</h1>
         </header>
         <ul id="scenes">
           {scenes}
-          <li id="new-scene-button" onClick={() => this.changeScene()}>
-            <Link to="/new-scene">New scene</Link>
-          </li>
         </ul>
+        <button id="new-scene-button" onClick={() => this.changeScene()}>
+          <Link to="/new-scene">{buttonText}</Link>
+        </button>
         </main>
       </div>
     );
