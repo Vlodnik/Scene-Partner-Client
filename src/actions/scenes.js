@@ -1,5 +1,3 @@
-const $ = require('jquery');
-// const shortid = require('shortid');
 const { REACT_APP_BASE_URL } = require('../config');
 const { normalizeResponseErrors } = require('./utils');
 
@@ -181,24 +179,6 @@ export function toggleEditing() {
 
 export const ADD_LINE = 'ADD_LINE'
 export function addLine(jwt, character, text, sceneId) {
-  // return function(dispatch) {
-  //   dispatch(addLineRequest());
-  //
-  //
-  //
-  //   return fetch(`${ REACT_APP_BASE_URL }/scenes`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       'Authorization': `Bearer ${ jwt }`
-  //     },
-  //     body: JSON.stringify({
-  //       id: sceneId,
-  //
-  //     })
-  //   })
-  // }
-
   return {
     type: ADD_LINE,
     payload: {
@@ -208,33 +188,6 @@ export function addLine(jwt, character, text, sceneId) {
     }
   }
 }
-
-// export const ADD_LINE_REQUEST = 'ADD_LINE_REQUEST';
-// export function addLineRequest() {
-//   return {
-//     type: ADD_LINE_REQUEST
-//   }
-// }
-//
-// export const ADD_LINE_SUCCESS = 'ADD_LINE_SUCCESS';
-// export function addLineSuccess() {
-//   return {
-//     type: ADD_LINE_SUCCESS,
-//     payload: {
-//       // add payload and param
-//     }
-//   }
-// }
-//
-// export const ADD_LINE_ERROR = 'ADD_LINE_ERROR';
-// export function addLineError(err) {
-//   return {
-//     type: ADD_LINE_ERROR,
-//     payload: {
-//       err
-//     }
-//   }
-// }
 
 export const CHANGE_LINE = 'CHANGE_LINE';
 export function changeLine(character, text, lineIndex, sceneId) {
@@ -271,30 +224,30 @@ export function selectCharacter(character, sceneId) {
   }
 }
 
-export function readLine(text, lineId) {
+export function readLine(text, lineId, jwt) {
   return function(dispatch) {
     dispatch(readLineRequest());
-
-    const postObj = { text, lineId };
-
-    $.ajax({
-      url: `${ REACT_APP_BASE_URL }/audio`,
+    return fetch(`${ REACT_APP_BASE_URL }/audio`, {
       method: 'POST',
-      contentType: 'application/json',
-      dataType: 'text',
-      processData: false,
-      data: JSON.stringify(postObj),
-      success: dispatchSuccess,
-      error: dispatchError
-    });
-
-    function dispatchSuccess(url) {
-      dispatch(readLineSuccess(url));
-    }
-
-    function dispatchError(err) {
-      dispatch(readLineError(err));
-    }
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      },
+      body: JSON.stringify({ text, lineId })
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => {
+        console.log(res);
+        dispatch(readLineSuccess(res.url));
+      })
+      .catch(err => {
+        dispatch(readLineError(err));
+      });
   }
 }
 
