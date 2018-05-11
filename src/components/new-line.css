@@ -1,11 +1,7 @@
-/* * {
-  border: 1px solid red;
-} */
-
 #new-line {
   display: flex;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  /* margin: 3em 25px 2em; */
   margin: auto;
   width: 90%;
 }
@@ -30,6 +26,7 @@
 }
 
 #line {
+  flex-grow: 20;
   height: 6em;
   margin-left: 30px;
   width: 60%;
@@ -39,9 +36,11 @@
   background-color: #00bddb;
   color: white;
   border: none;
+  border-radius: 3px;
   margin-left: 130px;
-  height: 2em;
+  padding: 0.5em 0;
   width: 40%;
+  max-width: 350px;
   transition: background-color .3s;
 }
 

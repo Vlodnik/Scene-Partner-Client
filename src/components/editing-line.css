@@ -18,6 +18,7 @@
 }
 
 .editing-text {
+  flex-grow: 20;
   background-color: white;
   border-right: none;
   font-size: 1em;

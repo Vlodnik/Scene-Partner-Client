@@ -10,30 +10,36 @@
   margin-bottom: 1em;
 }
 
+#run-scene-parent {
+  margin: auto;
+  width: 90%;
+}
+
 #run-scene {
   display: block;
-  background-color: #00bddb;
-  color: black;
+  background-color: #f9ad60;
   border: none;
   border-radius: 3px;
   font-size: 1.2em;
   text-align: center;
-  text-decoration: none;
-  margin-left: 155px;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  margin-top: 1em;
+  margin-left: auto;
+  padding: 0;
   width: 40%;
+  max-width: 350px;
   transition: background-color .3s;
 }
 
 #run-scene:hover {
   cursor: pointer;
-  background-color: #00869b;
+  background-color: #e17b15;
 }
 
-/* #run-scene a {
+#run-scene a {
   display: block;
-  margin: 0;
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 0;
   width: 100%;
   height: 100%;
-} */
+}
