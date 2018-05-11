@@ -1,8 +1,14 @@
 .lines {
   list-style: none;
   padding-left: 0;
-  margin-left: 25px;
-  margin-right: 25px;
+  /* margin-left: 25px;
+  margin-right: 25px; */
+  margin: auto;
+  width: 90%;
+}
+
+.lines li {
+  margin-top: 2em;
 }
 
 .lines div {

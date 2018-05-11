@@ -11,12 +11,12 @@ export class Line extends React.Component {
   }
 
   render() {
-    const { character, text, lineId } = this.props;
+    const { character, text, lineId, colorIndex } = this.props;
 
     return (
       <div>
         <h2 className="char-name">{character}</h2>
-        <button className="line-text" onClick={() => this.readLine(text, lineId)}>{text}</button>
+        <button className={`line-text color-${ colorIndex }`} onClick={() => this.readLine(text, lineId)}>{text}</button>
       </div>
     );
   }

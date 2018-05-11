@@ -49,6 +49,7 @@ export default class Landing extends React.Component {
                   lineId="X1"
                   character="INIGO"
                   text="You're using Bonnetti's Defense against me, ah?"
+                  colorIndex="0"
                 />
               </li>
               <li>
@@ -56,6 +57,7 @@ export default class Landing extends React.Component {
                   lineId="X2"
                   character="MAN-IN-BLACK"
                   text="I thought it fitting considering the rocky terrain."
+                  colorIndex="1"
                 />
               </li>
               <li>
@@ -63,6 +65,7 @@ export default class Landing extends React.Component {
                   lineId="X32"
                   character="INIGO"
                   text="Naturally, you must expect me to attack with Capa Ferro?"
+                  colorIndex="0"
                 />
               </li>
               <li>
@@ -70,6 +73,7 @@ export default class Landing extends React.Component {
                   lineId="X4"
                   character="MAN-IN-BLACK"
                   text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
+                  colorIndex="1"
                 />
               </li>
               <li>
@@ -77,6 +81,7 @@ export default class Landing extends React.Component {
                   lineId="X5"
                   character="INIGO"
                   text="Unless the enemy has studied his Agrippa... which I have."
+                  colorIndex="0"
                 />
               </li>
             </ul>

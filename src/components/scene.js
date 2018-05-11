@@ -24,7 +24,30 @@ export class Scene extends React.Component {
   }
 
   render() {
-    const lines = this.props.lines.map((line, index) =>
+    const characters = this.props.lines.map(function(line, index) {
+      return line.character;
+    });
+
+    let charactersSoFar = [];
+    const uniqueCharacters = characters.filter(function(char, index) {
+      if(charactersSoFar.find(el => el === char)) {
+        return false;
+      } else {
+        charactersSoFar.push(char);
+        return true;
+      }
+    });
+
+    const colorLines = this.props.lines.map(function(line) {
+      let colorIndex = uniqueCharacters.findIndex(char => char === line.character);
+      while(colorIndex > 3) {
+        colorIndex -= 4;
+      }
+      line.colorIndex = colorIndex;
+      return line;
+    });
+
+    const lines = colorLines.map((line, index) =>
       <li key={line.key}>
         <Line {...line} lineId={line.key} />
       </li>

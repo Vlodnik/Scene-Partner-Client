@@ -115,7 +115,7 @@ a {
   text-align: center;
 }
 
-.lines {
+#example .lines {
   list-style: none;
   padding-left: 0;
   margin-left: 25px;
@@ -123,16 +123,15 @@ a {
   width: 100%;
 }
 
-.lines li {
+#example .lines li {
   margin-bottom: 1em;
 }
 
-.char-name {
+#example .char-name {
   width: 15%;
 }
 
-.line-text {
-  background-color: #00bddb;
+#example .line-text {
   border: none;
   border-radius: 3px;
   font-size: 1.2em;
