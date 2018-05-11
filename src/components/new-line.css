@@ -1,23 +1,32 @@
+/* * {
+  border: 1px solid red;
+} */
+
 #new-line {
   display: flex;
   flex-wrap: wrap;
-  margin: 3em 25px 2em;
+  /* margin: 3em 25px 2em; */
+  margin: auto;
+  width: 90%;
 }
 
 #new-line * {
-  border: none;
-  border-radius: 3px;
   font-size: 1.2em;
 }
 
 #character, #line {
+  border: 2px solid lightgray;
+  border-radius: 3px;
   margin-bottom: 1em;
 }
 
 #character {
+  font-size: 1em;
   text-align: center;
   height: 2em;
-  width: 100px;
+  width: 25%;
+  min-width: 80px;
+  max-width: 200px;
 }
 
 #line {
@@ -28,6 +37,7 @@
 
 #add-line {
   background-color: #00bddb;
+  color: white;
   border: none;
   margin-left: 130px;
   height: 2em;

@@ -1,6 +1,5 @@
 .login-parent {
   background-color: rgba(0, 189, 219, 0.6);
-  /* opacity: 0.5; */
   height: 90vh;
   padding-top: 1px;
   display: flex;
@@ -14,7 +13,6 @@
   background-position: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* opacity: 0.5; */
   top: 0;
   left: 0;
   bottom: 0;

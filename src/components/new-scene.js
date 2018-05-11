@@ -23,7 +23,7 @@ export class NewScene extends React.Component {
     return (
       <div>
         <HomeNav />
-        <main>
+        <main id="new-scene-main">
           <form id="new-scene" onSubmit={(e) => this.addScene(e)}>
             <input
               id="new-scene-name"

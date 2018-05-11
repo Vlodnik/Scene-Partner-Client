@@ -37,6 +37,9 @@ export class HomeBurger extends React.Component {
             <div className="burger-button"></div>
           </button>
           <ul id="dropdown" className="hamburger-menu">
+            <li onClick={() => this.changeScene()}>
+              <Link to="/home">Home</Link>
+            </li>
             <li onClick={() => this.toggleEditing()}>
               <Link to={`/scene-editing/${currentSceneId}`}>Edit scene</Link>
             </li>
@@ -58,6 +61,9 @@ export class HomeBurger extends React.Component {
             <div className="burger-button"></div>
           </button>
           <ul id="dropdown" className="hamburger-menu">
+            <li onClick={() => this.changeScene()}>
+              <Link to="/home">Home</Link>
+            </li>
             <li onClick={() => this.toggleEditing()}>
               <Link to={`/scene/${currentSceneId}`}>Run scene</Link>
             </li>
@@ -79,6 +85,9 @@ export class HomeBurger extends React.Component {
           <div className="burger-button"></div>
         </button>
         <ul id="dropdown" className="hamburger-menu">
+          <li onClick={() => this.changeScene()}>
+            <Link to="/home">Home</Link>
+          </li>
           <li onClick={() => this.changeScene()}>
             <Link to="/new-scene">New scene</Link>
           </li>

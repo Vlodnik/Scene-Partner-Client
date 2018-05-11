@@ -1,8 +1,8 @@
 #editing-lines {
   list-style: none;
-  padding-left: 0;
-  margin-left: 25px;
-  margin-right: 25px;
+  padding: 0;
+  margin: 2em auto 0;
+  width: 90%;
 }
 
 #editing-lines form {
