@@ -64,6 +64,28 @@ export class EditScene extends React.Component {
       );
     });
 
+    let runSceneProps = {
+      id: 'run-scene',
+      onClick: () => this.toggleEditing(),
+    };
+
+    let runSceneButton;
+    if(lines.length > 0) {
+      runSceneButton = (
+        <button {...runSceneProps}>
+          <Link to={`/scene/${this.props.sceneId}`}>
+            Run scene
+          </Link>
+        </button>
+      );
+    } else {
+      runSceneProps.disabled = 'disabled';
+      runSceneButton = (
+        <button {...runSceneProps}>
+        </button>
+      );
+    }
+
     return (
       <div>
         <HomeNav />
@@ -75,11 +97,7 @@ export class EditScene extends React.Component {
             onAddLine={(character, line) => this.addLine(character, line, sceneId)}
           />
           <div id="run-scene-parent">
-            <button id="run-scene" onClick={() => this.toggleEditing()}>
-              <Link to={`/scene/${this.props.sceneId}`}>
-                Run scene
-              </Link>
-            </button>
+            {runSceneButton}
           </div>
         </main>
       </div>
