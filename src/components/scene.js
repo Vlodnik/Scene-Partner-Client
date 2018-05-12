@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { updateScene, selectCharacter } from '../actions/scenes';
+import { updateScene, selectCharacter, toggleEditing } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 // import Options from './options';
@@ -21,6 +22,10 @@ export class Scene extends React.Component {
 
   selectCharacter(character, sceneId) {
     this.props.dispatch(selectCharacter(character, sceneId));
+  }
+
+  toggleEditing() {
+    this.props.dispatch(toggleEditing());
   }
 
   render() {
@@ -63,6 +68,11 @@ export class Scene extends React.Component {
           <ul className="lines">
             {lines}
           </ul>
+          <button id="edit-scene" onClick={() => this.toggleEditing()}>
+            <Link to={`/scene-editing/${this.props.sceneId}`}>
+              Edit scene
+            </Link>
+          </button>
         </main>
       </div>
     );

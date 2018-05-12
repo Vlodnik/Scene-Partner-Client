@@ -5,6 +5,7 @@
   margin-right: 25px; */
   margin: auto;
   width: 90%;
+  max-width: 1000px;
 }
 
 .lines li {
@@ -13,5 +14,29 @@
 
 .lines div {
   display: flex;
+  flex-direction: column;
   margin-bottom: 1em;
+}
+
+#edit-scene {
+  display: block;
+  background-color: #00bddb;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 3em auto 3em;
+  padding: 0;
+  transition: background-color .3s;
+}
+
+#edit-scene:hover {
+  cursor: pointer;
+  background-color: #00869b;
+}
+
+#edit-scene a {
+  display: block;
+  color: white;
+  padding: 1em 2em;
 }

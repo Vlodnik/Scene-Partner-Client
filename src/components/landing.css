@@ -113,7 +113,6 @@ a {
 }
 
 #example > h3 {
-  margin-bottom: 2em;
   text-align: center;
 }
 
@@ -129,16 +128,13 @@ a {
   margin-bottom: 1em;
 }
 
-#example .char-name {
-  width: 15%;
-}
-
 #example .line-text {
   border: none;
   border-radius: 3px;
   font-size: 1.2em;
-  text-align: left;
-  width: 80%;
+  text-align: center;
+  margin: auto;
+  width: 90%;
 }
 
 section button:hover {

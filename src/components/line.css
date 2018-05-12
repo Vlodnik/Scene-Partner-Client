@@ -1,11 +1,9 @@
-.char-name, .line-text {
-  display: inline-block;
-}
-
 .char-name {
   font-size: 1em;
   min-width: 100px;
   margin-top: 0;
+  margin-bottom: 0.2em;
+  text-align: center;
 }
 
 .line-text {
@@ -14,7 +12,7 @@
   color: white;
   font-size: 1.2em;
   flex-grow: 20;
-  text-align: left;
+  text-align: center;
   transition: background-color .3s;
 }
 
