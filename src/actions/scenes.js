@@ -242,7 +242,6 @@ export function readLine(text, lineId, jwt) {
         return res.json();
       })
       .then(res => {
-        console.log(res);
         dispatch(readLineSuccess(res.url));
       })
       .catch(err => {
