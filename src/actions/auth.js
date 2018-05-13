@@ -20,8 +20,8 @@ export function login(username, password) {
       return res.json();
     })
     .then(res => {
-      dispatch(getScenes(res.authToken))
-      dispatch(loginSuccess(res.authToken, username))
+      dispatch(getScenes(res.authToken));
+      dispatch(loginSuccess(res.authToken, username));
     })
     .catch(err => {
       console.log(err);

@@ -160,6 +160,56 @@ export function updateSceneError(err) {
   }
 }
 
+export function deleteScene(sceneId, jwt) {
+  return function(dispatch) {
+    dispatch(deleteSceneRequest());
+    return fetch(`${ REACT_APP_BASE_URL }/scenes/${ sceneId }`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      }
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(() => {
+        dispatch(deleteSceneSuccess(sceneId));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(deleteSceneError(err));
+      });
+  }
+}
+
+export const DELETE_SCENE_REQUEST = 'DELETE_SCENE_REQUEST';
+export function deleteSceneRequest() {
+  return {
+    type: DELETE_SCENE_REQUEST
+  }
+}
+
+export const DELETE_SCENE_SUCCESS = 'DELETE_SCENE_SUCCESS';
+export function deleteSceneSuccess(sceneId) {
+  return {
+    type: DELETE_SCENE_SUCCESS,
+    payload: {
+      sceneId
+    }
+  }
+}
+
+export const DELETE_SCENE_ERROR = 'DELETE_SCENE_ERROR';
+export function deleteSceneError(err) {
+  return {
+    type: DELETE_SCENE_ERROR,
+    payload: {
+      err
+    }
+  }
+}
+
 export const CHANGE_SCENE = 'CHANGE_SCENE';
 export function changeScene(sceneId) {
   return {

@@ -33,6 +33,16 @@ export default function scenePartnerReducer(state=initialState, action) {
     });
   } else if(action.type === actions.ADD_SCENE_ERROR) {
     return Object.assign({}, state, { loading: false, error: action.payload.err });
+  } else if(action.type === actions.DELETE_SCENE_SUCCESS) {
+    const updatedScenes = [...state.scenes].filter(scene => {
+      return scene.id !== action.payload.sceneId;
+    });
+
+    return Object.assign({}, state, {
+      scenes: updatedScenes
+    });
+  } else if(action.type === actions.DELETE_SCENE_ERROR) {
+    return Object.assign({}, state, { error: action.payload.err });
   } else if(action.type === actions.CHANGE_SCENE) {
     return Object.assign({}, state, {
       currentSceneId: action.payload.sceneId

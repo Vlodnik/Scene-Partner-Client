@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { changeScene } from '../actions/scenes';
+import { changeScene, deleteScene } from '../actions/scenes';
 import { logout } from '../actions/auth';
 
 import './hamburger.css';
@@ -17,12 +17,18 @@ export class HomeBurger extends React.Component {
     this.props.dispatch(changeScene(null));
   }
 
+  deleteScene() {
+    this.props.dispatch(changeScene(null));
+    this.props.dispatch(deleteScene(this.props.currentSceneId, this.props.authToken));
+  }
+
   logout() {
     this.props.dispatch(logout());
   }
 
   render() {
     const { currentSceneId, editing } = this.props;
+    console.log(currentSceneId, this.props.authToken);
 
     if(currentSceneId !== null && !(editing)) {
       return (
@@ -59,6 +65,9 @@ export class HomeBurger extends React.Component {
             </li>
             <li onClick={() => this.changeScene()}>
               <Link to="/new-scene">New scene</Link>
+            </li>
+            <li onClick={() => this.deleteScene()}>
+              <Link to="/home">Delete scene</Link>
             </li>
             <li onClick={() => this.logout()}>
               <Link to="/">Log out</Link>
@@ -97,11 +106,13 @@ function mapStateToProps(state) {
       editing = currentScene.editing;
     }
     return {
+      authToken: state.auth.authToken,
       currentSceneId: sp.currentSceneId,
       editing
     }
   }
   return {
+    authToken: state.auth.authToken,
     currentSceneId: sp.currentSceneId
   }
 }
