@@ -28,7 +28,6 @@ export class HomeBurger extends React.Component {
 
   render() {
     const { currentSceneId, editing } = this.props;
-    console.log(currentSceneId, this.props.authToken);
 
     if(currentSceneId !== null && !(editing)) {
       return (
