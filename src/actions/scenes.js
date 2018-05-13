@@ -224,9 +224,66 @@ export function selectCharacter(character, sceneId) {
   }
 }
 
-export function readLine(text, lineId, jwt) {
+// export function fetchUrls(lines, jwt) {
+//   return function(dispatch) {
+//     dispatch(fetchUrlsRequest());
+//     return fetch(`${ REACT_APP_BASE_URL }/audio`, {
+//       method: 'POST',
+//       headers: {
+//         'content-type': 'application/json',
+//         'Authorization': `Bearer ${ jwt }`
+//       },
+//       body: JSON.stringify({ lines })
+//     })
+//       .then(res => {
+//         return normalizeResponseErrors(res);
+//       })
+//       .then(res => {
+//         return res.json();
+//       })
+//       .then(res => {
+//         dispatch(fetchUrlsSuccess(res));
+//       })
+//       .catch(err => {
+//         dispatch(fetchUrlsError(err));
+//       });
+//   }
+// }
+//
+// export const FETCH_URLS_REQUEST = 'FETCH_URLS_REQUEST';
+// export function fetchUrlsRequest(data) {
+//   return {
+//     type: FETCH_URLS_REQUEST
+//   }
+// }
+//
+// export const FETCH_URLS_SUCCESS = 'FETCH_URLS_SUCCESS';
+// export function fetchUrlsSuccess(data) {
+//   console.log(data);
+//
+//   return {
+//     type: FETCH_URLS_SUCCESS,
+//     payload: {
+//       data
+//     }
+//   }
+// }
+//
+// export const FETCH_URLS_ERROR = 'FETCH_URLS_ERROR';
+// export function fetchUrlsError(err) {
+//   console.log(err);
+//
+//   return {
+//     type: FETCH_URLS_ERROR,
+//     payload: {
+//       err
+//     }
+//   }
+// }
+
+export function fetchUrl(text, lineId, jwt, lineIndex) {
   return function(dispatch) {
-    dispatch(readLineRequest());
+    dispatch(fetchUrlRequest());
     return fetch(`${ REACT_APP_BASE_URL }/audio`, {
       method: 'POST',
       headers: {
@@ -242,37 +299,95 @@ export function readLine(text, lineId, jwt) {
         return res.json();
       })
       .then(res => {
-        dispatch(readLineSuccess(res.url));
+        dispatch(fetchUrlSuccess(res.url, lineIndex));
       })
       .catch(err => {
-        dispatch(readLineError(err));
+        dispatch(fetchUrlError(err));
       });
   }
 }
 
-export const READ_LINE_REQUEST = 'READ_LINE_REQUEST';
-export function readLineRequest() {
+export const FETCH_URL_REQUEST = 'FETCH_URL_REQUEST';
+export function fetchUrlRequest() {
   return {
-    type: READ_LINE_REQUEST
+    type: FETCH_URL_REQUEST
   }
 }
 
-export const READ_LINE_SUCCESS = 'READ_LINE_SUCCESS';
-export function readLineSuccess(url) {
-  const audio = new Audio(url);
-  audio.play();
-
+export const FETCH_URL_SUCCESS = 'FETCH_URL_SUCCESS';
+export function fetchUrlSuccess(url, lineIndex) {
   return {
-    type: READ_LINE_SUCCESS,
+    type: FETCH_URL_SUCCESS,
+    payload: {
+      url,
+      lineIndex
+    }
   }
 }
 
-export const READ_LINE_ERROR = 'READ_LINE_ERROR';
-export function readLineError(err) {
+export const FETCH_URL_ERROR = 'FETCH_URL_ERROR';
+export function fetchUrlError(err) {
+  console.log(err);
+
   return {
-    type: READ_LINE_ERROR,
+    type: FETCH_URL_ERROR,
     payload: {
       err
     }
   }
 }
+
+
+
+// export function readLine(text, lineId, jwt) {
+//   return function(dispatch) {
+//     dispatch(readLineRequest());
+//     return fetch(`${ REACT_APP_BASE_URL }/audio`, {
+//       method: 'POST',
+//       headers: {
+//         'content-type': 'application/json',
+//         'Authorization': `Bearer ${ jwt }`
+//       },
+//       body: JSON.stringify({ text, lineId })
+//     })
+//       .then(res => {
+//         return normalizeResponseErrors(res);
+//       })
+//       .then(res => {
+//         return res.json();
+//       })
+//       .then(res => {
+//         dispatch(readLineSuccess(res.url));
+//       })
+//       .catch(err => {
+//         dispatch(readLineError(err));
+//       });
+//   }
+// }
+//
+// export const READ_LINE_REQUEST = 'READ_LINE_REQUEST';
+// export function readLineRequest() {
+//   return {
+//     type: READ_LINE_REQUEST
+//   }
+// }
+//
+// export const READ_LINE_SUCCESS = 'READ_LINE_SUCCESS';
+// export function readLineSuccess(url) {
+//   const audio = new Audio(url);
+//   audio.play();
+//
+//   return {
+//     type: READ_LINE_SUCCESS,
+//   }
+// }
+//
+// export const READ_LINE_ERROR = 'READ_LINE_ERROR';
+// export function readLineError(err) {
+//   return {
+//     type: READ_LINE_ERROR,
+//     payload: {
+//       err
+//     }
+//   }
+// }

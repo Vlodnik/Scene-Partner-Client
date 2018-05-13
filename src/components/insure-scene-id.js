@@ -1,26 +1,23 @@
 import React from 'react';
 
-import { changeScene } from '../actions/scenes';
+import { changeScene, fetchUrl } from '../actions/scenes';
 
 export default function insureSceneId(Component) {
-  // return a component that, when it mounts, checks the state
-  // for a sceneid (in its props). If it has one, just render
-  // the component. It it doesn't, dispatch an action that
-  // correctly sets the sceneid and render nothing. The Component
-  // will need all the props passed through by this higher order
-  // component.
-  // render() {
-  // return <component {...props} />
-
   return class extends React.Component {
     componentDidMount() {
       if(this.props.sceneId === null || this.props.sceneId === undefined) {
         const sceneId = this.props.match.params.id;
         this.props.dispatch(changeScene(sceneId));
       }
+      if(!(this.props.editing)) {
+        this.props.lines.forEach((line, index) => {
+          this.props.dispatch(fetchUrl(line.text, line.key, this.props.authToken, index));
+        });
+      }
+
       // if(!(this.props.editing)) {
-      //   // dispatch action to send POST request to API for audio files
-      //   this.props.dispatch(createFiles(this.props.lines));
+      //   // dispatch action to send POST request to API for all audio files
+      //   this.props.dispatch(fetchUrls(this.props.lines, this.props.authToken));
       // }
     }
 

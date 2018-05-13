@@ -46,8 +46,8 @@ export default class Landing extends React.Component {
             <ul className="lines">
               <li>
                 <Line
-                  example
                   lineId="X1"
+                  url="https://scene-partner-mp3s.s3.amazonaws.com/X1.mp3"
                   character="INIGO"
                   text="You're using Bonnetti's Defense against me, ah?"
                   colorIndex="0"
@@ -55,8 +55,8 @@ export default class Landing extends React.Component {
               </li>
               <li>
                 <Line
-                  example
                   lineId="X2"
+                  url="https://scene-partner-mp3s.s3.amazonaws.com/X2.mp3"
                   character="MAN-IN-BLACK"
                   text="I thought it fitting considering the rocky terrain."
                   colorIndex="1"
@@ -64,8 +64,8 @@ export default class Landing extends React.Component {
               </li>
               <li>
                 <Line
-                  example
                   lineId="X32"
+                  url="https://scene-partner-mp3s.s3.amazonaws.com/X32.mp3"
                   character="INIGO"
                   text="Naturally, you must expect me to attack with Capa Ferro?"
                   colorIndex="0"
@@ -73,8 +73,8 @@ export default class Landing extends React.Component {
               </li>
               <li>
                 <Line
-                  example
                   lineId="X4"
+                  url="https://scene-partner-mp3s.s3.amazonaws.com/X4.mp3"
                   character="MAN-IN-BLACK"
                   text="Naturally, but I find that Thibault cancels out Capa Ferro. Don't you?"
                   colorIndex="1"
@@ -82,8 +82,8 @@ export default class Landing extends React.Component {
               </li>
               <li>
                 <Line
-                  example
                   lineId="X5"
+                  url="https://scene-partner-mp3s.s3.amazonaws.com/X5.mp3"
                   character="INIGO"
                   text="Unless the enemy has studied his Agrippa... which I have."
                   colorIndex="0"

@@ -1,33 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { readLine, readLineSuccess } from '../actions/scenes';
+// import { readLineSuccess } from '../actions/scenes';
 
 import './line.css';
 
 export class Line extends React.Component {
-  readExample(lineId) {
-    this.props.dispatch(readLineSuccess(`https://scene-partner-mp3s.s3.amazonaws.com/${ lineId }.mp3`));
-  }
-
-  readLine(text, lineId) {
-    this.props.dispatch(readLine(text, lineId, this.props.authToken));
+  // readLine(text, lineId) {
+  //   this.props.dispatch(readLine(text, lineId, this.props.authToken));
+  // }
+  readLine(url) {
+    const audio = new Audio(url);
+    audio.play();
   }
 
   render() {
-    const { character, text, lineId, colorIndex } = this.props;
+    const { character, text, colorIndex } = this.props;
 
-    let clickFunction;
-    if(this.props.example) {
-      clickFunction = () => this.readExample(lineId);
-    } else {
-      clickFunction = () => this.readLine(text, lineId);
+    if(this.props.loading) {
+      return (
+        <div>
+          <h2 className="char-name">{character}</h2>
+          <img alt="Loading gif." src="https://s3.amazonaws.com/scene-partner-images/loading.gif" />
+        </div>
+      );
     }
-
     return (
       <div>
         <h2 className="char-name">{character}</h2>
-        <button className={`line-text color-${ colorIndex }`} onClick={clickFunction}>{text}</button>
+        <button
+          className={`line-text color-${ colorIndex }`}
+          onClick={() => this.readLine(this.props.url)}
+        >
+          {text}
+        </button>
       </div>
     );
   }
@@ -35,7 +41,8 @@ export class Line extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authToken: state.auth.authToken
+    authToken: state.auth.authToken,
+    loading: state.sp.loading
   }
 }
 

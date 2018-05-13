@@ -118,12 +118,34 @@ export default function scenePartnerReducer(state=initialState, action) {
         return scene;
       })
     });
-  } else if(action.type === actions.READ_LINE_REQUEST) {
+  } else if(action.type === actions.FETCH_URL_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
-  } else if(action.type === actions.READ_LINE_SUCCESS) {
-    return Object.assign({}, state, { loading: false });
-  } else if(action.type === actions.READ_LINE_ERROR) {
+  } else if(action.type === actions.FETCH_URL_SUCCESS) {
+    const { url, lineIndex } = action.payload;
+    const targetScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+
+    let updatedLines = [...targetScene.lines];
+    updatedLines[lineIndex].url = url;
+    return Object.assign({}, state, {
+      loading: false,
+      scenes: state.scenes.map(function(scene) {
+        if(scene.id === state.currentSceneId) {
+          return Object.assign({}, scene, {
+            lines: updatedLines
+          });
+        }
+        return scene;
+      })
+    });
+  } else if(action.type === actions.FETCH_URL_ERROR) {
     return Object.assign({}, state, { loading: false, error: action.payload.err });
   }
+  // else if(action.type === actions.READ_LINE_REQUEST) {
+  //   return Object.assign({}, state, { loading: true, error: null });
+  // } else if(action.type === actions.READ_LINE_SUCCESS) {
+  //   return Object.assign({}, state, { loading: false });
+  // } else if(action.type === actions.READ_LINE_ERROR) {
+  //   return Object.assign({}, state, { loading: false, error: action.payload.err });
+  // }
   return state;
 };
