@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { toggleEditing, changeScene } from '../actions/scenes';
+import { changeScene } from '../actions/scenes';
 import { logout } from '../actions/auth';
 
 import './hamburger.css';
@@ -11,10 +11,6 @@ export class HomeBurger extends React.Component {
   toggleMenu(e) {
     e.preventDefault();
     document.getElementById('dropdown').classList.toggle('is-active');
-  }
-
-  toggleEditing() {
-    this.props.dispatch(toggleEditing());
   }
 
   changeScene() {
@@ -40,9 +36,6 @@ export class HomeBurger extends React.Component {
             <li onClick={() => this.changeScene()}>
               <Link to="/home">Home</Link>
             </li>
-            <li onClick={() => this.toggleEditing()}>
-              <Link to={`/scene-editing/${currentSceneId}`}>Edit scene</Link>
-            </li>
             <li onClick={() => this.changeScene()}>
               <Link to="/new-scene">New scene</Link>
             </li>
@@ -64,9 +57,6 @@ export class HomeBurger extends React.Component {
             <li onClick={() => this.changeScene()}>
               <Link to="/home">Home</Link>
             </li>
-            <li onClick={() => this.toggleEditing()}>
-              <Link to={`/scene/${currentSceneId}`}>Run scene</Link>
-            </li>
             <li onClick={() => this.changeScene()}>
               <Link to="/new-scene">New scene</Link>
             </li>
@@ -85,9 +75,6 @@ export class HomeBurger extends React.Component {
           <div className="burger-button"></div>
         </button>
         <ul id="dropdown" className="hamburger-menu">
-          <li onClick={() => this.changeScene()}>
-            <Link to="/home">Home</Link>
-          </li>
           <li onClick={() => this.changeScene()}>
             <Link to="/new-scene">New scene</Link>
           </li>
