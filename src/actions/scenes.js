@@ -53,59 +53,6 @@ export function getScenesError(err) {
   }
 }
 
-export function getScene(sceneId, jwt) {
-  return function(dispatch) {
-    dispatch(getSceneRequest());
-    console.log(sceneId);
-    return fetch(`${ REACT_APP_BASE_URL }/scenes/${ sceneId }`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${ jwt }`
-      }
-    })
-      .then(res => {
-        return normalizeResponseErrors(res);
-      })
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        dispatch(getSceneSuccess(res));
-      })
-      .catch(err => {
-        dispatch(getSceneError(err));
-      });
-  }
-}
-
-export const GET_SCENE_REQUEST = 'GET_SCENE_REQUEST';
-export function getSceneRequest() {
-  return {
-    type: GET_SCENE_REQUEST
-  }
-}
-
-export const GET_SCENE_SUCCESS = 'GET_SCENE_SUCCESS';
-export function getSceneSuccess(res) {
-  console.log(res);
-  return {
-    type: GET_SCENE_SUCCESS,
-    payload: {
-      res
-    }
-  }
-}
-
-export const GET_SCENE_ERROR = 'GET_SCENE_ERROR';
-export function getSceneError(err) {
-  return {
-    type: GET_SCENE_ERROR,
-    payload: {
-      err
-    }
-  }
-}
-
 export function addScene(title, jwt) {
   return function(dispatch) {
     dispatch(addSceneRequest());

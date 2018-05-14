@@ -150,12 +150,5 @@ export default function scenePartnerReducer(state=initialState, action) {
   } else if(action.type === actions.FETCH_URL_ERROR) {
     return Object.assign({}, state, { loading: false, error: action.payload.err });
   }
-  // else if(action.type === actions.READ_LINE_REQUEST) {
-  //   return Object.assign({}, state, { loading: true, error: null });
-  // } else if(action.type === actions.READ_LINE_SUCCESS) {
-  //   return Object.assign({}, state, { loading: false });
-  // } else if(action.type === actions.READ_LINE_ERROR) {
-  //   return Object.assign({}, state, { loading: false, error: action.payload.err });
-  // }
   return state;
 };

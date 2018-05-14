@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { updateScene, selectCharacter, toggleEditing, getScene } from '../actions/scenes';
+import { updateScene, selectCharacter, toggleEditing } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 // import Options from './options';
@@ -18,7 +18,6 @@ export class Scene extends React.Component {
       editing: false
     };
     this.props.dispatch(updateScene(updateObj, this.props.authToken));
-    this.props.dispatch(getScene(this.props.sceneId, this.props.authToken));
   }
 
   selectCharacter(character, sceneId) {
@@ -30,6 +29,10 @@ export class Scene extends React.Component {
   }
 
   render() {
+    if(this.props.lines.length === 0) {
+      return <Redirect to="/home" />
+    }
+
     const characters = this.props.lines.map(function(line, index) {
       return line.character;
     });
@@ -85,12 +88,18 @@ function mapStateToProps(state, props) {
   const scene = state.sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
-  return {
-    lines: scene.lines,
-    userCharacter: scene.userCharacter,
-    sceneId: state.sp.currentSceneId,
-    editing: scene.editing,
-    authToken: state.auth.authToken
+  if(scene) {
+    return {
+      lines: scene.lines,
+      userCharacter: scene.userCharacter,
+      sceneId: state.sp.currentSceneId,
+      editing: scene.editing,
+      authToken: state.auth.authToken
+    }
+  } else {
+    return {
+      lines: []
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
 import { addLine, updateScene, toggleEditing } from '../actions/scenes';
@@ -24,27 +24,6 @@ export class EditScene extends React.Component {
     );
   }
 
-    // console.log(prevProps.lines === this.props.lines);
-    // console.log(prevState, prevProps, this.props);
-    //
-    // function arraysOfObjectsEqual(val1, val2) {
-    //   if(val1.length !== val2.length) {
-    //     return false;
-    //   }
-    //   let areEqual = true;
-    //   val1.forEach((obj, index) => {
-    //     for(let prop in obj) {
-    //       console.log(obj[prop], val2[index][prop]);
-    //       if(obj[prop] !== val2[index][prop]) {
-    //         areEqual = false;
-    //       }
-    //     }
-    //   })
-    //   return areEqual;
-    // }
-    //
-    // console.log(arraysOfObjectsEqual(prevProps.lines, this.props.lines));
-
   toggleEditing() {
     this.props.dispatch(toggleEditing());
   }
@@ -54,6 +33,10 @@ export class EditScene extends React.Component {
   }
 
   render() {
+    if(this.props.lines.length === 0) {
+      return <Redirect to="/home" />
+    }
+
     const { sceneId } = this.props;
 
     const lines = this.props.lines.map(function(line, index) {
@@ -111,12 +94,18 @@ function mapStateToProps(state, props) {
   const scene = sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
-  return {
-    title: scene.title,
-    lines: scene.lines,
-    sceneId: sp.currentSceneId,
-    editing: true,
-    authToken: state.auth.authToken
+  if(scene) {
+    return {
+      title: scene.title,
+      lines: scene.lines,
+      sceneId: sp.currentSceneId,
+      editing: true,
+      authToken: state.auth.authToken
+    }
+  } else {
+    return {
+      lines: []
+    }
   }
 }
 
