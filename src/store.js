@@ -18,8 +18,6 @@ const store = createStore(combineReducers({
 
 const authToken = loadAuthToken();
 if(authToken) {
-  console.log('store found a jwt');
-  console.log(authToken);
   const decodedToken = jwtDecode(authToken);
   store.dispatch(setAuthToken(authToken));
   store.dispatch(loginSuccess(decodedToken.user));

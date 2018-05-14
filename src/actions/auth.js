@@ -2,7 +2,6 @@ import { SubmissionError } from 'redux-form';
 import { REACT_APP_BASE_URL } from '../config';
 import jwtDecode from 'jwt-decode';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
-import { getScenes } from './scenes';
 import { normalizeResponseErrors } from './utils';
 
 export function login(username, password) {
