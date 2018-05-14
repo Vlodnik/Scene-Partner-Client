@@ -32,6 +32,7 @@
   background-color: white;
   border-radius: 10px;
   margin: 8em auto;
+  padding-bottom: 1em;
   width: 80%;
   max-width: 600px;
 }
@@ -45,6 +46,7 @@
 }
 
 #account-creation input, #account-creation button, #login-form input, #login-form button {
+  font-size: 1em;
   margin-bottom: 1.2em;
   width: 65%;
   max-width: 200px;
@@ -63,11 +65,17 @@
   border-bottom: 1px solid black;
   margin-left: auto;
   margin-right: auto;
+  height: 2em;
+}
+
+#account-creation a, #login-form a {
+  color: #00bddb;
+  text-decoration: underline;
 }
 
 #create, #login {
   max-width: 400px;
-  height: 1.5em;
+  min-height: 1.5em;
   font-size: 1.2em;
   font-weight: 700;
   color: white;
@@ -75,6 +83,7 @@
   border: 1px solid white;
   border-radius: 3px;
   margin: auto;
+  height: 2em;
   transition: background-color .3s;
 }
 

@@ -32,14 +32,6 @@ body {
   transition: background-color .3s;
 }
 
-/* #scenes li:nth-of-type(odd) {
-  background-color: lightgray;
-}
-
-#scenes li:nth-of-type(even) {
-  background-color: white;
-} */
-
 #scenes li:hover {
   cursor: pointer;
   background-color: #00869b;
@@ -53,26 +45,28 @@ body {
 }
 
 #new-scene-button {
-  /* background-color: #ff9c91; */
-  /* background-color: #ffb891; */
   background-color: #f9ad60;
   border: none;
   border-radius: 3px;
   display: block;
   margin: 4em auto 8em;
-  padding: 2em 3em;
+  padding: 0;
   width: 50%;
   max-width: 400px;
   transition: background-color .3s;
 }
 
 #new-scene-button a {
+  display: block;
   color: white;
   font-size: 2em;
+  margin: 0;
+  padding: 2em 3em;
+  width: 100%;
+  height: 100%;
 }
 
 #new-scene-button:hover {
   cursor: pointer;
-  /* background-color: #ff8e1c; */
   background-color: #e17b15;
 }

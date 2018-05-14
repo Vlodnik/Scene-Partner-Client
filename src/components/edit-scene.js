@@ -12,7 +12,27 @@ import EditingLine from './editing-line';
 import './edit-scene.css';
 
 export class EditScene extends React.Component {
-  componentDidUpdate() {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    const changedLine = prevProps.lines.find((line, index) => {
+      console.log(line.character, line.text);
+      console.log(this.props.lines[index].character, this.props.lines[index].text);
+      if(line.character !== this.props.lines[index].character) {
+        console.log('found character change');
+        return true;
+      } else if(line.text !== this.props.lines[index].text) {
+        console.log('found a line change');
+        return true;
+      }
+      return false;
+    });
+    if(changedLine) {
+      return changedLine;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(snapshot);
     const updateObj = {
       id: this.props.sceneId,
       title: this.props.title,

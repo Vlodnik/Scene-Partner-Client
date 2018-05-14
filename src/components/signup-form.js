@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { reduxForm, Field, focus } from 'redux-form';
 import {
   required,
@@ -71,6 +72,7 @@ export class SignupForm extends React.Component {
             >
               Continue
             </button>
+            <Link to="/login">Already have an account? Log in.</Link>
           </form>
         </main>
       </div>
