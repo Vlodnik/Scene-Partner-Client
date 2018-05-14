@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { updateScene, selectCharacter, toggleEditing } from '../actions/scenes';
+import { updateScene, selectCharacter, toggleEditing, getScene } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 // import Options from './options';
@@ -18,6 +18,7 @@ export class Scene extends React.Component {
       editing: false
     };
     this.props.dispatch(updateScene(updateObj, this.props.authToken));
+    this.props.dispatch(getScene(this.props.sceneId, this.props.authToken));
   }
 
   selectCharacter(character, sceneId) {
