@@ -1,5 +1,7 @@
 import { SubmissionError } from 'redux-form';
 import { REACT_APP_BASE_URL } from '../config';
+import jwtDecode from 'jwt-decode';
+import { saveAuthToken, clearAuthToken } from '../local-storage';
 import { getScenes } from './scenes';
 import { normalizeResponseErrors } from './utils';
 
@@ -21,7 +23,8 @@ export function login(username, password) {
     })
     .then(res => {
       dispatch(getScenes(res.authToken));
-      dispatch(loginSuccess(res.authToken, username));
+      storeAuthInfo(res.authToken, dispatch);
+      saveAuthToken(res.authToken);
     })
     .catch(err => {
       console.log(err);
@@ -43,6 +46,49 @@ export function login(username, password) {
   }
 }
 
+function storeAuthInfo(authToken, dispatch) {
+  const decodedToken = jwtDecode(authToken);
+  dispatch(setAuthToken(authToken));
+  dispatch(loginSuccess(decodedToken.user));
+  saveAuthToken(authToken);
+}
+
+export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
+export function setAuthToken(authToken) {
+  return {
+    type: SET_AUTH_TOKEN,
+    payload: {
+      authToken
+    }
+  }
+}
+
+export function refreshAuthToken(authToken) {
+  return function(dispatch, getState) {
+    const authToken = getState().auth.authToken;
+    return fetch(`${ REACT_APP_BASE_URL }/users/refresh`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${ authToken }`
+      }
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(res => {
+        res.json();
+      })
+      .then(res => {
+        storeAuthInfo(res.authToken, dispatch);
+      })
+      .catch(err => {
+        dispatch(loginError(err));
+        dispatch(clearAuth());
+        clearAuthToken();
+      });
+  }
+}
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export function requestLogin() {
   return {
@@ -51,11 +97,10 @@ export function requestLogin() {
 }
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export function loginSuccess(authToken, currentUser) {
+export function loginSuccess(currentUser) {
   return {
     type: LOGIN_SUCCESS,
     payload: {
-      authToken,
       currentUser
     }
   }
@@ -71,9 +116,16 @@ export function loginError(err) {
   }
 }
 
-export const LOGOUT = 'LOGOUT';
-export function logout() {
+export const CLEAR_AUTH = 'CLEAR_AUTH';
+export function clearAuth() {
   return {
-    type: LOGOUT
+    type: CLEAR_AUTH
+  }
+}
+
+export function logout() {
+  return function(dispatch) {
+    dispatch(clearAuth());
+    clearAuthToken();
   }
 }
