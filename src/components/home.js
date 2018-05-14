@@ -2,19 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { changeScene } from '../actions/scenes';
+import { getScenes, changeScene } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 
 import './home.css';
 
 export class Home extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getScenes(this.props.authToken));
+  }
+
   changeScene() {
     this.props.dispatch(changeScene(null));
   }
 
   render() {
-    console.log(this.props.authToken);
     console.log(this.props.authToken, this.props.currentUser);
 
     const scenes = this.props.scenes.map((scene, index) => {
@@ -43,6 +46,21 @@ export class Home extends React.Component {
       buttonText = 'Make a scene';
     }
 
+    if(this.props.loading) {
+      return (
+        <div>
+          <HomeNav />
+          <main id="home-main">
+            <img
+              className="loading"
+              alt="Loading gif."
+              src="https://s3.amazonaws.com/scene-partner-images/loading3.gif">
+            </img>
+          </main>
+        </div>
+      );
+    }
+
     return (
       <div>
         <HomeNav />
@@ -64,6 +82,7 @@ export class Home extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    loading: state.sp.loading,
     scenes: state.sp.scenes,
     authToken: state.auth.authToken,
     currentUser: state.auth.currentUser

@@ -22,7 +22,6 @@ export function login(username, password) {
       return res.json();
     })
     .then(res => {
-      dispatch(getScenes(res.authToken));
       storeAuthInfo(res.authToken, dispatch);
       saveAuthToken(res.authToken);
     })
