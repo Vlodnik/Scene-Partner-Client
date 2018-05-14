@@ -14,6 +14,9 @@ export class Home extends React.Component {
   }
 
   render() {
+    console.log(this.props.authToken);
+    console.log(this.props.authToken, this.props.currentUser);
+
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {
         return (
@@ -62,7 +65,8 @@ export class Home extends React.Component {
 const mapStateToProps = (state) => {
   return {
     scenes: state.sp.scenes,
-    authToken: state.auth.authToken
+    authToken: state.auth.authToken,
+    currentUser: state.auth.currentUser
   }
 }
 

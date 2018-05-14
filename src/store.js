@@ -1,12 +1,13 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
+import jwtDecode from 'jwt-decode';
 
 import authReducer from './reducers/auth';
 import scenePartnerReducer from './reducers/scenes';
 
 import { loadAuthToken } from './local-storage';
-import { setAuthToken, refreshAuthToken } from './actions/auth';
+import { setAuthToken, loginSuccess, refreshAuthToken } from './actions/auth';
 
 const store = createStore(combineReducers({
     form: formReducer,
@@ -17,8 +18,11 @@ const store = createStore(combineReducers({
 
 const authToken = loadAuthToken();
 if(authToken) {
-  const jwt = authToken;
-  store.dispatch(setAuthToken(jwt));
+  console.log('store found a jwt');
+  console.log(authToken);
+  const decodedToken = jwtDecode(authToken);
+  store.dispatch(setAuthToken(authToken));
+  store.dispatch(loginSuccess(decodedToken.user));
   store.dispatch(refreshAuthToken());
 }
 

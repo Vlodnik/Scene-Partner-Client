@@ -63,7 +63,7 @@ export function setAuthToken(authToken) {
   }
 }
 
-export function refreshAuthToken(authToken) {
+export function refreshAuthToken() {
   return function(dispatch, getState) {
     const authToken = getState().auth.authToken;
     return fetch(`${ REACT_APP_BASE_URL }/users/refresh`, {
@@ -76,12 +76,13 @@ export function refreshAuthToken(authToken) {
         return normalizeResponseErrors(res);
       })
       .then(res => {
-        res.json();
+        return res.json();
       })
       .then(res => {
         storeAuthInfo(res.authToken, dispatch);
       })
       .catch(err => {
+        console.log(err);
         dispatch(loginError(err));
         dispatch(clearAuth());
         clearAuthToken();
