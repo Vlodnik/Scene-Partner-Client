@@ -5,6 +5,7 @@ const initialState = {
   currentSceneId: null,
   loading: false,
   error: null,
+  saved: null,
   scenes: []
 };
 
@@ -128,6 +129,9 @@ export default function scenePartnerReducer(state=initialState, action) {
         return scene;
       })
     });
+  } else if(action.type === actions.UPDATE_SCENE_SUCCESS) {
+    console.log(action.payload.message);
+    return Object.assign({}, state, { saved: true });
   } else if(action.type === actions.FETCH_URL_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.FETCH_URL_SUCCESS) {

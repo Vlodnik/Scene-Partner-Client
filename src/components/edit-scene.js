@@ -12,27 +12,26 @@ import EditingLine from './editing-line';
 import './edit-scene.css';
 
 export class EditScene extends React.Component {
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    const changedLine = prevProps.lines.find((line, index) => {
-      console.log(line.character, line.text);
-      console.log(this.props.lines[index].character, this.props.lines[index].text);
-      if(line.character !== this.props.lines[index].character) {
-        console.log('found character change');
-        return true;
-      } else if(line.text !== this.props.lines[index].text) {
-        console.log('found a line change');
-        return true;
-      }
-      return false;
-    });
-    if(changedLine) {
-      return changedLine;
-    }
-    return null;
-  }
+  // getSnapshotBeforeUpdate(prevProps, prevState) {
+  //   const changedLine = prevProps.lines.find((line, index) => {
+  //     console.log(line.character, line.text);
+  //     console.log(this.props.lines[index].character, this.props.lines[index].text);
+  //     if(line.character !== this.props.lines[index].character) {
+  //       console.log('found character change');
+  //       return true;
+  //     } else if(line.text !== this.props.lines[index].text) {
+  //       console.log('found a line change');
+  //       return true;
+  //     }
+  //     return false;
+  //   });
+  //   if(changedLine) {
+  //     return changedLine;
+  //   }
+  //   return null;
+  // }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(snapshot);
     const updateObj = {
       id: this.props.sceneId,
       title: this.props.title,
@@ -57,7 +56,25 @@ export class EditScene extends React.Component {
       return <Redirect to="/home" />
     }
 
-    const { sceneId } = this.props;
+    const { sceneId, saved } = this.props;
+
+    let savedMessage;
+    if(saved) {
+      savedMessage = (
+        <h2 id="save-mes">Saved!</h2>
+      );
+    } else {
+      savedMessage = (
+        <h2 id="save-mes">Error</h2>
+      );
+    }
+
+    // function hideSaveMes() {
+    //   const message = document.getElementById('save-mes');
+    //   message.setAttribute('hidden', true);
+    // }
+    //
+    // window.setTimeout(hideSaveMes(), 1000);
 
     const lines = this.props.lines.map(function(line, index) {
       return (
@@ -93,6 +110,7 @@ export class EditScene extends React.Component {
       <div>
         <HomeNav />
         <main>
+          {savedMessage}
           <ul id="editing-lines">
             {lines}
           </ul>
@@ -120,6 +138,7 @@ function mapStateToProps(state, props) {
       lines: scene.lines,
       sceneId: sp.currentSceneId,
       editing: true,
+      saved: sp.saved,
       authToken: state.auth.authToken
     }
   } else {
