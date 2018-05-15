@@ -137,36 +137,6 @@ export default function scenePartnerReducer(state=initialState, action) {
     return Object.assign({}, state, { scenes: updatedScenes });
   } else if(action.type === actions.UPDATE_SCENE_ERROR) {
     return Object.assign({}, state, { loading: false, error: action.payload.err });
-  } else if(action.type === actions.UPDATE_LINE_SUCCESS) {
-    const changedScene = state.scenes.find(scene => scene.id === state.currentSceneId);
-    let updatedScene = {...changedScene};
-
-    updatedScene.lines[action.payload.lineIndex].saved = 'Saved!';
-    console.log(updatedScene);
-
-    const updatedScenes = state.scenes.map(scene => {
-      if(scene.id === state.currentSceneId) {
-        console.log('setting');
-        return updatedScene;
-      }
-      return scene;
-    });
-
-    return Object.assign({}, state, { scenes: updatedScenes });
-  } else if(action.type === actions.CLEAR_SAVE_MESSAGE) {
-    const changedScene = state.scenes.find(scene => scene.id === action.payload.sceneId);
-    let updatedScene = {...changedScene};
-
-    updatedScene.lines[action.payload.lineIndex].saved = 'Save';
-
-    const updatedScenes = state.scenes.map(scene => {
-      if(scene.id === action.payload.sceneId) {
-        return updatedScene;
-      }
-      return scene;
-    });
-
-    return Object.assign({}, state, { scenes: updatedScenes });
   } else if(action.type === actions.FETCH_URL_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.FETCH_URL_SUCCESS) {

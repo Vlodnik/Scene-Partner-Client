@@ -119,7 +119,7 @@ export function changeLine(character, text, lineIndex, sceneId) {
   }
 }
 
-export function updateScene(updateObj, jwt, fromLine) {
+export function updateScene(updateObj, jwt) {
   return function(dispatch) {
     dispatch(updateSceneRequest());
     return fetch(`${ REACT_APP_BASE_URL }/scenes/${ updateObj.id }`, {
@@ -135,10 +135,6 @@ export function updateScene(updateObj, jwt, fromLine) {
       })
       .then(() => {
         dispatch(updateSceneSuccess(updateObj));
-        if(typeof fromLine === 'number') {
-          dispatch(updateLineSuccess(fromLine));
-          setTimeout(() => dispatch(clearSaveMessage(fromLine, updateObj.id)), 1500);
-        }
       })
       .catch(err => {
         dispatch(updateSceneError(err))
@@ -180,17 +176,6 @@ export function updateLineSuccess(lineIndex) {
     type: UPDATE_LINE_SUCCESS,
     payload: {
       lineIndex
-    }
-  }
-}
-
-export const CLEAR_SAVE_MESSAGE = 'CLEAR_SAVE_MESSAGE';
-export function clearSaveMessage(lineIndex, sceneId) {
-  return {
-    type: CLEAR_SAVE_MESSAGE,
-    payload: {
-      lineIndex,
-      sceneId
     }
   }
 }

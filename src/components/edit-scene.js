@@ -20,7 +20,7 @@ export class EditScene extends React.Component {
       editing: false
     };
     this.props.dispatch(toggleEditing());
-    this.props.dispatch(updateScene(updateObj, this.props.authToken, false));
+    this.props.dispatch(updateScene(updateObj, this.props.authToken));
   }
 
   addLine(character, text) {

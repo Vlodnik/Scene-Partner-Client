@@ -24,7 +24,7 @@ export class EditingLine extends React.Component {
     );
 
     this.props.dispatch(
-      updateScene(updateObj, this.props.authToken, this.props.index)
+      updateScene(updateObj, this.props.authToken)
     );
   }
 

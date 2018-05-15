@@ -21,7 +21,6 @@ export class Scene extends React.Component {
   }
 
   render() {
-    console.log(this.props.lines);
     if(this.props.lines.length === 0) {
       return <Redirect to="/home" />
     }
@@ -81,7 +80,6 @@ function mapStateToProps(state, props) {
   const scene = state.sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
-  console.log(scene);
   if(scene) {
     return {
       lines: scene.lines,
