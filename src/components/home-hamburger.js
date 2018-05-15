@@ -18,8 +18,9 @@ export class HomeBurger extends React.Component {
   }
 
   deleteScene() {
+    const deletedSceneId = this.props.currentSceneId;
     this.props.dispatch(changeScene(null));
-    this.props.dispatch(deleteScene(this.props.currentSceneId, this.props.authToken));
+    this.props.dispatch(deleteScene(deletedSceneId, this.props.authToken));
   }
 
   logout() {

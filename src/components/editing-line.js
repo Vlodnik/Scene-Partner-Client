@@ -61,7 +61,8 @@ export class EditingLine extends React.Component {
     } else {
       saveMessage = 'Save';
     }
-    console.log(this.props.saved);
+
+    if(saveMessage )
 
     return (
       <form className="editing-line" onSubmit={(e) => this.changeLine(e)}>
@@ -82,7 +83,7 @@ export class EditingLine extends React.Component {
         <button
           className="save"
           type="submit">
-          {saveMessage}
+          {this.props.saved}
         </button>
         <button
           className="delete"

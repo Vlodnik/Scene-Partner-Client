@@ -108,7 +108,6 @@ export function addSceneError(err) {
 
 export const CHANGE_LINE = 'CHANGE_LINE';
 export function changeLine(character, text, lineIndex, sceneId) {
-  console.log('changeLine is happening');
   return {
     type: CHANGE_LINE,
     payload: {
@@ -122,7 +121,6 @@ export function changeLine(character, text, lineIndex, sceneId) {
 
 export function updateScene(updateObj, jwt, fromLine) {
   return function(dispatch) {
-    console.log('updateScene fired');
     dispatch(updateSceneRequest());
     return fetch(`${ REACT_APP_BASE_URL }/scenes/${ updateObj.id }`, {
       method: 'PUT',
@@ -139,7 +137,7 @@ export function updateScene(updateObj, jwt, fromLine) {
         dispatch(updateSceneSuccess(updateObj));
         if(typeof fromLine === 'number') {
           dispatch(updateLineSuccess(fromLine));
-          setTimeout(() => dispatch(clearSaveMessage(fromLine)), 1500);
+          setTimeout(() => dispatch(clearSaveMessage(fromLine, updateObj.id)), 1500);
         }
       })
       .catch(err => {
@@ -187,12 +185,12 @@ export function updateLineSuccess(lineIndex) {
 }
 
 export const CLEAR_SAVE_MESSAGE = 'CLEAR_SAVE_MESSAGE';
-export function clearSaveMessage(lineIndex) {
-  console.log('clearing');
+export function clearSaveMessage(lineIndex, sceneId) {
   return {
     type: CLEAR_SAVE_MESSAGE,
     payload: {
-      lineIndex
+      lineIndex,
+      sceneId
     }
   }
 }

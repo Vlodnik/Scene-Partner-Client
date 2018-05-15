@@ -12,14 +12,6 @@ import Line from './line';
 import './scene.css';
 
 export class Scene extends React.Component {
-  componentDidMount() {
-    const updateObj = {
-      id: this.props.match.params.id,
-      editing: false
-    };
-    this.props.dispatch(updateScene(updateObj, this.props.authToken, false));
-  }
-
   selectCharacter(character, sceneId) {
     this.props.dispatch(selectCharacter(character, sceneId));
   }
@@ -29,6 +21,7 @@ export class Scene extends React.Component {
   }
 
   render() {
+    console.log(this.props.lines);
     if(this.props.lines.length === 0) {
       return <Redirect to="/home" />
     }
@@ -88,6 +81,7 @@ function mapStateToProps(state, props) {
   const scene = state.sp.scenes.find(obj => {
     return obj.id === sceneId;
   });
+  console.log(scene);
   if(scene) {
     return {
       lines: scene.lines,

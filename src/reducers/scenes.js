@@ -125,7 +125,11 @@ export default function scenePartnerReducer(state=initialState, action) {
   } else if(action.type === actions.UPDATE_SCENE_SUCCESS) {
     const updatedScenes = state.scenes.map(scene => {
       if(scene.id === action.payload.updatedScene.id) {
-        return action.payload.updatedScene;
+        let newScene = {...scene};
+        for(let prop in action.payload.updatedScene) {
+          newScene[prop] = action.payload.updatedScene[prop];
+        }
+        return newScene;
       }
       return scene;
     });
@@ -138,9 +142,11 @@ export default function scenePartnerReducer(state=initialState, action) {
     let updatedScene = {...changedScene};
 
     updatedScene.lines[action.payload.lineIndex].saved = 'Saved!';
+    console.log(updatedScene);
 
     const updatedScenes = state.scenes.map(scene => {
       if(scene.id === state.currentSceneId) {
+        console.log('setting');
         return updatedScene;
       }
       return scene;
@@ -148,13 +154,13 @@ export default function scenePartnerReducer(state=initialState, action) {
 
     return Object.assign({}, state, { scenes: updatedScenes });
   } else if(action.type === actions.CLEAR_SAVE_MESSAGE) {
-    const changedScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+    const changedScene = state.scenes.find(scene => scene.id === action.payload.sceneId);
     let updatedScene = {...changedScene};
 
     updatedScene.lines[action.payload.lineIndex].saved = 'Save';
 
     const updatedScenes = state.scenes.map(scene => {
-      if(scene.id === state.currentSceneId) {
+      if(scene.id === action.payload.sceneId) {
         return updatedScene;
       }
       return scene;

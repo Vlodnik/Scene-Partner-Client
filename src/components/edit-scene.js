@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { addLine, toggleEditing } from '../actions/scenes';
+import { addLine, toggleEditing, updateScene } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 import NewLine from './new-line';
@@ -14,39 +14,13 @@ import shortid from 'shortid';
 import './edit-scene.css';
 
 export class EditScene extends React.Component {
-  // getSnapshotBeforeUpdate(prevProps, prevState) {
-  //   const changedLine = prevProps.lines.find((line, index) => {
-  //     console.log(line.character, line.text);
-  //     console.log(this.props.lines[index].character, this.props.lines[index].text);
-  //     if(line.character !== this.props.lines[index].character) {
-  //       console.log('found character change');
-  //       return true;
-  //     } else if(line.text !== this.props.lines[index].text) {
-  //       console.log('found a line change');
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //   if(changedLine) {
-  //     return changedLine;
-  //   }
-  //   return null;
-  // }
-
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   const updateObj = {
-  //     id: this.props.sceneId,
-  //     title: this.props.title,
-  //     lines: this.props.lines,
-  //     editing: true
-  //   };
-  //   this.props.dispatch(
-  //     updateScene(updateObj, this.props.authToken, false)
-  //   );
-  // }
-
   toggleEditing() {
+    const updateObj = {
+      id: this.props.match.params.id,
+      editing: false
+    };
     this.props.dispatch(toggleEditing());
+    this.props.dispatch(updateScene(updateObj, this.props.authToken, false));
   }
 
   addLine(character, text) {
