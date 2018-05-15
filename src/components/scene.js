@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { updateScene, selectCharacter, toggleEditing } from '../actions/scenes';
+import { selectCharacter, toggleEditing } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 // import Options from './options';
