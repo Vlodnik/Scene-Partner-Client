@@ -106,8 +106,23 @@ export function addSceneError(err) {
   }
 }
 
-export function updateScene(updateObj, jwt) {
+export const CHANGE_LINE = 'CHANGE_LINE';
+export function changeLine(character, text, lineIndex, sceneId) {
+  console.log('changeLine is happening');
+  return {
+    type: CHANGE_LINE,
+    payload: {
+      character,
+      text,
+      lineIndex,
+      sceneId
+    }
+  }
+}
+
+export function updateScene(updateObj, jwt, fromLine) {
   return function(dispatch) {
+    console.log('updateScene fired');
     dispatch(updateSceneRequest());
     return fetch(`${ REACT_APP_BASE_URL }/scenes/${ updateObj.id }`, {
       method: 'PUT',
@@ -120,11 +135,12 @@ export function updateScene(updateObj, jwt) {
       .then(res => {
         return normalizeResponseErrors(res);
       })
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        dispatch(updateSceneSuccess(res));
+      .then(() => {
+        dispatch(updateSceneSuccess(updateObj));
+        if(typeof fromLine === 'number') {
+          dispatch(updateLineSuccess(fromLine));
+          setTimeout(() => dispatch(clearSaveMessage(fromLine)), 1500);
+        }
       })
       .catch(err => {
         dispatch(updateSceneError(err))
@@ -140,11 +156,11 @@ export function updateSceneRequest() {
 }
 
 export const UPDATE_SCENE_SUCCESS = 'UPDATE_SCENE_SUCCESS';
-export function updateSceneSuccess(res) {
+export function updateSceneSuccess(updatedScene) {
   return {
     type: UPDATE_SCENE_SUCCESS,
     payload: {
-      message: res.message
+      updatedScene
     }
   }
 }
@@ -156,6 +172,27 @@ export function updateSceneError(err) {
     type: UPDATE_SCENE_ERROR,
     payload: {
       err
+    }
+  }
+}
+
+export const UPDATE_LINE_SUCCESS = 'UPDATE_LINE_SUCCESS';
+export function updateLineSuccess(lineIndex) {
+  return {
+    type: UPDATE_LINE_SUCCESS,
+    payload: {
+      lineIndex
+    }
+  }
+}
+
+export const CLEAR_SAVE_MESSAGE = 'CLEAR_SAVE_MESSAGE';
+export function clearSaveMessage(lineIndex) {
+  console.log('clearing');
+  return {
+    type: CLEAR_SAVE_MESSAGE,
+    payload: {
+      lineIndex
     }
   }
 }
@@ -227,28 +264,51 @@ export function toggleEditing() {
   }
 }
 
-export const ADD_LINE = 'ADD_LINE'
-export function addLine(jwt, character, text, sceneId) {
+export function addLine(updateObj, jwt, sceneId, newLine) {
+  return function(dispatch) {
+    dispatch(addLineRequest());
+    return fetch(`${ REACT_APP_BASE_URL }/scenes/${ sceneId }`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${ jwt }`
+      },
+      body: JSON.stringify(updateObj)
+    })
+      .then(res => {
+        return normalizeResponseErrors(res);
+      })
+      .then(() => {
+        dispatch(addLineSuccess(sceneId, newLine))
+      })
+      .catch(err => {
+        dispatch(addLineError(err))
+      });
+  }
+}
+
+export const ADD_LINE_REQUEST = 'ADD_LINE_REQUEST';
+export function addLineRequest() {
   return {
-    type: ADD_LINE,
+    type: ADD_LINE_REQUEST
+  }
+}
+
+export const ADD_LINE_SUCCESS = 'ADD_LINE_SUCCESS';
+export function addLineSuccess(sceneId, newLine) {
+  return {
+    type: ADD_LINE_SUCCESS,
     payload: {
-      character,
-      text,
-      sceneId
+      sceneId,
+      newLine
     }
   }
 }
 
-export const CHANGE_LINE = 'CHANGE_LINE';
-export function changeLine(character, text, lineIndex, sceneId) {
+export const ADD_LINE_ERROR = 'ADD_LINE_ERROR';
+export function addLineError() {
   return {
-    type: CHANGE_LINE,
-    payload: {
-      character,
-      text,
-      lineIndex,
-      sceneId
-    }
+    type: ADD_LINE_ERROR
   }
 }
 
@@ -273,63 +333,6 @@ export function selectCharacter(character, sceneId) {
     }
   }
 }
-
-// export function fetchUrls(lines, jwt) {
-//   return function(dispatch) {
-//     dispatch(fetchUrlsRequest());
-//     return fetch(`${ REACT_APP_BASE_URL }/audio`, {
-//       method: 'POST',
-//       headers: {
-//         'content-type': 'application/json',
-//         'Authorization': `Bearer ${ jwt }`
-//       },
-//       body: JSON.stringify({ lines })
-//     })
-//       .then(res => {
-//         return normalizeResponseErrors(res);
-//       })
-//       .then(res => {
-//         return res.json();
-//       })
-//       .then(res => {
-//         dispatch(fetchUrlsSuccess(res));
-//       })
-//       .catch(err => {
-//         dispatch(fetchUrlsError(err));
-//       });
-//   }
-// }
-//
-// export const FETCH_URLS_REQUEST = 'FETCH_URLS_REQUEST';
-// export function fetchUrlsRequest(data) {
-//   return {
-//     type: FETCH_URLS_REQUEST
-//   }
-// }
-//
-// export const FETCH_URLS_SUCCESS = 'FETCH_URLS_SUCCESS';
-// export function fetchUrlsSuccess(data) {
-//   console.log(data);
-//
-//   return {
-//     type: FETCH_URLS_SUCCESS,
-//     payload: {
-//       data
-//     }
-//   }
-// }
-//
-// export const FETCH_URLS_ERROR = 'FETCH_URLS_ERROR';
-// export function fetchUrlsError(err) {
-//   console.log(err);
-//
-//   return {
-//     type: FETCH_URLS_ERROR,
-//     payload: {
-//       err
-//     }
-//   }
-// }
 
 export function fetchUrl(text, lineId, jwt, lineIndex) {
   return function(dispatch) {
@@ -386,58 +389,3 @@ export function fetchUrlError(err) {
     }
   }
 }
-
-
-
-// export function readLine(text, lineId, jwt) {
-//   return function(dispatch) {
-//     dispatch(readLineRequest());
-//     return fetch(`${ REACT_APP_BASE_URL }/audio`, {
-//       method: 'POST',
-//       headers: {
-//         'content-type': 'application/json',
-//         'Authorization': `Bearer ${ jwt }`
-//       },
-//       body: JSON.stringify({ text, lineId })
-//     })
-//       .then(res => {
-//         return normalizeResponseErrors(res);
-//       })
-//       .then(res => {
-//         return res.json();
-//       })
-//       .then(res => {
-//         dispatch(readLineSuccess(res.url));
-//       })
-//       .catch(err => {
-//         dispatch(readLineError(err));
-//       });
-//   }
-// }
-//
-// export const READ_LINE_REQUEST = 'READ_LINE_REQUEST';
-// export function readLineRequest() {
-//   return {
-//     type: READ_LINE_REQUEST
-//   }
-// }
-//
-// export const READ_LINE_SUCCESS = 'READ_LINE_SUCCESS';
-// export function readLineSuccess(url) {
-//   const audio = new Audio(url);
-//   audio.play();
-//
-//   return {
-//     type: READ_LINE_SUCCESS,
-//   }
-// }
-//
-// export const READ_LINE_ERROR = 'READ_LINE_ERROR';
-// export function readLineError(err) {
-//   return {
-//     type: READ_LINE_ERROR,
-//     payload: {
-//       err
-//     }
-//   }
-// }

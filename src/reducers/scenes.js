@@ -5,7 +5,6 @@ const initialState = {
   currentSceneId: null,
   loading: false,
   error: null,
-  saved: null,
   scenes: []
 };
 
@@ -22,7 +21,6 @@ export default function scenePartnerReducer(state=initialState, action) {
   } else if(action.type === actions.ADD_SCENE_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.ADD_SCENE_SUCCESS) {
-    // const newId = shortid.generate();
     const newScene = action.payload.newScene;
     return Object.assign({}, state, {
       currentSceneId: newScene.id,
@@ -99,19 +97,14 @@ export default function scenePartnerReducer(state=initialState, action) {
         return scene;
       })
     });
-  } else if(action.type === actions.ADD_LINE) {
+  }
+  else if(action.type === actions.ADD_LINE_SUCCESS) {
     return Object.assign({}, state, {
       scenes: state.scenes.map(function(scene) {
         if(scene.id === action.payload.sceneId) {
           return {
             ...scene,
-            lines: [...scene.lines,
-              {
-                key: shortid.generate(),
-                character: action.payload.character,
-                text: action.payload.text
-              }
-            ]
+            lines: [...scene.lines, action.payload.newLine]
           }
         }
         return scene;
@@ -130,8 +123,44 @@ export default function scenePartnerReducer(state=initialState, action) {
       })
     });
   } else if(action.type === actions.UPDATE_SCENE_SUCCESS) {
-    console.log(action.payload.message);
-    return Object.assign({}, state, { saved: true });
+    const updatedScenes = state.scenes.map(scene => {
+      if(scene.id === action.payload.updatedScene.id) {
+        return action.payload.updatedScene;
+      }
+      return scene;
+    });
+
+    return Object.assign({}, state, { scenes: updatedScenes });
+  } else if(action.type === actions.UPDATE_SCENE_ERROR) {
+    return Object.assign({}, state, { loading: false, error: action.payload.err });
+  } else if(action.type === actions.UPDATE_LINE_SUCCESS) {
+    const changedScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+    let updatedScene = {...changedScene};
+
+    updatedScene.lines[action.payload.lineIndex].saved = 'Saved!';
+
+    const updatedScenes = state.scenes.map(scene => {
+      if(scene.id === state.currentSceneId) {
+        return updatedScene;
+      }
+      return scene;
+    });
+
+    return Object.assign({}, state, { scenes: updatedScenes });
+  } else if(action.type === actions.CLEAR_SAVE_MESSAGE) {
+    const changedScene = state.scenes.find(scene => scene.id === state.currentSceneId);
+    let updatedScene = {...changedScene};
+
+    updatedScene.lines[action.payload.lineIndex].saved = 'Save';
+
+    const updatedScenes = state.scenes.map(scene => {
+      if(scene.id === state.currentSceneId) {
+        return updatedScene;
+      }
+      return scene;
+    });
+
+    return Object.assign({}, state, { scenes: updatedScenes });
   } else if(action.type === actions.FETCH_URL_REQUEST) {
     return Object.assign({}, state, { loading: true, error: null });
   } else if(action.type === actions.FETCH_URL_SUCCESS) {

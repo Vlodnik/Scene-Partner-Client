@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import NewLine from './new-line';
+import Footer from '../components/footer';
 
-describe('<NewLine />', function() {
+describe('<Footer />', function() {
   it('Renders without crashing', function() {
-    shallow(<NewLine />);
+    shallow(<Footer />);
   });
 });

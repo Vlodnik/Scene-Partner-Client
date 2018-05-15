@@ -5,8 +5,8 @@ export default class NewLine extends React.Component {
   handleLine(e) {
     e.preventDefault();
     const character = this.character.value.toUpperCase().trim();
-    const line = this.line.value;
-    this.props.onAddLine(character, line);
+    const text = this.line.value;
+    this.props.onAddLine(character, text);
     this.character.value = '';
     this.line.value = '';
   }

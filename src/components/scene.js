@@ -17,7 +17,7 @@ export class Scene extends React.Component {
       id: this.props.match.params.id,
       editing: false
     };
-    this.props.dispatch(updateScene(updateObj, this.props.authToken));
+    this.props.dispatch(updateScene(updateObj, this.props.authToken, false));
   }
 
   selectCharacter(character, sceneId) {

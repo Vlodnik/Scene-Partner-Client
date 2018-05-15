@@ -18,8 +18,6 @@ export class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.authToken, this.props.currentUser);
-
     const scenes = this.props.scenes.map((scene, index) => {
       if(scene.editing === false) {
         return (

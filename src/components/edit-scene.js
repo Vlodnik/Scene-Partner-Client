@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import insureSceneId from './insure-scene-id';
 
-import { addLine, updateScene, toggleEditing } from '../actions/scenes';
+import { addLine, toggleEditing } from '../actions/scenes';
 
 import HomeNav from './home-nav';
 import NewLine from './new-line';
 import EditingLine from './editing-line';
+
+import shortid from 'shortid';
 
 import './edit-scene.css';
 
@@ -31,50 +33,40 @@ export class EditScene extends React.Component {
   //   return null;
   // }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const updateObj = {
-      id: this.props.sceneId,
-      title: this.props.title,
-      lines: this.props.lines,
-      editing: true
-    };
-    this.props.dispatch(
-      updateScene(updateObj, this.props.authToken)
-    );
-  }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   const updateObj = {
+  //     id: this.props.sceneId,
+  //     title: this.props.title,
+  //     lines: this.props.lines,
+  //     editing: true
+  //   };
+  //   this.props.dispatch(
+  //     updateScene(updateObj, this.props.authToken, false)
+  //   );
+  // }
 
   toggleEditing() {
     this.props.dispatch(toggleEditing());
   }
 
-  addLine(character, line, sceneId) {
-    this.props.dispatch(addLine(this.props.authToken, character, line, sceneId));
+  addLine(character, text) {
+    const newLine = {
+      key: shortid.generate(),
+      character,
+      text,
+      saved: 'Save'
+    };
+    const updateObj = {
+      lines: [...this.props.lines, newLine],
+      id: this.props.sceneId
+    };
+    this.props.dispatch(addLine(updateObj, this.props.authToken, this.props.sceneId, newLine));
   }
 
   render() {
-    if(this.props.lines.length === 0) {
+    if(this.props.redirect) {
       return <Redirect to="/home" />
     }
-
-    const { sceneId, saved } = this.props;
-
-    let savedMessage;
-    if(saved) {
-      savedMessage = (
-        <h2 id="save-mes">Saved!</h2>
-      );
-    } else {
-      savedMessage = (
-        <h2 id="save-mes">Error</h2>
-      );
-    }
-
-    // function hideSaveMes() {
-    //   const message = document.getElementById('save-mes');
-    //   message.setAttribute('hidden', true);
-    // }
-    //
-    // window.setTimeout(hideSaveMes(), 1000);
 
     const lines = this.props.lines.map(function(line, index) {
       return (
@@ -110,12 +102,11 @@ export class EditScene extends React.Component {
       <div>
         <HomeNav />
         <main>
-          {savedMessage}
           <ul id="editing-lines">
             {lines}
           </ul>
           <NewLine
-            onAddLine={(character, line) => this.addLine(character, line, sceneId)}
+            onAddLine={(character, line) => this.addLine(character, line)}
           />
           <div id="run-scene-parent">
             {runSceneButton}
@@ -138,12 +129,12 @@ function mapStateToProps(state, props) {
       lines: scene.lines,
       sceneId: sp.currentSceneId,
       editing: true,
-      saved: sp.saved,
       authToken: state.auth.authToken
     }
   } else {
     return {
-      lines: []
+      lines: [],
+      redirect: true
     }
   }
 }
