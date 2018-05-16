@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Landing from '../components/landing';
+import NewLine from '../../components/new-line';
 
-describe('<Landing />', function() {
+describe('<NewLine />', function() {
   it('Renders without crashing', function() {
-    shallow(<Landing />);
+    shallow(<NewLine />);
   });
 });

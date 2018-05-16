@@ -161,21 +161,10 @@ export function updateSceneSuccess(updatedScene) {
 
 export const UPDATE_SCENE_ERROR = 'UPDATE_SCENE_ERROR';
 export function updateSceneError(err) {
-  console.log(`Problem! Error is: ${ err }`);
   return {
     type: UPDATE_SCENE_ERROR,
     payload: {
       err
-    }
-  }
-}
-
-export const UPDATE_LINE_SUCCESS = 'UPDATE_LINE_SUCCESS';
-export function updateLineSuccess(lineIndex) {
-  return {
-    type: UPDATE_LINE_SUCCESS,
-    payload: {
-      lineIndex
     }
   }
 }
@@ -197,7 +186,6 @@ export function deleteScene(sceneId, jwt) {
         dispatch(deleteSceneSuccess(sceneId));
       })
       .catch(err => {
-        console.log(err);
         dispatch(deleteSceneError(err));
       });
   }
@@ -289,9 +277,12 @@ export function addLineSuccess(sceneId, newLine) {
 }
 
 export const ADD_LINE_ERROR = 'ADD_LINE_ERROR';
-export function addLineError() {
+export function addLineError(err) {
   return {
-    type: ADD_LINE_ERROR
+    type: ADD_LINE_ERROR,
+    payload: {
+      err
+    }
   }
 }
 
@@ -363,8 +354,6 @@ export function fetchUrlSuccess(url, lineIndex) {
 
 export const FETCH_URL_ERROR = 'FETCH_URL_ERROR';
 export function fetchUrlError(err) {
-  console.log(err);
-
   return {
     type: FETCH_URL_ERROR,
     payload: {

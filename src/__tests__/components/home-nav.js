@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Footer from '../components/footer';
+import { HomeNav } from '../../components/home-nav';
 
-describe('<Footer />', function() {
+describe('<HomeNav />', function() {
   it('Renders without crashing', function() {
-    shallow(<Footer />);
+    shallow(<HomeNav />);
   });
 });

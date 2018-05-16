@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import { HomeNav } from '../components/home-nav';
+import { Line } from '../../components/line';
 
-describe('<HomeNav />', function() {
+describe('<Line />', function() {
   it('Renders without crashing', function() {
-    shallow(<HomeNav />);
+    shallow(<Line />);
   });
 });

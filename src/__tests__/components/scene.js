@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import { Scene } from '../components/scene';
+import { Scene } from '../../components/scene';
 
 describe('<Scene />', function() {
   it('Renders without crashing', function() {
