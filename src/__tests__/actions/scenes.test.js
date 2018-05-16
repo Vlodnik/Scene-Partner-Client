@@ -1,5 +1,4 @@
 import * as actions from '../../actions/scenes';
-import { getScenesRequest, getScenesSuccess } from '../../actions/__mocks__/scenes';
 import { REACT_APP_BASE_URL } from '../../config';
 
 // beforeEach(function() {
