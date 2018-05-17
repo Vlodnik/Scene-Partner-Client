@@ -1,21 +1,6 @@
 import * as actions from '../../actions/scenes';
 import { REACT_APP_BASE_URL } from '../../config';
 
-// beforeEach(function() {
-//   global.fetch = jest.fn().mockImplementation(() => {
-//     const p = new Promise((resolve, reject) => {
-//       resolve({
-//         ok: true,
-//         Id: 'idString',
-//         json: new Promise((resolve, reject) => {
-//           resolve({Id: 'jsonId'});
-//         })
-//       });
-//     });
-//     return p;
-//   });
-// });
-
 describe('getScenes', function() {
   it('Should fetch scenes', function() {
     const spyFetch = jest.fn().mockImplementation(() => {
@@ -345,15 +330,15 @@ describe('fetchUrl', function() {
   it('Should make a POST fetch with line data', function() {
     const spyFetch = jest.fn().mockImplementation(() => {
       const p = new Promise((resolve, reject) => {
-            resolve({
-              ok: true,
-              Id: 'idString',
-              json: () => new Promise((resolve, reject) => {
-                resolve({ url: 'newUrl' })
-              })
-            });
-          });
-          return p;
+        resolve({
+          ok: true,
+          Id: 'idString',
+          json: () => new Promise((resolve, reject) => {
+            resolve({ url: 'newUrl' })
+          })
+        });
+      });
+      return p;
     });
     global.fetch = spyFetch;
     const dispatch = jest.fn();

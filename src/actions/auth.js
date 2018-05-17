@@ -6,7 +6,7 @@ import { normalizeResponseErrors } from './utils';
 
 export function login(username, password) {
   return function(dispatch) {
-    dispatch(requestLogin());
+    dispatch(loginRequest());
     return fetch(`${ REACT_APP_BASE_URL }/users/login`, {
       method: 'POST',
       headers: {
@@ -22,10 +22,8 @@ export function login(username, password) {
     })
     .then(res => {
       storeAuthInfo(res.authToken, dispatch);
-      saveAuthToken(res.authToken);
     })
     .catch(err => {
-      console.log(err);
       dispatch(loginError(err));
 
       let message;
@@ -44,7 +42,7 @@ export function login(username, password) {
   }
 }
 
-function storeAuthInfo(authToken, dispatch) {
+export function storeAuthInfo(authToken, dispatch) {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(loginSuccess(decodedToken.user));
@@ -80,7 +78,6 @@ export function refreshAuthToken() {
         storeAuthInfo(res.authToken, dispatch);
       })
       .catch(err => {
-        console.log(err);
         dispatch(loginError(err));
         dispatch(clearAuth());
         clearAuthToken();
@@ -89,7 +86,7 @@ export function refreshAuthToken() {
 }
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export function requestLogin() {
+export function loginRequest() {
   return {
     type: LOGIN_REQUEST
   }
