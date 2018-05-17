@@ -18,7 +18,6 @@ export function createAccount(user) {
         return res.json();
       })
       .catch(err => {
-        console.log(err);
         const { reason, message, location } = err;
         if(reason === 'ValidationError') {
           return Promise.reject(
