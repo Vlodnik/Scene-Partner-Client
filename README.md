@@ -24,7 +24,23 @@ in the browser's local storage, and then checking for them when the redux store 
 ## Screenshots
 Here are screenshots of the app's landing page:
 ![Landing Page one](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page1.png)
-
 ![Landing Page two](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page2.png)
-
 ![Landing Page two](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page3.png)
+
+Account creation page:
+![Account creation page](https://s3.us-east-2.amazonaws.com/readme.images/SPaccount-creation.png)
+
+Home page:
+![Home page](https://s3.us-east-2.amazonaws.com/readme.images/SPhome-screen.png)
+
+New scene entry:
+![New scene entry page](https://s3.us-east-2.amazonaws.com/readme.images/SPnew-scene.png)
+
+Line editing page:
+![Line editing page](https://s3.us-east-2.amazonaws.com/readme.images/SPline-editing.png)
+
+Line running page:
+![Line running page](https://s3.us-east-2.amazonaws.com/readme.images/SPline-running.png)
+
+View of the dropdown menu:
+![Dropdown menu](https://s3.us-east-2.amazonaws.com/readme.images/SPdropdown-menu.png)
