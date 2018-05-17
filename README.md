@@ -24,5 +24,7 @@ in the browser's local storage, and then checking for them when the redux store 
 ## Screenshots
 Here are screenshots of the app's landing page:
 ![Landing Page one](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page1.png)
+
 ![Landing Page two](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page2.png)
+
 ![Landing Page two](https://s3.us-east-2.amazonaws.com/readme.images/SPlanding-page3.png)
