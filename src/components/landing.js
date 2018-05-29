@@ -17,6 +17,7 @@ export default class Landing extends React.Component {
               <h1>Hear your cues <span>read aloud</span></h1>
               <h2>Run lines without a partner</h2>
               <Link to="/signup"><button className="sign-up">Get started</button></Link>
+              <Link to="/home" id="demo">Try our demo account</Link>
             </div>
           </header>
           <section className="feature">
