@@ -78,7 +78,7 @@ export class Home extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     loading: state.sp.loading,
     scenes: state.sp.scenes,
