@@ -58,6 +58,7 @@
 }
 
 #demo:hover {
+  cursor: pointer;
   color: #00bddb;
 }
 

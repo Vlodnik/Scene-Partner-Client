@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom';
 
 import { login } from '../actions/auth';
 
@@ -12,6 +12,10 @@ import './landing.css';
 
 export class Landing extends React.Component {
   render() {
+    if(this.props.loggedIn) {
+      return <Redirect to="/home" />
+    }
+
     return (
       <div>
         <LandingNav />
@@ -21,15 +25,14 @@ export class Landing extends React.Component {
               <h1>Hear your cues <span>read aloud</span></h1>
               <h2>Run lines without a partner</h2>
               <Link to="/signup" className="sign"><button className="sign-up">Get started</button></Link>
-              <Link
+              <p
                 id="demo"
-                to="/home"
                 onClick={() => this.props.dispatch(
                   login('Demo', 'password')
                 )}
               >
                 Try our demo account
-              </Link>
+              </p>
             </div>
           </header>
           <section className="feature">
@@ -111,4 +114,10 @@ export class Landing extends React.Component {
   }
 }
 
-export default connect()(Landing);
+function mapStateToProps(state) {
+  return {
+    loggedIn: state.auth.currentUser !== null
+  }
+}
+
+export default connect(mapStateToProps)(Landing);
