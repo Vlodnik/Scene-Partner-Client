@@ -16,7 +16,7 @@ export default class Landing extends React.Component {
             <div id="hero-layer">
               <h1>Hear your cues <span>read aloud</span></h1>
               <h2>Run lines without a partner</h2>
-              <Link to="/signup"><button className="sign-up">Get started</button></Link>
+              <Link to="/signup" className="sign"><button className="sign-up">Get started</button></Link>
               <Link to="/home" id="demo">Try our demo account</Link>
             </div>
           </header>
@@ -91,7 +91,7 @@ export default class Landing extends React.Component {
                 />
               </li>
             </ul>
-            <Link to="/signup"><button className="sign-up">Get started</button></Link>
+            <Link to="/signup" className="sign"><button className="sign-up">Get started</button></Link>
           </section>
         </main>
       </div>

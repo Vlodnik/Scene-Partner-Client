@@ -52,6 +52,7 @@
 
 #demo {
   color: white;
+  margin-top: 1em;
   text-decoration: underline;
   transition: color .3s;
 }
@@ -60,7 +61,7 @@
   color: #00bddb;
 }
 
-a {
+.sign {
   margin-top: 1em;
   text-decoration: none;
 }
