@@ -1,12 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+
+import { login } from '../actions/auth';
 
 import LandingNav from './landing-nav';
 import Line from './line';
 
 import './landing.css';
 
-export default class Landing extends React.Component {
+export class Landing extends React.Component {
   render() {
     return (
       <div>
@@ -17,7 +21,15 @@ export default class Landing extends React.Component {
               <h1>Hear your cues <span>read aloud</span></h1>
               <h2>Run lines without a partner</h2>
               <Link to="/signup" className="sign"><button className="sign-up">Get started</button></Link>
-              <Link to="/home" id="demo">Try our demo account</Link>
+              <Link
+                id="demo"
+                to="/home"
+                onClick={() => this.props.dispatch(
+                  login('Demo', 'password')
+                )}
+              >
+                Try our demo account
+              </Link>
             </div>
           </header>
           <section className="feature">
@@ -98,3 +110,5 @@ export default class Landing extends React.Component {
     );
   }
 }
+
+export default connect()(Landing);
